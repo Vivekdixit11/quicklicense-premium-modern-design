@@ -96,7 +96,7 @@ const reviews = [
     name: "Rajesh Kumar",
     role: "Founder, TechStart Solutions",
     rating: 5,
-    text: "LegalEase made company registration incredibly simple. Got my Private Limited company registered in just 7 days!",
+    text: "QuickLicense made company registration incredibly simple. Got my Private Limited company registered in just 7 days!",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
   },
   {
@@ -152,53 +152,53 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container-custom relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Badge className="mb-4 px-3 py-1 text-xs bg-primary/10 text-primary hover:bg-primary/20">
+              <Badge className="mb-3 px-2.5 py-0.5 text-[10px] bg-primary/10 text-primary hover:bg-primary/20">
                 🚀 India's #1 Business Registration Platform
               </Badge>
               
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-4">
-                Launch Your
-                <span className="gradient-text block">Business Today</span>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold leading-tight mb-3">
+                Build Your Business with Passion
+                <span className="gradient-text block">Build it Smart with QuickLicense</span>
               </h1>
               
-              <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-xs md:text-sm text-muted-foreground mb-4 leading-relaxed">
                 Get all your business licenses and registrations done in one place. 
                 Fast, reliable, and 100% compliant with government regulations.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 mb-8">
-                <Button size="default" className="animated-gradient text-white font-semibold text-sm px-6 group">
+              <div className="flex flex-col sm:flex-row gap-2.5 mb-6">
+                <Button size="sm" className="animated-gradient text-white font-semibold text-xs px-5 group">
                   Get Started Now
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button size="default" variant="outline" className="font-semibold text-sm px-6 group">
-                  <Play className="mr-2 w-4 h-4" />
+                <Button size="sm" variant="outline" className="font-semibold text-xs px-5 group">
+                  <Play className="mr-2 w-3.5 h-3.5" />
                   Watch Demo
                 </Button>
               </div>
               
               {/* Trust Indicators */}
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center gap-4">
                 <div>
-                  <div className="text-2xl font-bold gradient-text">10,000+</div>
-                  <div className="text-xs text-muted-foreground">Businesses Registered</div>
+                  <div className="text-xl font-bold gradient-text">10,000+</div>
+                  <div className="text-[10px] text-muted-foreground">Businesses Registered</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold gradient-text">26+</div>
-                  <div className="text-xs text-muted-foreground">Services Offered</div>
+                  <div className="text-xl font-bold gradient-text">26+</div>
+                  <div className="text-[10px] text-muted-foreground">Services Offered</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold gradient-text">99%</div>
-                  <div className="text-xs text-muted-foreground">Success Rate</div>
+                  <div className="text-xl font-bold gradient-text">99%</div>
+                  <div className="text-[10px] text-muted-foreground">Success Rate</div>
                 </div>
               </div>
             </motion.div>
@@ -209,13 +209,13 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative hidden lg:block"
             >
-              <div className="relative glass-effect rounded-3xl p-8 hover-lift">
-                <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-primary to-purple-600 rounded-full opacity-20 blur-3xl" />
-                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full opacity-20 blur-3xl" />
+              <div className="relative glass-effect rounded-2xl p-6 hover-lift">
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-primary to-purple-600 rounded-full opacity-20 blur-3xl" />
+                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full opacity-20 blur-3xl" />
                 <img
                   src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop"
                   alt="Business Registration"
-                  className="rounded-2xl w-full h-auto"
+                  className="rounded-xl w-full h-auto"
                 />
               </div>
             </motion.div>
@@ -226,12 +226,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-16"
+            className="mt-12"
           >
-            <p className="text-center text-xs text-muted-foreground mb-6">Trusted by 10,000+ businesses across India</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            <p className="text-center text-[10px] text-muted-foreground mb-4">Trusted by 10,000+ businesses across India</p>
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
               {trustLogos.map((logo, i) => (
-                <div key={i} className="text-xl font-bold text-muted-foreground/40 hover:text-muted-foreground/60 smooth-transition">
+                <div key={i} className="text-base font-bold text-muted-foreground/40 hover:text-muted-foreground/60 smooth-transition">
                   {logo}
                 </div>
               ))}
@@ -247,18 +247,18 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <Badge className="mb-3 text-xs">Our Services</Badge>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
+            <Badge className="mb-2 text-[10px]">Our Services</Badge>
+            <h2 className="text-xl md:text-2xl font-heading font-bold mb-2">
               26+ Business Licenses & <span className="gradient-text">Registrations</span>
             </h2>
-            <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xs text-muted-foreground max-w-2xl mx-auto">
               Everything you need to start and grow your business, all under one roof
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -269,16 +269,16 @@ export default function Home() {
               >
                 <Link href={service.href}>
                   <Card className="h-full hover-lift cursor-pointer group border-2 hover:border-primary smooth-transition">
-                    <CardContent className="p-5">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center mb-3 group-hover:scale-110 smooth-transition">
-                        <service.icon className="w-6 h-6 text-primary" />
+                    <CardContent className="p-4">
+                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center mb-2.5 group-hover:scale-110 smooth-transition">
+                        <service.icon className="w-5 h-5 text-primary" />
                       </div>
-                      <h3 className="font-heading font-semibold text-sm mb-2 group-hover:text-primary smooth-transition">
+                      <h3 className="font-heading font-semibold text-xs mb-1.5 group-hover:text-primary smooth-transition">
                         {service.name}
                       </h3>
-                      <p className="text-xs text-muted-foreground">{service.desc}</p>
-                      <div className="mt-3 flex items-center text-primary text-xs font-medium opacity-0 group-hover:opacity-100 smooth-transition">
-                        Learn More <ArrowRight className="w-3 h-3 ml-1" />
+                      <p className="text-[10px] text-muted-foreground">{service.desc}</p>
+                      <div className="mt-2 flex items-center text-primary text-[10px] font-medium opacity-0 group-hover:opacity-100 smooth-transition">
+                        Learn More <ArrowRight className="w-2.5 h-2.5 ml-1" />
                       </div>
                     </CardContent>
                   </Card>
@@ -296,15 +296,15 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <Badge className="mb-3 text-xs">Why Choose Us</Badge>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
+            <Badge className="mb-2 text-[10px]">Why Choose Us</Badge>
+            <h2 className="text-xl md:text-2xl font-heading font-bold mb-2">
               Why <span className="gradient-text">10,000+ Businesses</span> Trust Us
             </h2>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
@@ -314,12 +314,12 @@ export default function Home() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="text-center h-full hover-lift border-2 hover:border-primary smooth-transition">
-                  <CardContent className="p-6">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mx-auto mb-4 shine-effect">
-                      <benefit.icon className="w-7 h-7 text-white" />
+                  <CardContent className="p-5">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mx-auto mb-3 shine-effect">
+                      <benefit.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-heading font-semibold text-base mb-2">{benefit.title}</h3>
-                    <p className="text-xs text-muted-foreground">{benefit.desc}</p>
+                    <h3 className="font-heading font-semibold text-sm mb-1.5">{benefit.title}</h3>
+                    <p className="text-[10px] text-muted-foreground">{benefit.desc}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -335,18 +335,18 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <Badge className="mb-3 text-xs">Simple Process</Badge>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
+            <Badge className="mb-2 text-[10px]">Simple Process</Badge>
+            <h2 className="text-xl md:text-2xl font-heading font-bold mb-2">
               How It <span className="gradient-text">Works</span>
             </h2>
-            <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xs text-muted-foreground max-w-2xl mx-auto">
               Get your business license in 4 simple steps
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 relative">
             {/* Connection Lines - Hidden on mobile */}
             <div className="hidden lg:block absolute top-1/4 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20" style={{ top: '20%' }} />
             
@@ -360,12 +360,12 @@ export default function Home() {
                 className="relative"
               >
                 <Card className="text-center h-full hover-lift bg-card">
-                  <CardContent className="p-6">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mx-auto mb-4 shine-effect relative z-10">
-                      <span className="text-2xl font-bold text-white">{step.number}</span>
+                  <CardContent className="p-5">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mx-auto mb-3 shine-effect relative z-10">
+                      <span className="text-xl font-bold text-white">{step.number}</span>
                     </div>
-                    <h3 className="font-heading font-semibold text-base mb-2">{step.title}</h3>
-                    <p className="text-xs text-muted-foreground">{step.desc}</p>
+                    <h3 className="font-heading font-semibold text-sm mb-1.5">{step.title}</h3>
+                    <p className="text-[10px] text-muted-foreground">{step.desc}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -384,19 +384,19 @@ export default function Home() {
           >
             <Card className="animated-gradient text-white overflow-hidden relative">
               <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-              <CardContent className="p-8 md:p-12 text-center relative z-10">
-                <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
+              <CardContent className="p-8 md:p-10 text-center relative z-10">
+                <h2 className="text-xl md:text-2xl font-heading font-bold mb-3">
                   Ready to Launch Your Business?
                 </h2>
-                <p className="text-sm md:text-base mb-6 opacity-90 max-w-2xl mx-auto">
+                <p className="text-xs md:text-sm mb-5 opacity-90 max-w-2xl mx-auto">
                   Join 10,000+ successful businesses. Get started today with free consultation
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button size="default" variant="secondary" className="font-semibold text-sm px-6 group">
+                <div className="flex flex-col sm:flex-row gap-2.5 justify-center">
+                  <Button size="sm" variant="secondary" className="font-semibold text-xs px-5 group">
                     Get Free Consultation
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-2 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                  <Button size="default" variant="outline" className="font-semibold text-sm px-6 border-white text-white hover:bg-white/10">
+                  <Button size="sm" variant="outline" className="font-semibold text-xs px-5 border-white text-white hover:bg-white/10">
                     Call Now: +91 98765 43210
                   </Button>
                 </div>
@@ -413,15 +413,15 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <Badge className="mb-3 text-xs">Testimonials</Badge>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
+            <Badge className="mb-2 text-[10px]">Testimonials</Badge>
+            <h2 className="text-xl md:text-2xl font-heading font-bold mb-2">
               What Our <span className="gradient-text">Clients Say</span>
             </h2>
           </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4">
             {reviews.map((review, index) => (
               <motion.div
                 key={index}
@@ -431,22 +431,22 @@ export default function Home() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full hover-lift">
-                  <CardContent className="p-6">
-                    <div className="flex gap-1 mb-3">
+                  <CardContent className="p-5">
+                    <div className="flex gap-0.5 mb-2.5">
                       {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
-                    <p className="text-xs text-muted-foreground mb-4 leading-relaxed">"{review.text}"</p>
-                    <div className="flex items-center gap-3">
+                    <p className="text-[10px] text-muted-foreground mb-3 leading-relaxed">"{review.text}"</p>
+                    <div className="flex items-center gap-2.5">
                       <img
                         src={review.avatar}
                         alt={review.name}
-                        className="w-10 h-10 rounded-full object-cover"
+                        className="w-9 h-9 rounded-full object-cover"
                       />
                       <div>
-                        <div className="font-semibold text-sm">{review.name}</div>
-                        <div className="text-xs text-muted-foreground">{review.role}</div>
+                        <div className="font-semibold text-xs">{review.name}</div>
+                        <div className="text-[10px] text-muted-foreground">{review.role}</div>
                       </div>
                     </div>
                   </CardContent>
@@ -464,10 +464,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <Badge className="mb-3 text-xs">FAQ</Badge>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
+            <Badge className="mb-2 text-[10px]">FAQ</Badge>
+            <h2 className="text-xl md:text-2xl font-heading font-bold mb-2">
               Frequently Asked <span className="gradient-text">Questions</span>
             </h2>
           </motion.div>
@@ -477,17 +477,17 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Accordion type="single" collapsible className="space-y-3">
+            <Accordion type="single" collapsible className="space-y-2.5">
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="glass-effect rounded-xl px-5 border-2 hover:border-primary smooth-transition"
+                  className="glass-effect rounded-lg px-4 border-2 hover:border-primary smooth-transition"
                 >
-                  <AccordionTrigger className="text-left text-sm font-semibold hover:no-underline py-4">
+                  <AccordionTrigger className="text-left text-xs font-semibold hover:no-underline py-3">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-xs text-muted-foreground pb-4">
+                  <AccordionContent className="text-[10px] text-muted-foreground pb-3">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
