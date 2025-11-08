@@ -1,13 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import dynamicLoad from "next/dynamic";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import StickyContactForm from "@/components/StickyContactForm";
 import {
   Rocket,
   CheckCircle2,
@@ -21,6 +18,11 @@ import {
   Percent,
   Lightbulb,
 } from "lucide-react";
+
+// Lazy load heavy components
+const Footer = dynamicLoad(() => import("@/components/Footer"), { ssr: true });
+const WhatsAppButton = dynamicLoad(() => import("@/components/WhatsAppButton"), { ssr: false });
+const StickyContactForm = dynamicLoad(() => import("@/components/StickyContactForm"), { ssr: false });
 
 const benefits = [
   {
@@ -119,10 +121,10 @@ export default function StartupIndiaPage() {
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container-custom relative z-10 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
+
+
+
             >
               <Badge className="mb-6 px-4 py-2">DPIIT Recognition</Badge>
               <h1 className="text-5xl md:text-6xl font-heading font-bold leading-tight mb-6">
@@ -140,18 +142,18 @@ export default function StartupIndiaPage() {
               <Button size="lg" className="animated-gradient text-white font-semibold text-lg px-8 h-14">
                 Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <div
+
+
+
               className="relative hidden lg:block"
             >
               <div className="relative glass-effect rounded-3xl p-8 hover-lift">
                 <Rocket className="w-full h-64 text-primary opacity-10" />
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -160,10 +162,10 @@ export default function StartupIndiaPage() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
                   What is <span className="gradient-text">Startup India?</span>
@@ -179,12 +181,12 @@ export default function StartupIndiaPage() {
                     compliance, IPR benefits, and access to government funding schemes worth thousands of crores.
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Key <span className="gradient-text">Benefits</span>
@@ -202,12 +204,12 @@ export default function StartupIndiaPage() {
                     </Card>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Government <span className="gradient-text">Schemes & Benefits</span>
@@ -224,12 +226,12 @@ export default function StartupIndiaPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Eligibility <span className="gradient-text">Criteria</span>
@@ -246,12 +248,12 @@ export default function StartupIndiaPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Who <span className="gradient-text">Needs This?</span>
@@ -268,12 +270,12 @@ export default function StartupIndiaPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Registration <span className="gradient-text">Process</span>
@@ -303,12 +305,12 @@ export default function StartupIndiaPage() {
                     </Card>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Documents <span className="gradient-text">Required</span>
@@ -331,12 +333,12 @@ export default function StartupIndiaPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Pricing <span className="gradient-text">Breakdown</span>
@@ -361,7 +363,7 @@ export default function StartupIndiaPage() {
                     </Button>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             </div>
 
             <div className="lg:col-span-1">

@@ -47,7 +47,7 @@ export default function StickyContactForm() {
               <Input
                 id="contact-mobile"
                 type="tel"
-                placeholder="+91 98765 43210"
+                placeholder="+91 98916 14601"
                 value={formData.mobile}
                 onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                 required
@@ -87,8 +87,8 @@ export default function StickyContactForm() {
               <Phone className="w-5 h-5 text-primary flex-shrink-0" />
               <div>
                 <div className="font-medium">Call Us Now</div>
-                <a href="tel:+919876543210" className="text-muted-foreground hover:text-primary">
-                  +91 98765 43210
+                <a href="tel:+919891614601" className="text-muted-foreground hover:text-primary">
+                  +91 98916 14601
                 </a>
               </div>
             </div>
@@ -96,8 +96,8 @@ export default function StickyContactForm() {
               <Mail className="w-5 h-5 text-primary flex-shrink-0" />
               <div>
                 <div className="font-medium">Email Us</div>
-                <a href="mailto:info@legalease.com" className="text-muted-foreground hover:text-primary">
-                  info@legalease.com
+                <a href="mailto:enterpriserawal6@gmail.com" className="text-muted-foreground hover:text-primary">
+                  enterpriserawal6@gmail.com
                 </a>
               </div>
             </div>

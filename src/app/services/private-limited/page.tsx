@@ -1,13 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import dynamicLoad from "next/dynamic";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import StickyContactForm from "@/components/StickyContactForm";
 import {
   Building2,
   CheckCircle2,
@@ -19,6 +17,10 @@ import {
   ArrowRight,
   Download,
 } from "lucide-react";
+
+// Lazy load heavy components
+const WhatsAppButton = dynamicLoad(() => import("@/components/WhatsAppButton"), { ssr: false });
+const StickyContactForm = dynamicLoad(() => import("@/components/StickyContactForm"), { ssr: false });
 
 const benefits = [
   {
@@ -99,11 +101,7 @@ export default function PrivateLimitedPage() {
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container-custom relative z-10 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+            <div className="animate-fade-in">
               <Badge className="mb-6 px-4 py-2">Most Popular</Badge>
               <h1 className="text-5xl md:text-6xl font-heading font-bold leading-tight mb-6">
                 <span className="gradient-text">Private Limited</span> Company Registration
@@ -134,14 +132,9 @@ export default function PrivateLimitedPage() {
               <Button size="lg" className="animated-gradient text-white font-semibold text-lg px-8 h-14">
                 Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
+            <div className="relative hidden lg:block animate-fade-in-up">
               <div className="relative glass-effect rounded-3xl p-8 hover-lift">
                 <Building2 className="w-full h-64 text-primary opacity-10" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -151,7 +144,7 @@ export default function PrivateLimitedPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -163,11 +156,7 @@ export default function PrivateLimitedPage() {
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-16">
               {/* What is Private Limited */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
+              <div>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
                   What is a <span className="gradient-text">Private Limited Company?</span>
                 </h2>
@@ -183,14 +172,10 @@ export default function PrivateLimitedPage() {
                     maximum of 200 shareholders.
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Benefits */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
+              <div>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Key <span className="gradient-text">Benefits</span>
                 </h2>
@@ -207,14 +192,10 @@ export default function PrivateLimitedPage() {
                     </Card>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Who Needs This */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
+              <div>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Who <span className="gradient-text">Needs This?</span>
                 </h2>
@@ -230,14 +211,10 @@ export default function PrivateLimitedPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
               {/* Process Timeline */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
+              <div>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Registration <span className="gradient-text">Process</span>
                 </h2>
@@ -266,14 +243,10 @@ export default function PrivateLimitedPage() {
                     </Card>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Documents Required */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
+              <div>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Documents <span className="gradient-text">Required</span>
                 </h2>
@@ -295,14 +268,10 @@ export default function PrivateLimitedPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
               {/* Pricing Breakdown */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
+              <div>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Pricing <span className="gradient-text">Breakdown</span>
                 </h2>
@@ -326,7 +295,7 @@ export default function PrivateLimitedPage() {
                     </Button>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             </div>
 
             {/* Sidebar with Contact Form */}

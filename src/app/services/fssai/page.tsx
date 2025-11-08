@@ -1,13 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import dynamicLoad from "next/dynamic";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import StickyContactForm from "@/components/StickyContactForm";
+import HeroSection from "@/components/HeroSection";
 import {
   Utensils,
   CheckCircle2,
@@ -17,6 +15,11 @@ import {
   ArrowRight,
   Download,
 } from "lucide-react";
+
+// Lazy load heavy components
+const Footer = dynamicLoad(() => import("@/components/Footer"), { ssr: true });
+const WhatsAppButton = dynamicLoad(() => import("@/components/WhatsAppButton"), { ssr: false });
+const StickyContactForm = dynamicLoad(() => import("@/components/StickyContactForm"), { ssr: false });
 
 const benefits = [
   {
@@ -114,55 +117,30 @@ export default function FSSAIPage() {
     <>
       <Header />
 
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <div className="container-custom relative z-10 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Badge className="mb-6 px-4 py-2">Food Safety License</Badge>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold leading-tight mb-6">
-                <span className="gradient-text">FSSAI License</span> Registration
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-                Get your FSSAI food license in 15-20 days. Mandatory for all food businesses 
-                in India. 100% online process with expert support.
-              </p>
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-5xl font-bold gradient-text">{pricing.price}</span>
-                <span className="text-2xl text-muted-foreground line-through">{pricing.originalPrice}</span>
-                <Badge className="bg-green-100 text-green-700">Save 50%</Badge>
-              </div>
-              <Button size="lg" className="animated-gradient text-white font-semibold text-lg px-8 h-14">
-                Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
-              <div className="relative glass-effect rounded-3xl p-8 hover-lift">
-                <Utensils className="w-full h-64 text-primary opacity-10" />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        badge="Food Safety & Standards Authority of India"
+        title="FSSAI License Registration"
+        subtitle="Get your FSSAI food license in 15-20 days"
+        description="Mandatory for all food businesses in India. 100% online process with expert support at just ₹999."
+        highlights={[
+          "Legal Compliance - Mandatory for all food businesses in India",
+          "Customer Trust - Build credibility and consumer confidence",
+          "Quality Assurance - Ensure food safety standards are met"
+        ]}
+        stats={{
+          icon: <Utensils className="w-6 h-6 text-indigo-300" />,
+          text: "10,000+ Food businesses registered with our expert guidance"
+        }}
+      />
 
       <section className="section-padding">
         <div className="container-custom">
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
                   What is <span className="gradient-text">FSSAI License?</span>
@@ -178,12 +156,12 @@ export default function FSSAIPage() {
                     restaurant, must obtain FSSAI registration or license to legally operate in India.
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Types of <span className="gradient-text">FSSAI License</span>
@@ -207,12 +185,12 @@ export default function FSSAIPage() {
                     </Card>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Key <span className="gradient-text">Benefits</span>
@@ -230,12 +208,12 @@ export default function FSSAIPage() {
                     </Card>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Who <span className="gradient-text">Needs This?</span>
@@ -252,12 +230,12 @@ export default function FSSAIPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Registration <span className="gradient-text">Process</span>
@@ -287,12 +265,12 @@ export default function FSSAIPage() {
                     </Card>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Documents <span className="gradient-text">Required</span>
@@ -315,12 +293,12 @@ export default function FSSAIPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+
+
+
               >
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Pricing <span className="gradient-text">Breakdown</span>
@@ -345,7 +323,7 @@ export default function FSSAIPage() {
                     </Button>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             </div>
 
             <div className="lg:col-span-1">

@@ -24,17 +24,17 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Visit Our Office",
-    details: ["123 Business Street", "Corporate Hub, Mumbai - 400001", "India"],
+    details: ["F-10/125 Sector-15 Rohini", "Delhi - 110085", "India"],
   },
   {
     icon: Phone,
     title: "Call Us",
-    details: ["+91 98765 43210", "+91 98765 43211", "Mon-Sat: 9 AM - 7 PM"],
+    details: ["+91 98916 14601", "Mon-Sat: 9 AM - 7 PM"],
   },
   {
     icon: Mail,
     title: "Email Us",
-    details: ["info@legalease.com", "support@legalease.com", "24/7 Support"],
+    details: ["enterpriserawal6@gmail.com", "24/7 Support"],
   },
   {
     icon: Clock,
@@ -138,7 +138,7 @@ export default function ContactPage() {
                         <Input
                           id="mobile"
                           type="tel"
-                          placeholder="+91 98765 43210"
+                          placeholder="+91 98916 14601"
                           value={formData.mobile}
                           onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                           required
@@ -241,9 +241,9 @@ export default function ContactPage() {
                       className="w-full justify-start h-12"
                       asChild
                     >
-                      <a href="tel:+919876543210">
+                      <a href="tel:+919891614601">
                         <Phone className="mr-3 w-5 h-5" />
-                        Call Now: +91 98765 43210
+                        Call Now: +91 98916 14601
                       </a>
                     </Button>
                     <Button
@@ -251,7 +251,7 @@ export default function ContactPage() {
                       className="w-full justify-start h-12"
                       asChild
                     >
-                      <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+                      <a href="https://wa.me/919891614601" target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="mr-3 w-5 h-5" />
                         WhatsApp Chat
                       </a>
@@ -261,7 +261,7 @@ export default function ContactPage() {
                       className="w-full justify-start h-12"
                       asChild
                     >
-                      <a href="mailto:info@legalease.com">
+                      <a href="mailto:enterpriserawal6@gmail.com">
                         <Mail className="mr-3 w-5 h-5" />
                         Email Us
                       </a>
@@ -303,8 +303,8 @@ export default function ContactPage() {
                   <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
                   <p className="text-muted-foreground">Map Integration</p>
                   <p className="text-sm text-muted-foreground mt-2">
-                    123 Business Street, Corporate Hub<br />
-                    Mumbai - 400001, India
+                    F-10/125 Sector-15 Rohini<br />
+                    Delhi - 110085, India
                   </p>
                 </div>
               </div>
