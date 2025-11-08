@@ -3,6 +3,7 @@ import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
+import WebGLFluidBackground from "@/components/WebGLFluidBackground";
 
 export const metadata: Metadata = {
   title: "Quick License - Your Trusted Business Registration Partner",
@@ -36,6 +37,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://slelguoygbfzlpylpxfs.supabase.co" />
       </head>
       <body className="antialiased">
+        <WebGLFluidBackground />
         <ErrorReporter />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"

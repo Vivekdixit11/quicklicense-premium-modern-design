@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import SearchBar from "@/components/SearchBar";
 import { Textarea } from "@/components/ui/textarea";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import {
@@ -249,21 +250,7 @@ export default function Home() {
 
             {/* Search Bar */}
             <div className="max-w-4xl mx-auto mb-12 animate-fade-in">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#feda6a] via-[#d4d4dc] to-[#feda6a] rounded-full opacity-30 group-hover:opacity-50 blur-lg transition-all duration-500" />
-                <div className="relative">
-                  <Input
-                    type="text"
-                    placeholder="Search for any service... (e.g., Company Registration)"
-                    className="w-full h-16 md:h-20 pl-7 pr-20 text-base md:text-xl rounded-full bg-white/98 backdrop-blur-sm border-2 border-[#d4d4dc]/60 shadow-2xl focus:ring-4 focus:ring-[#feda6a]/50 transition-all font-medium text-[#1d1e22] placeholder:text-[#393f4d]"
-                  />
-                  <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-[#feda6a] to-[#feda6a] hover:from-[#feda6a]/90 hover:to-[#feda6a]/90 text-[#1d1e22] rounded-full p-4 md:p-5 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
-                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
+              <SearchBar />
 
               {/* Quick Action Buttons */}
               <div className="flex flex-wrap justify-center gap-3 mt-8">
@@ -799,46 +786,6 @@ export default function Home() {
                   </CardContent>
                 </Card>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section-padding bg-slate-950 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.25),_transparent_55%)]" />
-          <div className="container-custom relative z-10">
-            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
-              <div>
-                <Badge className="bg-white/10 text-white mb-4">Your command centre</Badge>
-                <h2 className="text-2xl md:text-4xl font-heading font-bold">Numbers that inspire confidence.</h2>
-                <p className="mt-4 text-sm text-slate-200 max-w-xl">
-                  Join a community of founders, CFOs, and operations leaders who rely on LegalEase to forecast compliance workload, close funding rounds faster, and protect brand reputation.
-                </p>
-
-                <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                  {testimonials.map((testimonial) => (
-                    <Card key={testimonial.name} className="bg-white/10 border-white/20 backdrop-blur-md text-left">
-                      <CardContent className="p-6">
-                        <p className="text-xs text-slate-100 leading-relaxed">“{testimonial.quote}”</p>
-                        <div className="mt-4 text-xs font-semibold text-slate-200">{testimonial.name}</div>
-                        <div className="text-[11px] text-slate-300">{testimonial.role}</div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section-padding border-y border-slate-100 bg-white">
-          <div className="container-custom">
-            <div className="text-center">
-              <Badge className="mb-4 text-xs">In the press</Badge>
-              <div className="flex flex-wrap justify-center items-center gap-8 text-sm font-semibold text-slate-400">
-                {newsLogos.map((brand) => (
-                  <span key={brand} className="uppercase tracking-[0.35em] hover:text-slate-600 transition-colors">{brand}</span>
-                ))}
-              </div>
             </div>
           </div>
         </section>

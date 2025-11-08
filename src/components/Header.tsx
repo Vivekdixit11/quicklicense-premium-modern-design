@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -42,6 +42,21 @@ const serviceCategories = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
+  const buttonRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  const openMenu = (key: string) => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setActiveDropdown(key);
+  };
+
+  const scheduleClose = () => {
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = window.setTimeout(() => setActiveDropdown(null), 180);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +69,7 @@ export default function Header() {
   return (
     <>
       {/* Top Info Bar */}
-      <div className="bg-gradient-to-r from-indigo-600 to-violet-600 text-white py-2">
+      <div className="bg-gradient-to-r from-indigo-600/95 to-violet-600/95 text-white py-2 backdrop-blur-sm fixed top-0 left-0 right-0 z-[99999]">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-between text-sm">
             <div className="flex items-center space-x-6">
@@ -74,16 +89,19 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Spacer for fixed header */}
+      <div className="h-[120px]"></div>
+
       {/* Main Header */}
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        className={`fixed top-[40px] left-0 right-0 z-[99998] w-full transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100"
-            : "bg-white shadow-sm"
+            ? "bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-100"
+            : "bg-white/85 backdrop-blur-md shadow-sm"
         }`}
       >
         <div className="container mx-auto px-4">
-          <div className="flex h-20 items-center justify-between">
+          <div className="flex h-20 items-center justify-between relative">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3 group ml-4 sm:ml-8">
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center flex-shrink-0">
@@ -103,14 +121,15 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation - Moved to Right */}
-            <nav className="hidden lg:flex items-center space-x-1 ml-auto mr-6">
+            <nav className="hidden lg:flex items-center space-x-1 ml-auto mr-6 relative z-[100000]">
               {/* Individual Category Dropdowns */}
               {serviceCategories.map((category) => (
                 <div 
                   key={category.category}
                   className="relative"
-                  onMouseEnter={() => setActiveDropdown(category.category)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+                  ref={(el) => { buttonRefs.current[category.category] = el; }}
+                  onMouseEnter={() => openMenu(category.category)}
+                  onMouseLeave={scheduleClose}
                 >
                   <button className="flex items-center space-x-1 text-gray-700 hover:text-indigo-600 font-medium transition-colors py-2 px-3 rounded-lg hover:bg-indigo-50">
                     <span className="text-lg">{category.icon}</span>
@@ -119,10 +138,15 @@ export default function Header() {
                   </button>
                   
                   {/* Dropdown Menu */}
-                  <div className={`absolute top-full left-0 mt-2 w-72 transition-all duration-300 ${
-                    activeDropdown === category.category ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                  }`}>
-                    <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-4 backdrop-blur-lg">
+                  <div 
+                    className={`absolute top-full left-0 mt-2 w-72 transition-all duration-150 ${
+                    activeDropdown === category.category ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                  }`}
+                    style={{ zIndex: 999999 }}
+                    onMouseEnter={() => openMenu(category.category)}
+                    onMouseLeave={scheduleClose}
+                  >
+                    <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-4">
                       {/* Category Header */}
                       <div className="pb-3 mb-3 border-b border-gray-200">
                         <div className="flex items-center space-x-2 mb-1">
@@ -167,9 +191,11 @@ export default function Header() {
 
             {/* Right Side Actions */}
             <div className="hidden lg:flex items-center space-x-3">
-              <Button className="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transition-all">
-                Get Started →
-              </Button>
+              <Link href="/contact">
+                <Button className="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transition-all">
+                  Get Started →
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu */}
@@ -221,9 +247,11 @@ export default function Header() {
                   </Link>
 
                   <div className="pt-4 space-y-3">
-                    <Button className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 shadow-lg">
-                      Get Started →
-                    </Button>
+                    <Link href="/contact">
+                      <Button className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 shadow-lg">
+                        Get Started →
+                      </Button>
+                    </Link>
                   </div>
 
                   {/* Contact Info */}
