@@ -3,12 +3,14 @@ import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
-import WebGLFluidBackground from "@/components/WebGLFluidBackground";
 
 export const metadata: Metadata = {
   title: "Quick License - Your Trusted Business Registration Partner",
   description: "Get your business licenses and registrations done hassle-free. Private Limited, LLP, FSSAI, ISO, MSME, and 20+ more services.",
   keywords: "business registration, private limited, LLP, FSSAI license, ISO certification, MSME registration, startup india, trademark registration",
+  verification: {
+    google: 'c7ebxUUWhzkkthPPhWpXYeGbPgJpE2Mjx1v_ZotWEXY',
+  },
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -37,7 +39,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://slelguoygbfzlpylpxfs.supabase.co" />
       </head>
       <body className="antialiased">
-        <WebGLFluidBackground />
         <ErrorReporter />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"

@@ -189,7 +189,7 @@ export default function Home() {
         <section className="relative overflow-hidden min-h-[95vh] flex items-center bg-gradient-to-br from-[#1d1e22] via-[#393f4d] to-[#1d1e22]">
           {/* Animated Gradient Orbs */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-[#feda6a]/30 to-[#feda6a]/20 rounded-full blur-3xl animate-float" />
+            <div className="absolute top-20 left-10 w-96 h-96 bg-linear-to-br from-[#feda6a]/30 to-[#feda6a]/20 rounded-full blur-3xl animate-float" />
             <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-gradient-to-br from-[#d4d4dc]/30 to-[#d4d4dc]/20 rounded-full blur-3xl animate-float-delayed" />
             <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-gradient-to-br from-[#feda6a]/20 to-[#d4d4dc]/20 rounded-full blur-3xl animate-pulse-slow" />
             <div className="absolute top-40 right-1/4 w-72 h-72 bg-gradient-to-br from-[#feda6a]/25 to-[#feda6a]/15 rounded-full blur-3xl animate-float-slow" />
