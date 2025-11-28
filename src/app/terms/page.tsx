@@ -4,8 +4,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Terms of Service - Quick License",
-  description: "Terms of Service for Quick License - terms, conditions, and user responsibilities",
+  title: "Terms of Service - Clear & Fair Service Agreement | Quick License",
+  description: "Read Quick License terms of service for business registration and compliance services in India. Transparent conditions, user rights, and service agreements.",
+  keywords: "quick license terms, service agreement india, business registration terms, compliance service conditions",
+  openGraph: {
+    title: "Terms of Service - Quick License India",
+    description: "Fair and transparent terms for all our business registration and compliance services.",
+    type: "website",
+  },
 };
 
 export default function TermsPage() {
@@ -63,3 +69,4 @@ export default function TermsPage() {
     </>
   );
 }
+

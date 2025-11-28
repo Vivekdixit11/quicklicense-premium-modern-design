@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
+import ServiceHeroWithForm from "@/components/ServiceHeroWithForm";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StickyContactForm from "@/components/StickyContactForm";
@@ -19,6 +21,7 @@ import {
   Download,
   Award,
   Percent,
+  Phone,
 } from "lucide-react";
 
 const benefits = [
@@ -87,68 +90,28 @@ const governmentBenefits = [
   "Quality certification scheme benefits",
 ];
 
-const pricing = {
-  price: "₹1,499",
-  originalPrice: "₹2,999",
-  includes: [
-    "Udyam Registration Certificate",
-    "Aadhaar-based authentication",
-    "Online application filing",
-    "Document preparation",
-    "Expert consultation",
-    "Lifetime validity",
-    "Government portal access",
-    "Certificate download",
-    "Free updates & amendments",
-    "24/7 support",
-  ],
-};
-
 export default function MSMEPage() {
   return (
     <>
       <Header />
 
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <div className="container-custom relative z-10 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Badge className="mb-6 px-4 py-2">Udyam Registration</Badge>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold leading-tight mb-6">
-                <span className="gradient-text">MSME Registration</span> in 3 Days
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-                Get your Udyam registration and unlock government benefits. Easy loans, 
-                tax benefits, and subsidy access for your business.
-              </p>
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-5xl font-bold gradient-text">{pricing.price}</span>
-                <span className="text-2xl text-muted-foreground line-through">{pricing.originalPrice}</span>
-                <Badge className="bg-green-100 text-green-700">Save 50%</Badge>
-              </div>
-              <Button size="lg" className="animated-gradient text-white font-semibold text-lg px-8 h-14">
-                Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
-              <div className="relative glass-effect rounded-3xl p-8 hover-lift">
-                <Briefcase className="w-full h-64 text-primary opacity-10" />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <ServiceHeroWithForm
+        badge="Udyam Registration"
+        title="MSME Registration"
+        subtitle="Starting at ₹999"
+        description="Get your Udyam registration in 3 days and unlock government benefits. Easy loans, tax benefits, and subsidy access for your business."
+        highlights={[
+          "Easy bank loan approvals",
+          "Government tender priority",
+          "Tax and subsidy benefits",
+          "Lifetime validity"
+        ]}
+        stats={[
+          { value: "3", label: "Days" },
+          { value: "Free", label: "Govt Portal" },
+          { value: "8,000+", label: "Registered" }
+        ]}
+      />
 
       <section className="section-padding">
         <div className="container-custom">
@@ -183,11 +146,11 @@ export default function MSMEPage() {
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Key <span className="gradient-text">Benefits</span>
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                   {benefits.map((benefit, index) => (
                     <Card key={index} className="hover-lift border-2 hover:border-primary smooth-transition">
                       <CardContent className="p-6">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center mb-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-[#E2F6F8]0/10 flex items-center justify-center mb-4">
                           <benefit.icon className="w-6 h-6 text-primary" />
                         </div>
                         <h3 className="font-heading font-semibold text-lg mb-2">{benefit.title}</h3>
@@ -256,7 +219,7 @@ export default function MSMEPage() {
                       <CardContent className="p-6">
                         <div className="flex gap-6 items-start">
                           <div className="flex-shrink-0">
-                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center text-white font-bold text-lg">
                               {item.step}
                             </div>
                           </div>
@@ -310,27 +273,30 @@ export default function MSMEPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
-                  Pricing <span className="gradient-text">Breakdown</span>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 text-center">
+                  Ready to Get <span className="gradient-text">MSME Registered?</span>
                 </h2>
-                <Card className="border-2 border-primary">
-                  <CardContent className="p-8">
-                    <div className="flex items-baseline gap-3 mb-6">
-                      <span className="text-5xl font-bold gradient-text">{pricing.price}</span>
-                      <span className="text-2xl text-muted-foreground line-through">{pricing.originalPrice}</span>
+                <Card className="border-2 border-primary bg-gradient-to-br from-primary/5 to-blue-500/5">
+                  <CardContent className="p-8 text-center">
+                    <h3 className="font-heading font-semibold text-2xl mb-4">
+                      Start Your Udyam Registration Today
+                    </h3>
+                    <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                      Get MSME/Udyam registration and unlock government subsidies, easy loans, and tax benefits. 
+                      Our experts will complete your registration in just 3 days.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Button size="lg" className="bg-gradient-to-r from-blue-600 to-[#23A8DD] text-white font-semibold hover:shadow-lg smooth-transition" asChild>
+                        <Link href="/contact">
+                          Contact Us <ArrowRight className="ml-2 w-5 h-5" />
+                        </Link>
+                      </Button>
+                      <Button size="lg" variant="outline" className="font-semibold" asChild>
+                        <Link href="tel:+919876543210">
+                          <Phone className="mr-2 w-5 h-5" /> Call Now
+                        </Link>
+                      </Button>
                     </div>
-                    <h3 className="font-heading font-semibold text-xl mb-4">Package Includes:</h3>
-                    <div className="space-y-3">
-                      {pricing.includes.map((item, index) => (
-                        <div key={index} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Button size="lg" className="w-full mt-8 animated-gradient text-white font-semibold h-14">
-                      Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -348,3 +314,5 @@ export default function MSMEPage() {
     </>
   );
 }
+
+

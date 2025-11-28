@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
+import ServiceHeroWithForm from "@/components/ServiceHeroWithForm";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import {
   Shield,
@@ -77,23 +77,6 @@ const whoNeeds = [
   "Anyone wanting to protect their brand",
 ];
 
-const pricing = {
-  price: "₹4,999",
-  originalPrice: "₹7,999",
-  includes: [
-    "Trademark Search Report",
-    "Application Drafting",
-    "Filing with IPO",
-    "Government Fee Included (1 Class)",
-    "Objection Handling (if any)",
-    "TM Application Number",
-    "Free Brand Consultation",
-    "Status Updates",
-    "Documentation Support",
-    "Certificate Delivery",
-  ],
-};
-
 const faqs = [
   {
     q: "What is a Trademark?",
@@ -118,20 +101,22 @@ export default function TrademarkPage() {
     <>
       <Header />
 
-      <HeroSection
+      <ServiceHeroWithForm
         badge="Brand Protection"
         title="Trademark Registration"
-        subtitle="Protect your brand identity and build consumer trust"
-        description="Secure exclusive rights to your brand name and logo with our complete trademark registration service. We handle search, filing, and prosecution."
+        subtitle="Starting at ₹4,999"
+        description="Secure exclusive rights to your brand name and logo. Complete trademark registration service from search to certificate."
         highlights={[
-          "Free Search Report",
-          "Expert Assistance",
-          "100% Online Process"
+          "Free comprehensive trademark search",
+          "Expert assistance throughout process",
+          "100% online filing and tracking",
+          "Lifetime brand protection support"
         ]}
-        stats={{
-          icon: <Award className="w-6 h-6 text-indigo-300" />,
-          text: "5,000+ Trademarks Registered"
-        }}
+        stats={[
+          { value: "8-12", label: "Months" },
+          { value: "5,000+", label: "Registered" },
+          { value: "98%", label: "Success" }
+        ]}
       />
 
       {/* Benefits Section */}
@@ -140,7 +125,7 @@ export default function TrademarkPage() {
           <div className="text-center mb-16">
             <Badge className="mb-4">Why Register</Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Benefits of <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Trademark Registration</span>
+              Benefits of <span className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] bg-clip-text text-transparent">Trademark Registration</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Secure your brand identity and establish market dominance
@@ -152,8 +137,8 @@ export default function TrademarkPage() {
               <div key={idx} className="animate-fadeIn" style={{ animationDelay: `${idx * 0.1}s` }}>
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
-                    <div className="bg-gradient-to-br from-indigo-50 to-violet-50 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-                      <benefit.icon className="w-7 h-7 text-indigo-600" />
+                    <div className="bg-gradient-to-br from-[#E2F6F8] to-[#E2F6F8] w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                      <benefit.icon className="w-7 h-7 text-[#23A8DD]" />
                     </div>
                     <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
                     <p className="text-gray-600">{benefit.desc}</p>
@@ -171,7 +156,7 @@ export default function TrademarkPage() {
           <div className="text-center mb-16">
             <Badge className="mb-4">Simple Process</Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Registration <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Timeline</span>
+              Registration <span className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] bg-clip-text text-transparent">Timeline</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Clear, transparent process from search to registration
@@ -186,16 +171,16 @@ export default function TrademarkPage() {
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 {idx !== process.length - 1 && (
-                  <div className="absolute left-6 top-12 bottom-0 w-0.5 bg-gradient-to-b from-indigo-600 to-violet-600" />
+                  <div className="absolute left-6 top-12 bottom-0 w-0.5 bg-gradient-to-b from-[#23A8DD] to-[#23A8DD]" />
                 )}
-                <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center text-white font-bold shadow-lg">
+                <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#23A8DD] to-[#23A8DD] flex items-center justify-center text-white font-bold shadow-lg">
                   {item.step}
                 </div>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-2">
                       <h3 className="text-xl font-semibold">{item.title}</h3>
-                      <Badge className="bg-indigo-100 text-indigo-700">
+                      <Badge className="bg-[#E2F6F8] text-[#083E6B]">
                         <Clock className="w-3 h-3 mr-1" />
                         {item.time}
                       </Badge>
@@ -216,7 +201,7 @@ export default function TrademarkPage() {
             <div>
               <Badge className="mb-4">Requirements</Badge>
               <h2 className="text-4xl font-bold mb-6">
-                Documents <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Needed</span>
+                Documents <span className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] bg-clip-text text-transparent">Needed</span>
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Simple documentation to get started with your trademark registration
@@ -228,7 +213,7 @@ export default function TrademarkPage() {
                     className="flex items-start gap-3 animate-fadeIn"
                     style={{ animationDelay: `${idx * 0.05}s` }}
                   >
-                    <CheckCircle2 className="w-5 h-5 text-indigo-600 mt-1 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-[#23A8DD] mt-1 flex-shrink-0" />
                     <span className="text-gray-700">{doc}</span>
                   </li>
                 ))}
@@ -238,7 +223,7 @@ export default function TrademarkPage() {
             <div>
               <Badge className="mb-4">Ideal For</Badge>
               <h2 className="text-4xl font-bold mb-6">
-                Who Needs <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">This?</span>
+                Who Needs <span className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] bg-clip-text text-transparent">This?</span>
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Trademark registration is essential for various business types
@@ -252,7 +237,7 @@ export default function TrademarkPage() {
                   >
                     <Card className="hover:shadow-md transition-shadow">
                       <CardContent className="p-4 flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600" />
+                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#23A8DD] to-[#23A8DD]" />
                         <span className="text-gray-700 font-medium">{item}</span>
                       </CardContent>
                     </Card>
@@ -264,42 +249,45 @@ export default function TrademarkPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20">
+      {/* Get Started CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-[#E2F6F8] to-[#E2F6F8]">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <Card className="border-2 border-indigo-200 shadow-2xl">
-              <CardContent className="p-8">
-                <div className="text-center mb-8">
-                  <Badge className="mb-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white">
-                    Best Value
-                  </Badge>
-                  <h2 className="text-3xl font-bold mb-4">Complete Package</h2>
-                  <div className="flex items-baseline justify-center gap-3 mb-2">
-                    <span className="text-5xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                      {pricing.price}
-                    </span>
-                    <span className="text-2xl text-gray-400 line-through">
-                      {pricing.originalPrice}
-                    </span>
-                  </div>
-                  <p className="text-gray-600">All-inclusive trademark registration</p>
-                </div>
-
-                <div className="space-y-3 mb-8">
-                  {pricing.includes.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Button size="lg" className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold text-lg h-14">
-                  Register Your Trademark <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </CardContent>
-            </Card>
+          <div className="max-w-3xl mx-auto text-center">
+            <Badge className="mb-6 bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] text-white px-6 py-2 text-base">
+              Professional Trademark Services
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to Protect Your <span className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] bg-clip-text text-transparent">Brand?</span>
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Get started with our comprehensive trademark registration service. Our experts will guide you through every step of the process.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <div className="flex items-center gap-2 text-gray-700">
+                <CheckCircle2 className="w-5 h-5 text-[#23A8DD]" />
+                <span>Free Trademark Search</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-700">
+                <CheckCircle2 className="w-5 h-5 text-[#23A8DD]" />
+                <span>Expert Legal Assistance</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-700">
+                <CheckCircle2 className="w-5 h-5 text-[#23A8DD]" />
+                <span>100% Online Process</span>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" asChild className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] hover:from-[#083E6B] hover:to-[#083E6B] text-white font-semibold text-lg px-8 h-14">
+                <a href="/contact">
+                  Get Free Consultation <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="border-2 border-[#23A8DD] text-[#23A8DD] hover:bg-[#E2F6F8] font-semibold text-lg px-8 h-14">
+                <a href="tel:+919876543210">
+                  Call Us Now
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -310,7 +298,7 @@ export default function TrademarkPage() {
           <div className="text-center mb-16">
             <Badge className="mb-4">FAQs</Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Frequently Asked <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Questions</span>
+              Frequently Asked <span className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] bg-clip-text text-transparent">Questions</span>
             </h2>
           </div>
 
@@ -334,7 +322,7 @@ export default function TrademarkPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-indigo-600 to-violet-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-[#23A8DD] to-[#23A8DD] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Protect Your Brand?
@@ -342,15 +330,17 @@ export default function TrademarkPage() {
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Join thousands of businesses who trust us for their trademark registration needs
           </p>
-          <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 font-semibold text-lg px-8 h-14">
+          <Button size="lg" className="bg-white text-[#23A8DD] hover:bg-gray-100 font-semibold text-lg px-8 h-14">
             Start Your Registration <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
       </section>
 
       <Footer />
-      <WhatsAppButton />
-      <StickyContactForm />
+      {/* <WhatsAppButton />
+      <StickyContactForm /> */}
     </>
   );
 }
+
+

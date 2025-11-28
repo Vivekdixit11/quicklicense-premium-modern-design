@@ -1,6 +1,8 @@
 "use client";
 
 import dynamicLoad from "next/dynamic";
+import Link from "next/link";
+import ServiceHeroWithForm from "@/components/ServiceHeroWithForm";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +19,7 @@ import {
   Award,
   Percent,
   Lightbulb,
+  Phone,
 } from "lucide-react";
 
 // Lazy load heavy components
@@ -95,68 +98,28 @@ const governmentSchemes = [
   "Access to 50+ government schemes",
 ];
 
-const pricing = {
-  price: "₹3,999",
-  originalPrice: "₹6,999",
-  includes: [
-    "DPIIT recognition certificate",
-    "Startup India registration",
-    "Pitch deck consultation",
-    "Business plan review",
-    "Application filing",
-    "Document preparation",
-    "Certificate download",
-    "Government schemes access",
-    "Tax benefit guidance",
-    "Free updates & support",
-  ],
-};
-
 export default function StartupIndiaPage() {
   return (
     <>
       <Header />
 
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <div className="container-custom relative z-10 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div
-
-
-
-            >
-              <Badge className="mb-6 px-4 py-2">DPIIT Recognition</Badge>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold leading-tight mb-6">
-                <span className="gradient-text">Startup India</span> Registration
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-                Get DPIIT recognition and unlock tax benefits, funding access, and government support. 
-                Fast-track your startup journey with expert guidance.
-              </p>
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-5xl font-bold gradient-text">{pricing.price}</span>
-                <span className="text-2xl text-muted-foreground line-through">{pricing.originalPrice}</span>
-                <Badge className="bg-green-100 text-green-700">Save 43%</Badge>
-              </div>
-              <Button size="lg" className="animated-gradient text-white font-semibold text-lg px-8 h-14">
-                Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </div>
-
-            <div
-
-
-
-              className="relative hidden lg:block"
-            >
-              <div className="relative glass-effect rounded-3xl p-8 hover-lift">
-                <Rocket className="w-full h-64 text-primary opacity-10" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceHeroWithForm
+        badge="Government Recognition"
+        title="Startup India Registration"
+        subtitle="Free Government Registration"
+        description="Get DPIIT recognition and unlock 3-year tax exemption, funding access, and government support. Fast-track your startup journey."
+        highlights={[
+          "3-year income tax exemption",
+          "Access to government tenders",
+          "Funding and mentorship programs",
+          "IPR fast-track examination"
+        ]}
+        stats={[
+          { value: "3 Years", label: "Tax Exempt" },
+          { value: "Free", label: "Registration" },
+          { value: "1,500+", label: "Certified" }
+        ]}
+      />
 
       <section className="section-padding">
         <div className="container-custom">
@@ -191,11 +154,11 @@ export default function StartupIndiaPage() {
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Key <span className="gradient-text">Benefits</span>
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                   {benefits.map((benefit, index) => (
                     <Card key={index} className="hover-lift border-2 hover:border-primary smooth-transition">
                       <CardContent className="p-6">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center mb-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-[#E2F6F8]0/10 flex items-center justify-center mb-4">
                           <benefit.icon className="w-6 h-6 text-primary" />
                         </div>
                         <h3 className="font-heading font-semibold text-lg mb-2">{benefit.title}</h3>
@@ -286,7 +249,7 @@ export default function StartupIndiaPage() {
                       <CardContent className="p-6">
                         <div className="flex gap-6 items-start">
                           <div className="flex-shrink-0">
-                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center text-white font-bold text-lg">
                               {item.step}
                             </div>
                           </div>
@@ -340,27 +303,30 @@ export default function StartupIndiaPage() {
 
 
               >
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
-                  Pricing <span className="gradient-text">Breakdown</span>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 text-center">
+                  Ready to Get <span className="gradient-text">Startup India Recognition?</span>
                 </h2>
-                <Card className="border-2 border-primary">
-                  <CardContent className="p-8">
-                    <div className="flex items-baseline gap-3 mb-6">
-                      <span className="text-5xl font-bold gradient-text">{pricing.price}</span>
-                      <span className="text-2xl text-muted-foreground line-through">{pricing.originalPrice}</span>
+                <Card className="border-2 border-primary bg-gradient-to-br from-primary/5 to-[#23A8DD]/5">
+                  <CardContent className="p-8 text-center">
+                    <h3 className="font-heading font-semibold text-2xl mb-4">
+                      Start Your Startup India Registration
+                    </h3>
+                    <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                      Get DPIIT recognition and unlock tax exemptions, funding opportunities, and government benefits. 
+                      Our experts will handle your complete registration process.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Button size="lg" className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] text-white font-semibold hover:shadow-lg smooth-transition" asChild>
+                        <Link href="/contact">
+                          Contact Us <ArrowRight className="ml-2 w-5 h-5" />
+                        </Link>
+                      </Button>
+                      <Button size="lg" variant="outline" className="font-semibold" asChild>
+                        <Link href="tel:+919876543210">
+                          <Phone className="mr-2 w-5 h-5" /> Call Now
+                        </Link>
+                      </Button>
                     </div>
-                    <h3 className="font-heading font-semibold text-xl mb-4">Package Includes:</h3>
-                    <div className="space-y-3">
-                      {pricing.includes.map((item, index) => (
-                        <div key={index} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Button size="lg" className="w-full mt-8 animated-gradient text-white font-semibold h-14">
-                      Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
                   </CardContent>
                 </Card>
               </div>
@@ -378,3 +344,5 @@ export default function StartupIndiaPage() {
     </>
   );
 }
+
+

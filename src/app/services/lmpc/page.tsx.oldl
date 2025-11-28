@@ -1,0 +1,241 @@
+import React from 'react'
+
+export const metadata = {
+	title: 'MPC Certificate Registration: The Complete Indian Guide (2025 Edition)',
+	description:
+		'A comprehensive breakdown of Rule 27, Import Regulations, Mandatory Labeling, and Legal Metrology Compliance for Indian Businesses.',
+	openGraph: {
+		title: 'MPC Certificate Registration: The Complete Indian Guide (2025 Edition)',
+		description:
+			'A comprehensive breakdown of Rule 27, Import Regulations, Mandatory Labeling, and Legal Metrology Compliance for Indian Businesses.',
+		url: 'https://example.com/services/lmpc',
+		siteName: 'QuickLicense',
+		images: [],
+		locale: 'en_IN',
+		type: 'article',
+	},
+}
+
+const faqList = [
+	{
+		question:
+			'Q1: Can I use a sticker to comply with LMPC rules for Imported Goods?',
+		answer:
+			'Answer: Yes. For imported goods, the law allows you to affix a supplementary label (sticker) on the package before it is cleared from Customs. This sticker must contain the Importer\'s Name/Address, MRP, and Customer Care details. However, the sticker must be robust and not easily removable.',
+	},
+	{
+		question: 'Q2: Does an E-commerce seller need LMPC?',
+		answer:
+			'Answer: Absolutely. Under the E-commerce Rules, 2020, all sellers displaying goods on Amazon, Flipkart, or their own website must display the Legal Metrology declarations (Country of Origin, Net Qty, Manufacturer Name) on the digital product page as well. You cannot sell online without LMPC compliance.',
+	},
+	{
+		question: 'Q3: What if I am importing "Samples" or "Gifts"?',
+		answer:
+			'Answer: If the goods are marked strictly as "Free Sample - Not For Sale" and have no commercial value, LMPC Rules usually do not apply. However, if they are retail packages sent as samples, Customs may still flag them.',
+	},
+	{
+		question: 'Q4: How long does the registration take?',
+		answer:
+			'Answer: Central (Imports): Official timeline is up to 30 days, but usually processed in 10–20 days. State (Manufacturing): Varies from 7 to 30 days. Fast-Track: Professional consultants can often organize the docket to ensure approval within 2-7 working days.',
+	},
+	{
+		question: 'Q5: Can I modify my certificate later?',
+		answer:
+			'Answer: Yes. If you change your address or add new directors, you must apply for an amendment to the certificate by paying a nominal fee.',
+	},
+]
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'WebPage',
+			'@id': 'https://example.com/services/lmpc',
+			'url': 'https://example.com/services/lmpc',
+			'name': 'MPC Certificate Registration: The Complete Indian Guide (2025 Edition)',
+			'description':
+				'A comprehensive breakdown of Rule 27, Import Regulations, Mandatory Labeling, and Legal Metrology Compliance for Indian Businesses.',
+		},
+		{
+			'@type': 'Organization',
+			'name': 'QuickLicense',
+			'url': 'https://example.com',
+			'logo': 'https://example.com/logo.png',
+		},
+		{
+			'@type': 'FAQPage',
+			'mainEntity': faqList.map((f) => ({
+				'@type': 'Question',
+				'name': f.question,
+				'acceptedAnswer': {
+					'@type': 'Answer',
+					'text': f.answer,
+				},
+			})),
+		},
+	],
+}
+
+export default function Page() {
+	return (
+		<html lang="en">
+			<head>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width,initial-scale=1" />
+				<meta name="description" content={metadata.description} />
+				<meta property="og:title" content={metadata.title} />
+				<meta property="og:description" content={metadata.description} />
+				<meta property="og:type" content="article" />
+				<meta name="twitter:card" content="summary_large_image" />
+				<title>{metadata.title}</title>
+				<style>{`
+					:root{--max-width:1100px;--accent:#0b74de;--muted:#6b7280}
+					html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.4;color:#0f172a}
+					a{color:var(--accent);text-decoration:none}
+					header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid #e6e9ee}
+					.logo{font-weight:700}
+					nav a{margin-left:18px;font-size:14px;color:#0f172a}
+					main{max-width:var(--max-width);margin:28px auto;padding:0 20px;display:grid;grid-template-columns:1fr 360px;gap:28px}
+					.hero{padding:28px;background:linear-gradient(180deg,#fff,#fbfdff);border-radius:8px}
+					.badge{display:inline-block;background:#eef6ff;color:#0b74de;padding:6px 10px;border-radius:6px;font-size:13px;margin-top:10px}
+					.cta{display:inline-block;margin-top:16px;background:var(--accent);color:white;padding:12px 18px;border-radius:6px}
+					article{background:#fff;padding:22px;border-radius:8px}
+					.toc{background:#fafafa;border:1px solid #f0f2f5;padding:12px;border-radius:6px;margin-bottom:12px}
+					.sticky-form{position:sticky;top:20px;padding:18px;border-radius:8px;border:1px solid #eef2f7;background:#fff}
+					label{display:block;font-weight:600;margin-top:10px;font-size:13px}
+					input,textarea{width:100%;padding:10px;border:1px solid #e6e9ee;border-radius:6px;margin-top:6px;font-size:14px}
+					.trust{font-size:13px;color:var(--muted);margin-top:8px}
+					@media (max-width:900px){
+						main{grid-template-columns:1fr;}
+						.sticky-form{position:relative;margin-top:18px}
+					}
+				`}</style>
+				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+			</head>
+			<body>
+				<header>
+					<div className="logo">QuickLicense</div>
+					<nav aria-label="Main navigation">
+						<a href="/">Home</a>
+						<a href="/services/lmpc">LMPC Services</a>
+						<a href="/apply">Apply Now</a>
+						<a href="/pricing">Pricing</a>
+						<a href="/about">About Us</a>
+						<a href="/contact">Contact</a>
+						<a href="/faqs">FAQs</a>
+					</nav>
+				</header>
+
+				<main>
+					<div>
+						<section className="hero" aria-labelledby="hero-heading">
+							<h1 id="hero-heading">MPC Certificate Registration: The Complete Indian Guide (2025 Edition)</h1>
+							<p style={{marginTop:8,color:'#374151'}}>Subtitle: A comprehensive breakdown of Rule 27, Import Regulations, Mandatory Labeling, and Legal Metrology Compliance for Indian Businesses.</p>
+							<div className="badge" aria-hidden>LMPC Form • Verified</div>
+							<div>
+								<a className="cta" href="#apply">Apply for LMPC</a>
+							</div>
+						</section>
+
+						<article>
+							<nav className="toc" aria-label="Table of contents">
+								<strong>Table of contents</strong>
+								<ul style={{margin:'8px 0 0 16px',padding:0}}>
+									<li><a href="#executive-summary">1. Executive Summary</a></li>
+									<li><a href="#categorization">2. Categorization</a></li>
+									<li><a href="#90days">3. The "90 Days" Clause</a></li>
+									<li><a href="#labeling">4. Mandatory Label Declarations</a></li>
+									<li><a href="#documents">5. Comprehensive Document Checklist</a></li>
+									<li><a href="#exemptions">6. Exemptions</a></li>
+									<li><a href="#penalties">7. Fines, Penalties, and Jan Vishwas Act</a></li>
+									<li><a href="#faq">8. FAQ</a></li>
+									<li><a href="#apply">9. Step-by-Step Guide to Applying Online</a></li>
+								</ul>
+							</nav>
+
+							<section id="executive-summary">
+								<h2>1. Executive Summary: What is LMPC and Why is it Mandatory?</h2>
+								<p>
+MPC Certificate Registration: The Complete Indian Guide (2025 Edition)Subtitle: A comprehensive breakdown of Rule 27, Import Regulations, Mandatory Labeling, and Legal Metrology Compliance for Indian Businesses.1. Executive Summary: What is LMPC and Why is it Mandatory?LMPC stands for Legal Metrology Packaged Commodities. It is not merely a license; it is a mandatory registration under the Legal Metrology (Packaged Commodities) Rules, 2011, overseen by the Department of Consumer Affairs.Under Rule 27 of these rules, every individual or corporate entity that pre-packs commodities for sale, distribution, or delivery must register their name and complete address with the Director (Centre) or Controller (State) of Legal Metrology.The "Why" – The Legal ConsequenceIf you deal in pre-packaged goods, this certificate is your "passport" for trade.For Importers: The Indian Customs Department (CBIC) will not clear your shipment without a valid LMPC Certificate. The Bill of Entry cannot be finalized, leading to high demurrage and container detention charges.For Manufacturers/Packers: Selling goods without this registration invites raids, seizure of stock, and prosecution under Section 36 of the Legal Metrology Act, 2009.
+								</p>
+							</section>
+
+							<section id="categorization">
+								<h2>2. Categorization: Do You Need Central or State Registration?</h2>
+								<p>
+One of the most common confusion points is where to apply. The jurisdiction depends on the nature of your business:Business TypeJurisdictionAuthorityValidityImportersCentral GovtDirector of Legal Metrology, New DelhiLifetime (unless details change)ManufacturersState GovtController of Legal Metrology (State)1–5 Years (Varies by State)PackersState GovtController of Legal Metrology (State)1–5 Years (Varies by State)Multi-State SalesCentral/StateNote: Even if you sell in multiple states, Manufacturers usually register in the state where their factory is located.VariesNote: If you are a trader who buys goods already packed by an Indian manufacturer and you simply resell them without altering the packaging, you do not need an LMPC registration. You only need a "Dealer License" (which is different).
+								</p>
+							</section>
+
+							<section id="90days">
+								<h2>3. The "90 Days" Clause (Critical Timing)</h2>
+								<p>
+According to the rules, an application for registration must be made:Prior to the commencement of business/import; ORWithin 90 days of commencement of pre-packing or importing.Warning: If you apply after 90 days, you are liable to pay a compounding fee (penalty) for late registration. For importers, if your goods have already arrived at the port and you do not have the certificate, you will be forced to pay the penalty immediately to get the clearance.
+								</p>
+							</section>
+
+							<section id="labeling">
+								<h2>4. Mandatory Label Declarations (Rule 6 Compliance)</h2>
+								<p>
+Obtaining the certificate is only half the battle. Your product packaging must be "LMPC Compliant." During the application process, you must submit a Sample Label. If this label is flawed, your application will be rejected.Every Pre-Packaged Commodity Must Display:Name and Address: Of the Manufacturer and Packer (or Importer).Generic/Common Name: The industry-standard name of the commodity (e.g., "Cotton Shirt" not just "Apparel").Net Quantity: In standard Metric units (SI Units).Solid: kg, g (e.g., 500 g)Liquid: l, ml (e.g., 750 ml)Length: m, cmMonth and Year: Of Manufacturing, Packing, or Import. (Format: MM/YYYY or "May 2025").MRP (Maximum Retail Price): Must adhere to the format: "Maximum Retail Price ₹___ (inclusive of all taxes)".Country of Origin: Strictly mandatory for imported goods.Consumer Care Details: Name, Address, Telephone Number, and Email ID of the person/office to be contacted in case of complaints.Unit Sale Price (USP): Recent Amendment. You must declare price per unit (e.g., "₹0.50 per g") for goods weighing more than certain thresholds.
+								</p>
+							</section>
+
+							<section id="documents">
+								<h2>5. Comprehensive Document Checklist</h2>
+								<p>
+To ensure a "First-Time-Right" application, prepare these documents:A. Statutory DocumentsImport Export Code (IEC): Mandatory for importers.GST Certificate: Proof of business place.Incorporation Certificate: For Pvt Ltd/LLP (or Partnership Deed/MSME for Proprietors).PAN & Aadhar: Of all Directors/Partners/Proprietor.B. LMPC SpecificsSample Label: A mock-up or photograph of the product packaging showing all Rule 6 declarations.List of Commodities: Exact list of items to be covered (e.g., "Electronics, Toys, Home Decor").Passport Size Photos: Of the authorized signatory.Manufacturing License: (Only for Manufacturers) - Udyam Aadhar or Factory License.
+								</p>
+							</section>
+
+							<section id="exemptions">
+								<h2>6. Exemptions: Who Does NOT Need LMPC?</h2>
+								<p>
+The Legal Metrology rules provide specific exemptions. You do not need LMPC Rule 27 registration if:Institutional Consumers: The package is meant for service institutions like railways, airlines, hospitals, or hotels, and states "Not for Retail Sale."Industrial Consumers: The goods are bought directly by an industry as a raw material for further production (e.g., a car factory buying bulk screws).Tiny Packages: Commodities where the net weight is 10g or 10ml or less.Fast Food: Packages containing fast food items packed by a restaurant/hotel for immediate consumption.Agricultural Produce: Packages containing commodities of more than 50 kg.Cement/Fertilizer: Bags containing more than 50 kg.
+								</p>
+							</section>
+
+							<section id="penalties">
+								<h2>7. Fines, Penalties, and The "Jan Vishwas Act" Update</h2>
+								<p>
+The government is strict about compliance. Violations are prosecuted under Section 36(1) and Section 36(2).Non-Registration: Fine up to ₹25,000.Incorrect Labeling (Rule 6 violation): Fine up to ₹25,000 for the first offense.Subsequent Offenses: Can lead to imprisonment (though the Jan Vishwas Act, 2023 has moved to decriminalize minor technical offenses, converting them into higher monetary penalties to ease the burden on courts).The Cost of "Stuck Customs":The real penalty is not the government fine; it is the port charges. If a container is stuck for 7 days due to lack of LMPC, the detention charges can range from ₹50,000 to ₹2,00,000, far exceeding the cost of registration.
+								</p>
+							</section>
+
+							<section id="faq">
+								<h2>8. In-Depth FAQ: Real User Questions Answered</h2>
+								<p>
+Q1: Can I use a sticker to comply with LMPC rules for Imported Goods?Answer: Yes. For imported goods, the law allows you to affix a supplementary label (sticker) on the package before it is cleared from Customs. This sticker must contain the Importer's Name/Address, MRP, and Customer Care details. However, the sticker must be robust and not easily removable!Q2: Does an E-commerce seller need LMPC?Answer: Absolutely. Under the E-commerce Rules, 2020, all sellers displaying goods on Amazon, Flipkart, or their own website must display the Legal Metrology declarations (Country of Origin, Net Qty, Manufacturer Name) on the digital product page as well. You cannot sell online without LMPC compliance!Q3: What if I am importing "Samples" or "Gifts"?Answer: If the goods are marked strictly as "Free Sample - Not For Sale" and have no commercial value, LMPC Rules usually do not apply. However, if they are retail packages sent as samples, Customs may still flag them!Q4: How long does the registration take?Answer:Central (Imports): Official timeline is up to 30 days, but usually processed in 10–20 days, State (Manufacturing): Varies from 7 to 30 days, Fast-Track: Professional consultants can often organize the docket to ensure approval within 2-7 working days.Q5: Can I modify my certificate later?Answer: Yes. If you change your address or add new directors, you must apply for an amendment to the certificate by paying a nominal fee.
+								</p>
+							</section>
+
+							<section id="apply">
+								<h2>9. Step-by-Step Guide to Applying Online (E-Cooperation Portal)</h2>
+								<p>
+Note: The Central Government uses the "Nivesh Mitra" or generic Department of Consumer Affairs portal depending on current integrations.Portal Registration: Create a user ID on the State or Central Legal Metrology portal.Form LM-1: Fill out the application form (Form LM-1).Upload Documents: Upload PDFs of the documents mentioned in the checklist above.Fee Payment: Pay the statutory fee (Approx ₹500 for the application).Scrutiny: The inspector will review the "Sample Label" critically.Query Resolution: If the officer finds an error in the label or document, they will raise a query. You must respond within the stipulated time.Grant of License: The digital certificate is issued. i will run add un this [please make it nuce]
+								</p>
+							</section>
+						</article>
+					</div>
+
+					<aside>
+						<form className="sticky-form" aria-labelledby="apply-heading" method="post" action="#">
+							<h3 id="apply-heading" style={{margin:0}}>Apply for LMPC</h3>
+							<label htmlFor="name">Name</label>
+							<input id="name" name="name" type="text" placeholder="Your full name" required />
+							<label htmlFor="email">Email</label>
+							<input id="email" name="email" type="email" placeholder="you@example.com" required />
+							<label htmlFor="phone">Phone</label>
+							<input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" required />
+							<label htmlFor="message">Message</label>
+							<textarea id="message" name="message" rows={4} placeholder="Tell us about your business"></textarea>
+							<button type="submit" style={{marginTop:12,background:'#0b74de',color:'#fff',padding:'10px 14px',borderRadius:6,border:0}}>Submit</button>
+							<div className="trust">100% Secure • No Spam</div>
+						</form>
+					</aside>
+				</main>
+			</body>
+		</html>
+	)
+}
+

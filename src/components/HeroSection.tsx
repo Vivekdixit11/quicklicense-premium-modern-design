@@ -42,12 +42,12 @@ export default function HeroSection({
   };
 
   return (
-    <section className="relative min-h-[600px] bg-gradient-to-br from-indigo-900 via-violet-900 to-indigo-950 overflow-hidden">
+    <section className="relative min-h-[600px] bg-gradient-to-br from-[#083E6B] via-[#083E6B] to-indigo-950 overflow-hidden">
       {/* Animated Background Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-[#23A8DD]/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#23A8DD]/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#E2F6F8]0/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="container-custom relative z-10 py-16 lg:py-24">
@@ -56,10 +56,10 @@ export default function HeroSection({
           <div className="text-white space-y-6">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-              <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#23A8DD] rounded-full flex items-center justify-center">
                 <CheckCircle2 className="w-5 h-5 text-white" />
               </div>
-              <span className="text-sm font-medium text-indigo-100">{badge}</span>
+              <span className="text-sm font-medium text-[#E2F6F8]">{badge}</span>
               <img src="https://cdn-icons-png.flaticon.com/512/555/555417.png" alt="India" className="w-5 h-5" />
             </div>
 
@@ -70,14 +70,14 @@ export default function HeroSection({
 
             {/* Subtitle */}
             {subtitle && (
-              <p className="text-xl lg:text-2xl text-indigo-100 font-medium">
+              <p className="text-xl lg:text-2xl text-[#E2F6F8] font-medium">
                 {subtitle}
               </p>
             )}
 
             {/* Description */}
             {description && (
-              <p className="text-lg text-indigo-200 leading-relaxed">
+              <p className="text-lg text-[#E2F6F8] leading-relaxed">
                 {description}
               </p>
             )}
@@ -87,8 +87,8 @@ export default function HeroSection({
               <div className="space-y-3 pt-4">
                 {highlights.map((highlight, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-indigo-100">{highlight}</span>
+                    <CheckCircle2 className="w-6 h-6 text-[#81BCC9] flex-shrink-0 mt-0.5" />
+                    <span className="text-[#E2F6F8]">{highlight}</span>
                   </div>
                 ))}
               </div>
@@ -108,7 +108,7 @@ export default function HeroSection({
             <div className="bg-white rounded-2xl shadow-2xl p-8 lg:p-10">
               {/* Form Header */}
               <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#23A8DD] to-[#083E6B] text-white px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                   <span>🎉</span>
                   <span>November Festive Sale Offer</span>
                   <span>🎉</span>
@@ -150,7 +150,7 @@ export default function HeroSection({
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full h-12 px-3 rounded-md border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full h-12 px-3 rounded-md border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-[#23A8DD]"
                   required
                 >
                   <option value="">Service</option>
@@ -174,14 +174,14 @@ export default function HeroSection({
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" className="sr-only peer" defaultChecked />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#84D3FF] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#23A8DD]"></div>
                   </label>
                 </div>
 
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full h-12 text-base font-semibold bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700"
+                  className="w-full h-12 text-base font-semibold bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] hover:from-[#083E6B] hover:to-[#083E6B]"
                 >
                   Get Started Now
                 </Button>
@@ -189,18 +189,18 @@ export default function HeroSection({
                 {/* Trust Badges */}
                 <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-xs text-gray-600">
                   <div className="flex items-center gap-1">
-                    <span className="text-yellow-500">⭐</span>
+                    <span className="text-[#84D3FF]">⭐</span>
                     <span className="font-semibold">4.5/5 Google Rating</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <CheckCircle2 className="w-4 h-4 text-green-600" />
+                    <CheckCircle2 className="w-4 h-4 text-[#23A8DD]" />
                     <span className="font-semibold">MCA Approved Experts</span>
                   </div>
                 </div>
 
                 <div className="text-center pt-2">
                   <div className="flex items-center justify-center gap-1 text-sm text-gray-600">
-                    <span className="text-red-500">🚀</span>
+                    <span className="text-[#083E6B]">🚀</span>
                     <span className="font-semibold">10L+ Companies Registered</span>
                   </div>
                 </div>
@@ -212,3 +212,4 @@ export default function HeroSection({
     </section>
   );
 }
+

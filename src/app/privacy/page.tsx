@@ -4,8 +4,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Privacy Policy - Quick License",
-  description: "Privacy Policy for Quick License - how we collect, use, and protect your data",
+  title: "Privacy Policy - Your Data Security Matters | Quick License India",
+  description: "Quick License privacy policy - Learn how we protect your business documents and personal data with bank-grade security. Transparent data practices for Indian entrepreneurs.",
+  keywords: "quick license privacy policy, data protection india, business document security, secure registration platform india",
+  openGraph: {
+    title: "Privacy Policy - Quick License India",
+    description: "Bank-grade security for your business data. Read our transparent privacy practices.",
+    type: "website",
+  },
 };
 
 export default function PrivacyPage() {
@@ -78,3 +84,4 @@ export default function PrivacyPage() {
     </>
   );
 }
+

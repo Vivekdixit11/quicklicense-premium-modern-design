@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -9,32 +10,40 @@ import { Menu, ChevronDown, Phone, Mail } from "lucide-react";
 const serviceCategories = [
   {
     category: "Start a Business",
-    icon: "🚀",
     description: "Launch your venture with proper legal structure",
     services: [
-      { name: "Private Limited Company", href: "/services/private-limited", icon: "🏢" },
-      { name: "LLP Registration", href: "/services/llp", icon: "🤝" },
-      { name: "Startup India", href: "/services/startup-india", icon: "💡" },
+      { name: "Private Limited Company", href: "/services/private-limited" },
+      { name: "LLP Registration", href: "/services/llp" },
+      { name: "Startup India", href: "/services/startup-india" },
     ]
   },
   {
     category: "Licenses & Registration",
-    icon: "📋",
     description: "Get all required licenses and registrations",
     services: [
-      { name: "FSSAI License", href: "/services/fssai", icon: "🍴" },
-      { name: "ISO Certification", href: "/services/iso", icon: "⭐" },
-      { name: "MSME Registration", href: "/services/msme", icon: "🏭" },
-      { name: "IEC Code", href: "/services/iec", icon: "🌍" },
-      { name: "Drug License", href: "/services/drug-license", icon: "💊" },
+      { name: "FSSAI License", href: "/services/fssai" },
+      { name: "ISO Certification", href: "/services/iso" },
+      { name: "MSME Registration", href: "/services/msme" },
+      { name: "IEC Code", href: "/services/iec" },
+      { name: "Drug License", href: "/services/drug-license" },
+    ]
+  },
+  {
+    category: "Compliance & Certifications",
+    description: "Product compliance and certification services",
+    services: [
+      { name: "EPR Registration", href: "/services/epr" },
+      { name: "LMPC Registration", href: "/services/lmpc" },
+      { name: "WPC Approval", href: "/services/wpc" },
+      { name: "Director Nomination", href: "/services/director-nomination" },
+      { name: "GeM Registration", href: "/services/gem" },
     ]
   },
   {
     category: "Trademark & IP",
-    icon: "®️",
     description: "Protect your brand and intellectual property",
     services: [
-      { name: "Trademark Registration", href: "/services/trademark", icon: "™️" },
+      { name: "Trademark Registration", href: "/services/trademark" },
     ]
   },
 ];
@@ -68,60 +77,54 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Info Bar */}
-      <div className="bg-gradient-to-r from-indigo-600/95 to-violet-600/95 text-white py-2 backdrop-blur-sm fixed top-0 left-0 right-0 z-[99999]">
-        <div className="container mx-auto px-4">
+      {/* Top Info Bar - Sleek Modern Design */}
+      <div className="bg-gradient-to-r from-[#083E6B] via-[#23A8DD] to-[#083E6B] text-white h-11 backdrop-blur-md fixed top-0 left-0 right-0 z-[99999] border-b border-white/10">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-wrap items-center justify-between text-sm">
-            <div className="flex items-center space-x-6">
-              <a href="tel:+919891614601" className="flex items-center space-x-2 hover:text-indigo-100 transition-colors">
-                <Phone className="h-3.5 w-3.5" />
-                <span>+91 98916 14601</span>
+            <div className="flex items-center space-x-4 md:space-x-8">
+              <a href="tel:+919891614601" className="flex items-center space-x-2 hover:text-[#84D3FF] transition-all duration-300 hover:scale-105 group">
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-all">
+                  <Phone className="h-3.5 w-3.5" />
+                </div>
+                <span className="font-medium">+91 98916 14601</span>
               </a>
-              <a href="mailto:enterpriserawal6@gmail.com" className="hidden sm:flex items-center space-x-2 hover:text-indigo-100 transition-colors">
-                <Mail className="h-3.5 w-3.5" />
-                <span>enterpriserawal6@gmail.com</span>
+              <a href="mailto:enterpriserawal6@gmail.com" className="hidden sm:flex items-center space-x-2 hover:text-[#84D3FF] transition-all duration-300 hover:scale-105 group">
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-all">
+                  <Mail className="h-3.5 w-3.5" />
+                </div>
+                <span className="font-medium truncate max-w-[200px]">enterpriserawal6@gmail.com</span>
               </a>
             </div>
-            <div className="hidden md:block text-xs">
-              ⚡ Fast-track your business licensing - Quick & Easy!
+            <div className="hidden md:flex items-center space-x-2 text-xs font-medium bg-white/10 px-4 py-1.5 rounded-full">
+              <span className="animate-pulse">⚡</span>
+              <span>Fast-track your business licensing - Quick & Easy!</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Spacer for fixed header */}
-      <div className="h-[120px]"></div>
+      <div className="h-[108px]"></div>
 
-      {/* Main Header */}
+      {/* Main Header - Modern Glassmorphism Design */}
       <header
-        className={`fixed top-[40px] left-0 right-0 z-[99998] w-full transition-all duration-300 ${
+        className={`fixed top-[44px] left-0 right-0 z-40 w-full transition-all duration-500 ${
           isScrolled
-            ? "bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-100"
-            : "bg-white/85 backdrop-blur-md shadow-sm"
+            ? "bg-white/95 backdrop-blur-xl shadow-2xl border-b border-gray-200/50"
+            : "bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-100/50"
         }`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex h-20 items-center justify-between relative">
-            {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3 group ml-4 sm:ml-8">
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center flex-shrink-0">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-violet-600/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <img 
-                  src="/logo.png" 
-                  alt="Quick License Logo" 
-                  className="w-full h-full object-contain transition-transform group-hover:scale-110 relative z-10"
-                />
+        <div className="container mx-auto px-4 md:px-6">
+            <div className="flex h-16 md:h-20 items-center justify-between relative">
+            {/* Logo (only) - match footer style, no title/subtitle */}
+            <Link href="/" className="flex items-center relative z-10 ml-0">
+              <div className="relative w-32 h-10 md:w-36 md:h-12 lg:w-48 lg:h-14 min-w-[90px]">
+                <Image src="/logo.png" alt="Quick License Logo" fill className="object-contain" priority />
               </div>
-              {/* <div className="flex flex-col">
-                <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                  Quick License
-                </span>
-                <span className="text-xs sm:text-sm text-gray-500 -mt-1">Fast & Reliable Licensing</span>
-              </div> */}
             </Link>
 
-            {/* Desktop Navigation - Moved to Right */}
-            <nav className="hidden lg:flex items-center space-x-1 ml-auto mr-6 relative z-[100000]">
+            {/* Desktop Navigation - Modern Pill Style */}
+            <nav className="hidden lg:flex items-center space-x-1 ml-auto mr-4 relative z-30 bg-gray-50/50 rounded-full px-2 py-1.5 border border-gray-200/50">
               {/* Individual Category Dropdowns */}
               {serviceCategories.map((category) => (
                 <div 
@@ -131,45 +134,51 @@ export default function Header() {
                   onMouseEnter={() => openMenu(category.category)}
                   onMouseLeave={scheduleClose}
                 >
-                  <button className="flex items-center space-x-1 text-gray-700 hover:text-indigo-600 font-medium transition-colors py-2 px-3 rounded-lg hover:bg-indigo-50">
-                    <span className="text-lg">{category.icon}</span>
-                    <span className="text-sm">{category.category}</span>
-                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${activeDropdown === category.category ? 'rotate-180' : ''}`} />
+                  <button className={`flex items-center space-x-1.5 font-medium transition-all duration-300 py-2 px-3 rounded-full ${
+                    activeDropdown === category.category 
+                      ? 'bg-gradient-to-r from-[#083E6B] to-[#23A8DD] text-white shadow-lg shadow-[#23A8DD]/30' 
+                      : 'text-gray-700 hover:text-[#083E6B] hover:bg-white hover:shadow-md'
+                  }`}>
+                    <span className="text-sm font-semibold whitespace-nowrap">{category.category}</span>
+                    <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 ${activeDropdown === category.category ? 'rotate-180' : ''}`} />
                   </button>
                   
-                  {/* Dropdown Menu */}
+                  {/* Dropdown Menu - Enhanced Modern Design */}
                   <div 
-                    className={`absolute top-full left-0 mt-2 w-72 transition-all duration-150 ${
-                    activeDropdown === category.category ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                    className={`absolute top-full left-0 mt-3 w-80 transition-all duration-300 ${
+                    activeDropdown === category.category ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'
                   }`}
-                    style={{ zIndex: 999999 }}
+                    style={{ zIndex: 9999 }}
                     onMouseEnter={() => openMenu(category.category)}
                     onMouseLeave={scheduleClose}
                   >
-                    <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-4">
+                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 p-5 relative overflow-hidden">
+                      {/* Gradient Background Effect */}
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#23A8DD]/10 to-[#81BCC9]/10 rounded-full blur-3xl -z-10"></div>
+                      
                       {/* Category Header */}
-                      <div className="pb-3 mb-3 border-b border-gray-200">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <span className="text-xl">{category.icon}</span>
-                          <h3 className="font-bold text-gray-900 text-sm">
+                      <div className="pb-4 mb-4 border-b border-gray-200/50">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <div className="w-2 h-8 rounded-full bg-gradient-to-b from-[#23A8DD] to-[#81BCC9]"></div>
+                          <h3 className="font-bold text-gray-900 text-base">
                             {category.category}
                           </h3>
                         </div>
-                        <p className="text-xs text-gray-600">
+                        <p className="text-xs text-gray-600 leading-relaxed pl-1 ml-5">
                           {category.description}
                         </p>
                       </div>
                       
                       {/* Services List */}
-                      <div className="space-y-1">
+                      <div className="space-y-1.5">
                         {category.services.map((service) => (
                           <Link
                             key={service.name}
                             href={service.href}
-                            className="group flex items-center space-x-3 p-2.5 rounded-lg hover:bg-gradient-to-br hover:from-indigo-50 hover:to-violet-50 transition-all duration-300"
+                            className="group flex items-center space-x-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#E2F6F8] hover:to-[#84D3FF]/20 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                           >
-                            <span className="text-lg">{service.icon}</span>
-                            <span className="text-sm font-medium text-gray-700 group-hover:text-indigo-600 transition-colors">
+                            <ChevronDown className="w-4 h-4 text-[#083E6B] -rotate-90 transition-all duration-300 group-hover:translate-x-1" />
+                            <span className="text-sm font-semibold text-[#083E6B] group-hover:text-[#23A8DD] transition-colors flex-1">
                               {service.name}
                             </span>
                           </Link>
@@ -181,54 +190,71 @@ export default function Header() {
               ))}
 
               {/* Other Navigation Links */}
-              <Link href="/about" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors text-sm px-3 py-2 rounded-lg hover:bg-indigo-50">
+              <Link href="/about" className="text-gray-700 hover:text-[#083E6B] hover:bg-white font-medium transition-all duration-300 text-sm px-3 py-2 rounded-full hover:shadow-md">
                 About
               </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors text-sm px-3 py-2 rounded-lg hover:bg-indigo-50">
+              <Link href="/blog" className="text-gray-700 hover:text-[#083E6B] hover:bg-white font-medium transition-all duration-300 text-sm px-3 py-2 rounded-full hover:shadow-md">
+                Blog
+              </Link>
+              <Link href="/contact" className="text-gray-700 hover:text-[#083E6B] hover:bg-white font-medium transition-all duration-300 text-sm px-3 py-2 rounded-full hover:shadow-md">
                 Contact
               </Link>
             </nav>
 
-            {/* Right Side Actions */}
+            {/* Right Side Actions - Phone CTA */}
             <div className="hidden lg:flex items-center space-x-3">
-              <Link href="/contact">
-                <Button className="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transition-all">
-                  Get Started →
+              <a href="tel:+919891614601" aria-label="Call +91 98916 14601">
+                <Button className="bg-[#083E6B] hover:bg-[#23A8DD] text-white font-bold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-[#083E6B] hover:border-[#23A8DD] flex items-center space-x-2">
+                  <Phone className="h-4 w-4" />
+                  <span className="text-sm">+91 98916 14601</span>
                 </Button>
-              </Link>
+              </a>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu - Enhanced Design */}
             <Sheet>
               <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="sm">
-                  <Menu className="h-6 w-6" />
+                <Button variant="ghost" size="sm" className="hover:bg-gradient-to-r hover:from-[#E2F6F8] hover:to-[#84D3FF]/20 rounded-xl transition-all duration-300">
+                  <Menu className="h-6 w-6 text-gray-700" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[320px] overflow-y-auto">
-                <div className="flex flex-col space-y-6 mt-8">
-                  <Link href="/" className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                    LegalEase
+              <SheetContent side="right" className="w-[85vw] sm:w-[400px] overflow-y-auto bg-gradient-to-br from-white via-[#E2F6F8]/20 to-[#84D3FF]/10 p-0 border-l border-[#81BCC9]/30">
+                {/* Header Section - Modern Gradient */}
+                <div className="sticky top-0 z-10 ">
+                  <Link href="/" className="flex items-center ml-0 md:ml-0">
+                    <div className="relative w-36 h-9 md:w-40 md:h-10 min-w-[120px]">
+                      <Image src="/logo.png" alt="Quick License Logo" fill className="object-contain" priority />
+                    </div>
                   </Link>
-                  
-                  {/* Mobile Services */}
-                  <div className="space-y-6">
-                    {serviceCategories.map((category) => (
-                      <div key={category.category} className="space-y-3">
-                        <div className="flex items-center space-x-2">
-                          <span className="text-xl">{category.icon}</span>
-                          <h3 className="font-bold text-gray-900 text-base">{category.category}</h3>
+                </div>
+
+                <div className="flex flex-col space-y-5 px-5 py-6">
+                  {/* Mobile Services - Card Style */}
+                  <div className="space-y-4">
+                    {serviceCategories.map((category, catIndex) => (
+                      <div key={category.category} className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-gray-200/50 overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                        {/* Category Header - Enhanced */}
+                        <div className="bg-gradient-to-r from-[#E2F6F8] via-[#84D3FF]/20 to-[#E2F6F8] px-5 py-4 border-b border-gray-200/50">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-2 h-10 rounded-full bg-gradient-to-b from-[#23A8DD] to-[#81BCC9]"></div>
+                            <div className="flex-1">
+                              <h3 className="font-bold text-gray-900 text-base leading-tight">{category.category}</h3>
+                              <p className="text-xs text-gray-600 mt-1 leading-relaxed">{category.description}</p>
+                            </div>
+                          </div>
                         </div>
-                        <div className="ml-7 space-y-2">
+                        
+                        {/* Services List - Modern Style */}
+                        <div className="p-3 space-y-2">
                           {category.services.map((service) => (
                             <Link
                               key={service.name}
                               href={service.href}
-                              className="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-50 transition-colors"
+                              className="group flex items-center space-x-3 p-3.5 rounded-xl hover:bg-gradient-to-r hover:from-[#E2F6F8] hover:to-[#84D3FF]/20 transition-all duration-300 active:scale-95 hover:shadow-md"
                             >
-                              <span className="text-lg">{service.icon}</span>
+                              <ChevronDown className="w-5 h-5 text-[#083E6B] -rotate-90 transition-all duration-300 group-hover:translate-x-1" />
                               <div className="flex-1">
-                                <div className="font-medium text-gray-900 text-sm">{service.name}</div>
+                                <div className="font-semibold text-[#083E6B] text-sm group-hover:text-[#23A8DD] transition-colors">{service.name}</div>
                               </div>
                             </Link>
                           ))}
@@ -237,34 +263,57 @@ export default function Header() {
                     ))}
                   </div>
 
-                  <div className="h-px bg-gray-200"></div>
+                  {/* Navigation Links - Modern Pills */}
+                  <div className="grid grid-cols-3 gap-3 pt-2">
+                    <Link href="/about" className="flex items-center justify-center space-x-2 bg-white/90 hover:bg-gradient-to-br hover:from-[#E2F6F8] hover:to-[#84D3FF]/30 text-gray-700 hover:text-[#083E6B] font-semibold py-4 px-4 rounded-2xl border border-gray-200/50 hover:border-[#81BCC9] transition-all duration-300 shadow-sm hover:shadow-lg active:scale-95">
+                      <span className="text-sm">About</span>
+                    </Link>
+                    <Link href="/blog" className="flex items-center justify-center space-x-2 bg-white/90 hover:bg-gradient-to-br hover:from-[#E2F6F8] hover:to-[#84D3FF]/30 text-gray-700 hover:text-[#083E6B] font-semibold py-4 px-4 rounded-2xl border border-gray-200/50 hover:border-[#81BCC9] transition-all duration-300 shadow-sm hover:shadow-lg active:scale-95">
+                      <span className="text-sm">Blog</span>
+                    </Link>
+                    <Link href="/contact" className="flex items-center justify-center space-x-2 bg-white/90 hover:bg-gradient-to-br hover:from-[#E2F6F8] hover:to-[#84D3FF]/30 text-gray-700 hover:text-[#083E6B] font-semibold py-4 px-4 rounded-2xl border border-gray-200/50 hover:border-[#81BCC9] transition-all duration-300 shadow-sm hover:shadow-lg active:scale-95">
+                      <span className="text-sm">Contact</span>
+                    </Link>
+                  </div>
 
-                  <Link href="/about" className="text-lg font-semibold text-gray-700 hover:text-indigo-600">
-                    About
-                  </Link>
-                  <Link href="/contact" className="text-lg font-semibold text-gray-700 hover:text-indigo-600">
-                    Contact
-                  </Link>
-
-                  <div className="pt-4 space-y-3">
-                    <Link href="/contact">
-                      <Button className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 shadow-lg">
-                        Get Started →
+                  {/* CTA Button - Enhanced */}
+                  <div className="pt-3">
+                    <Link href="/contact" className="block">
+                      <Button className="w-full bg-gradient-to-r from-[#083E6B] via-[#23A8DD] to-[#083E6B] hover:from-[#062f50] hover:via-[#1b86b0] hover:to-[#062f50] shadow-xl shadow-[#23A8DD]/40 hover:shadow-2xl hover:shadow-[#23A8DD]/60 text-base py-7 rounded-2xl transition-all duration-500 active:scale-95 font-bold border border-white/20">
+                        <span className="text-base">Get Started Now</span>
+                        <span className="ml-2 text-lg">→</span>
                       </Button>
                     </Link>
                   </div>
 
-                  {/* Contact Info */}
-                  <div className="pt-4 border-t border-gray-200 space-y-3">
-                    <a href="tel:+919891614601" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-indigo-600">
-                      <Phone className="h-4 w-4" />
-                      <span>+91 98916 14601</span>
+                  {/* Contact Info - Modern Cards */}
+                  <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-5 space-y-3 border border-gray-200/50 shadow-lg">
+                    <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center space-x-2">
+                      <div className="w-8 h-0.5 bg-gradient-to-r from-[#23A8DD] to-transparent rounded-full"></div>
+                      <span>Contact Information</span>
+                    </div>
+                    <a href="tel:+919891614601" className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-[#E2F6F8] hover:to-[#84D3FF]/20 transition-all duration-300 group active:scale-95 hover:shadow-md">
+                      <div className="w-11 h-11 bg-gradient-to-br from-[#23A8DD] to-[#81BCC9] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <Phone className="h-5 w-5 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-xs text-gray-500 font-medium mb-0.5">Call us now</div>
+                        <div className="text-sm font-bold text-gray-900 group-hover:text-[#083E6B] transition-colors">+91 98916 14601</div>
+                      </div>
                     </a>
-                    <a href="mailto:enterpriserawal6@gmail.com" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-indigo-600">
-                      <Mail className="h-4 w-4" />
-                      <span>enterpriserawal6@gmail.com</span>
+                    <a href="mailto:enterpriserawal6@gmail.com" className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-[#E2F6F8] hover:to-[#84D3FF]/20 transition-all duration-300 group active:scale-95 hover:shadow-md">
+                      <div className="w-11 h-11 bg-gradient-to-br from-[#23A8DD] to-[#81BCC9] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <Mail className="h-5 w-5 text-white" />
+                      </div>
+                      <div className="flex-1 overflow-hidden">
+                        <div className="text-xs text-gray-500 font-medium mb-0.5">Email us</div>
+                        <div className="text-sm font-bold text-gray-900 group-hover:text-[#083E6B] truncate transition-colors">enterpriserawal6@gmail.com</div>
+                      </div>
                     </a>
                   </div>
+
+                  {/* Bottom Padding */}
+                  <div className="pb-8"></div>
                 </div>
               </SheetContent>
             </Sheet>
@@ -274,3 +323,4 @@ export default function Header() {
     </>
   );
 }
+

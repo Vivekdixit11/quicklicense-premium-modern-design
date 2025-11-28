@@ -1,0 +1,171 @@
+"use client";
+
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Phone, Mail, User, FileText, CheckCircle2 } from "lucide-react";
+
+export default function StickyConsultationForm() {
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+    });
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Handle form submission
+        console.log("Form submitted:", formData);
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 3000);
+    };
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    return (
+        <div className="z-10">
+            <Card className="border-2 border-blue-500 shadow-2xl bg-gradient-to-br from-white to-blue-50">
+                <CardHeader className="pb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-[#23A8DD] flex items-center justify-center mb-3">
+                        <FileText className="w-6 h-6 text-white" />
+                    </div>
+                    <CardTitle className="text-xl font-heading">
+                        Get Free Consultation
+                    </CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                        Fill the form and our expert will call you back
+                    </p>
+
+                    {/* Trust indicators */}
+                    <div className="flex flex-wrap gap-2 pt-3">
+                        <div className="flex items-center gap-1 text-xs text-blue-700 bg-blue-100 px-2 py-1 rounded-full">
+                            <CheckCircle2 className="w-3 h-3" />
+                            <span>100% Legal</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-xs text-blue-700 bg-blue-100 px-2 py-1 rounded-full">
+                            <CheckCircle2 className="w-3 h-3" />
+                            <span>Pan-India</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-xs text-blue-700 bg-blue-100 px-2 py-1 rounded-full">
+                            <CheckCircle2 className="w-3 h-3" />
+                            <span>Fast Processing</span>
+                        </div>
+                    </div>
+                </CardHeader>
+
+                <CardContent className="pt-0">
+                    {submitted ? (
+                        <div className="text-center py-8">
+                            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                                <CheckCircle2 className="w-8 h-8 text-green-600" />
+                            </div>
+                            <h3 className="font-semibold text-lg mb-2">Thank You!</h3>
+                            <p className="text-sm text-muted-foreground">
+                                We'll contact you shortly
+                            </p>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div>
+                                <div className="relative">
+                                    <User className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                                    <Input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Full Name *"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                        className="pl-10"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="relative">
+                                    <Phone className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                                    <Input
+                                        type="tel"
+                                        name="phone"
+                                        placeholder="Phone Number *"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required
+                                        className="pl-10"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="relative">
+                                    <Mail className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                                    <Input
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email Address"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        className="pl-10"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <Textarea
+                                    name="message"
+                                    placeholder="Tell us about your requirement (optional)"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows={3}
+                                    className="resize-none"
+                                />
+                            </div>
+
+                            <Button
+                                type="submit"
+                                className="w-full bg-gradient-to-r from-blue-600 to-[#23A8DD] hover:shadow-lg smooth-transition"
+                                size="lg"
+                            >
+                                Get Free Quote
+                            </Button>
+
+                            {/* Call CTA */}
+                            <div className="relative">
+                                <div className="absolute inset-0 flex items-center">
+                                    <div className="w-full border-t border-gray-200"></div>
+                                </div>
+                                <div className="relative flex justify-center text-xs">
+                                    <span className="px-2 bg-white text-gray-500">OR</span>
+                                </div>
+                            </div>
+
+                            <Button
+                                type="button"
+                                variant="outline"
+                                className="w-full border-2 border-blue-500 text-blue-700 hover:bg-blue-50"
+                                size="lg"
+                                asChild
+                            >
+                                <a href="tel:+919876543210" className="flex items-center justify-center gap-2">
+                                    <Phone className="w-4 h-4" />
+                                    Call Now: +91-XXXXXXXXXX
+                                </a>
+                            </Button>
+                        </form>
+                    )}
+                </CardContent>
+            </Card>
+        </div>
+    );
+}

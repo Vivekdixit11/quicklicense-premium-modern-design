@@ -14,8 +14,13 @@ export const siteIndex = [
   { title: 'MSME Registration', href: '/services/msme', type: 'service' },
   { title: 'FSSAI License', href: '/services/fssai', type: 'service' },
   { title: 'Trademark Registration', href: '/services/trademark', type: 'service' },
-  { title: 'Drug License', href: '/services/drug-license', type: 'service' },
-  { title: 'Startup India', href: '/services/startup-india', type: 'service' },
+  // { title: 'Drug License', href: '/services/drug-license', type: 'service' },
+  // { title: 'Startup India', href: '/services/startup-india', type: 'service' },
+  // { title: 'EPR Registration', href: '/services/epr', type: 'service' },
+  // { title: 'LMPC Registration', href: '/services/lmpc', type: 'service' },
+  // { title: 'WPC Approval', href: '/services/wpc', type: 'service' },
+  // { title: 'Director Nomination', href: '/services/director-nomination', type: 'service' },
+  // { title: 'GeM Registration', href: '/services/gem', type: 'service' },
 
   // Blog / resources (keep a few important ones)
   { title: 'Designing a compliance engine that scales beyond Series A', href: '/blog/compliance-engine-series-a', type: 'blog' },
@@ -28,3 +33,4 @@ export const siteIndex = [
 ];
 
 export default siteIndex;
+

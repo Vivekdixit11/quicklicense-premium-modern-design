@@ -55,13 +55,13 @@ const stageHighlights = [
     title: "Scale Fearlessly",
     description: "Stay compliant and ready for funding with proactive governance dashboards.",
     items: ["ROC Filings", "Cap Table", "Data Room", "Board Advisory"],
-    accent: "from-purple-500/10 to-fuchsia-500/10",
+    accent: "from-[#E2F6F8]0/10 to-fuchsia-500/10",
   },
   {
     title: "Secure Continuity",
     description: "Protect brand, employees, and revenue with airtight legal operations.",
     items: ["Trademarks", "Contracts", "Labour", "GST"],
-    accent: "from-cyan-500/10 to-emerald-500/10",
+    accent: "from-[#23A8DD]/10 to-[#23A8DD]/10",
   },
 ];
 
@@ -255,19 +255,20 @@ export default function Home() {
               {/* Quick Action Buttons */}
               <div className="flex flex-wrap justify-center gap-3 mt-8">
                 {[
-                  { icon: "🏢", label: "Company Registration" },
-                  { icon: "™️", label: "Trademark Registration" },
-                  { icon: "📊", label: "GST Registration" },
-                  { icon: "⚖️", label: "Legal Consultation" }
+                  { icon: "🏢", label: "Company Registration", href: "/services/private-limited" },
+                  { icon: "™️", label: "Trademark Registration", href: "/services/trademark" },
+                  { icon: "📊", label: "GST Registration", href: "/contact" },
+                  { icon: "⚖️", label: "Legal Consultation", href: "/contact" }
                 ].map((service, idx) => (
-                  <button
-                    key={service.label}
-                    className="group px-6 py-3 bg-[#393f4d]/50 hover:bg-[#feda6a]/90 backdrop-blur-md text-white hover:text-[#1d1e22] text-sm md:text-base font-semibold rounded-full border border-[#d4d4dc]/30 hover:border-[#feda6a] transition-all shadow-lg hover:shadow-xl hover:scale-105"
-                    style={{ animationDelay: `${idx * 0.1}s` }}
-                  >
-                    <span className="mr-2 group-hover:scale-110 inline-block transition-transform">{service.icon}</span>
-                    {service.label}
-                  </button>
+                  <Link key={service.label} href={service.href}>
+                    <button
+                      className="group px-6 py-3 bg-[#393f4d]/50 hover:bg-[#feda6a]/90 backdrop-blur-md text-white hover:text-[#1d1e22] text-sm md:text-base font-semibold rounded-full border border-[#d4d4dc]/30 hover:border-[#feda6a] transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                      style={{ animationDelay: `${idx * 0.1}s` }}
+                    >
+                      <span className="mr-2 group-hover:scale-110 inline-block transition-transform">{service.icon}</span>
+                      {service.label}
+                    </button>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -275,88 +276,40 @@ export default function Home() {
             {/* Three Stage Cards - Inspired by Vakilsearch */}
             <div className="relative max-w-6xl mx-auto perspective-1000">
               <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-                {/* Card 1 - Start Your Business */}
+                {/* Card 1 - Start Your Business (image + title only) */}
                 <div className="transform md:-rotate-3 hover:rotate-0 transition-all duration-500">
-                  <div className="bg-white rounded-2xl shadow-2xl p-8 h-full border-t-4 border-[#feda6a] hover:shadow-[#feda6a]/20">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#feda6a] to-[#feda6a]/80 rounded-xl flex items-center justify-center">
-                        <Rocket className="w-6 h-6 text-[#1d1e22]" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-[#1d1e22]">Start Your Business ▸</h3>
-                    </div>
-                    <p className="text-[#393f4d] leading-relaxed mb-4">
-                      Launch your business effortlessly with expert-guided incorporation, registrations, and licensing.
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center text-sm text-[#393f4d]">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-[#feda6a]" />
-                        Private Limited Company
-                      </div>
-                      <div className="flex items-center text-sm text-[#393f4d]">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-[#feda6a]" />
-                        LLP Registration
-                      </div>
-                      <div className="flex items-center text-sm text-[#393f4d]">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-[#feda6a]" />
-                        Startup India Registration
+                  <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden h-full border-t-4 border-[#feda6a] hover:shadow-[#feda6a]/20">
+                    <div className="relative w-full h-56 md:h-64 lg:h-56">
+                      <img src="/MOULD-WELL-COMPOUND-INDUSTRIES/MOULD%20WELL%20COMPOUND%20INDUSTRIES_pages-to-jpg-0001.jpg" alt="LMPC" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                      <div className="absolute left-0 right-0 bottom-4 px-4 text-center">
+                        <h3 className="text-white text-2xl md:text-3xl font-heading font-extrabold drop-shadow">Start Your Business ▸</h3>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Card 2 - Manage Your Business */}
+                {/* Card 2 - Manage Your Business (image + title only) */}
                 <div className="transform md:rotate-2 hover:rotate-0 transition-all duration-500">
-                  <div className="bg-white rounded-2xl shadow-2xl p-8 h-full border-t-4 border-[#393f4d] hover:shadow-[#393f4d]/20">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#393f4d] to-[#1d1e22] rounded-xl flex items-center justify-center">
-                        <Target className="w-6 h-6 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-[#1d1e22]">Manage Your Business ▸</h3>
-                    </div>
-                    <p className="text-[#393f4d] leading-relaxed mb-4">
-                      Stay compliant and in control with automated tax filings, smart dashboards, and real-time alerts.
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-purple-600" />
-                        GST Filing & Returns
-                      </div>
-                      <div className="flex items-center text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-purple-600" />
-                        Annual Compliance
-                      </div>
-                      <div className="flex items-center text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-purple-600" />
-                        Labour Law Compliance
+                  <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden h-full border-t-4 border-[#393f4d] hover:shadow-[#393f4d]/20">
+                    <div className="relative w-full h-56 md:h-64 lg:h-56">
+                      <img src="/AMAN-ENTERPRISES/AMAN%20ENTERPRISES_pages-to-jpg-0001.jpg" alt="EPR" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                      <div className="absolute left-0 right-0 bottom-4 px-4 text-center">
+                        <h3 className="text-white text-2xl md:text-3xl font-heading font-extrabold drop-shadow">Manage Your Business ▸</h3>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Card 3 - Protect Your Business */}
+                {/* Card 3 - Protect Your Business (image + title only) */}
                 <div className="transform md:-rotate-2 hover:rotate-0 transition-all duration-500">
-                  <div className="bg-white rounded-2xl shadow-2xl p-8 h-full border-t-4 border-emerald-500 hover:shadow-emerald-500/20">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
-                        <ShieldCheck className="w-6 h-6 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900">Protect Your Business ▸</h3>
-                    </div>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      Secure your brand with trademark registration, contracts, and legal support from trusted experts.
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-emerald-600" />
-                        Trademark Registration
-                      </div>
-                      <div className="flex items-center text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-emerald-600" />
-                        Legal Contracts & Agreements
-                      </div>
-                      <div className="flex items-center text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-emerald-600" />
-                        Expert Legal Support
+                  <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden h-full border-t-4 border-[#23A8DD] hover:shadow-[#23A8DD]/20">
+                    <div className="relative w-full h-56 md:h-64 lg:h-56">
+                      <img src="/SIX-FOUR-DIGITAL-INDIA/SIX%20FOUR%20DIGITAL%20INDIA_pages-to-jpg-0001.jpg" alt="WPC" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                      <div className="absolute left-0 right-0 bottom-4 px-4 text-center">
+                        <h3 className="text-white text-2xl md:text-3xl font-heading font-extrabold drop-shadow">Protect Your Business ▸</h3>
                       </div>
                     </div>
                   </div>
@@ -388,18 +341,18 @@ export default function Home() {
           {/* Decorative Elements */}
           <div className="absolute inset-0 pointer-events-none opacity-30">
             <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl" />
-            <div className="absolute bottom-20 left-20 w-72 h-72 bg-gradient-to-br from-cyan-200 to-indigo-200 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 left-20 w-72 h-72 bg-gradient-to-br from-[#E2F6F8] to-[#E2F6F8] rounded-full blur-3xl" />
           </div>
 
           <div className="container-custom relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-10 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-blue-200 rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-[#E2F6F8]0/10 backdrop-blur-sm border border-blue-200 rounded-full mb-4">
                 <Sparkles className="w-4 h-4 text-blue-600" />
                 <span className="text-xs font-semibold text-blue-900">Your Success Journey</span>
               </div>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-3 leading-tight">
                 From Vision to
-                <span className="block mt-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <span className="block mt-1 bg-gradient-to-r from-blue-600 via-[#23A8DD] to-[#23A8DD] bg-clip-text text-transparent">
                   Market Leader
                 </span>
               </h2>
@@ -415,11 +368,11 @@ export default function Home() {
                   className="group relative"
                   style={{ animationDelay: `${idx * 200}ms` }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-[#E2F6F8]0 to-[#23A8DD] rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
                   <div className="relative bg-white rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-transparent h-full">
                     <div className="flex items-center gap-3 mb-4">
                       <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stage.accent} flex items-center justify-center shadow-md`}>
-                        <div className="text-xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        <div className="text-xl font-bold bg-gradient-to-br from-blue-600 to-[#23A8DD] bg-clip-text text-transparent">
                           {idx + 1}
                         </div>
                       </div>
@@ -434,7 +387,7 @@ export default function Home() {
                       {stage.items.map((item) => (
                         <span
                           key={item}
-                          className="px-3 py-1 rounded-full bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 text-xs font-medium text-blue-900 hover:from-blue-100 hover:to-purple-100 transition-all cursor-pointer"
+                          className="px-3 py-1 rounded-full bg-gradient-to-r from-blue-50 to-[#E2F6F8] border border-blue-200 text-xs font-medium text-blue-900 hover:from-blue-100 hover:to-purple-100 transition-all cursor-pointer"
                         >
                           {item}
                         </span>
@@ -466,13 +419,13 @@ export default function Home() {
 
           <div className="container-custom relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 backdrop-blur-sm border border-indigo-200 rounded-full mb-4">
-                <Briefcase className="w-4 h-4 text-indigo-600" />
-                <span className="text-xs font-semibold text-indigo-900">Comprehensive Solutions</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#23A8DD]/10 to-[#E2F6F8]0/10 backdrop-blur-sm border border-[#E2F6F8] rounded-full mb-4">
+                <Briefcase className="w-4 h-4 text-[#23A8DD]" />
+                <span className="text-xs font-semibold text-[#083E6B]">Comprehensive Solutions</span>
               </div>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-extrabold text-gray-900 mb-4 leading-tight">
                 Everything Your Business
-                <span className="block mt-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <span className="block mt-1 bg-gradient-to-r from-[#23A8DD] via-[#23A8DD] to-[#23A8DD] bg-clip-text text-transparent">
                   Needs to Thrive
                 </span>
               </h2>
@@ -484,14 +437,14 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
               {services.map((service, idx) => {
                 const gradients = [
-                  'from-blue-500 to-cyan-500',
-                  'from-purple-500 to-pink-500',
-                  'from-emerald-500 to-teal-500',
-                  'from-orange-500 to-red-500',
-                  'from-indigo-500 to-blue-500',
-                  'from-fuchsia-500 to-purple-500',
-                  'from-cyan-500 to-blue-500',
-                  'from-rose-500 to-pink-500',
+                  'from-blue-500 to-[#23A8DD]',
+                  'from-[#E2F6F8]0 to-[#23A8DD]',
+                  'from-[#23A8DD] to-teal-500',
+                  'from-[#23A8DD] to-[#083E6B]',
+                  'from-[#23A8DD] to-blue-500',
+                  'from-fuchsia-500 to-[#E2F6F8]0',
+                  'from-[#23A8DD] to-blue-500',
+                  'from-[#23A8DD] to-[#23A8DD]',
                 ];
                 const gradient = gradients[idx % gradients.length];
                 
@@ -510,7 +463,7 @@ export default function Home() {
                         
                         {/* Content */}
                         <div className="flex-1">
-                          <h3 className="font-heading text-base font-bold text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all">
+                          <h3 className="font-heading text-base font-bold text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#23A8DD] group-hover:to-[#23A8DD] group-hover:bg-clip-text transition-all">
                             {service.name}
                           </h3>
                           <p className="text-gray-600 leading-relaxed text-xs">
@@ -519,13 +472,13 @@ export default function Home() {
                         </div>
 
                         {/* Arrow */}
-                        <div className="mt-4 flex items-center gap-2 text-indigo-600 font-semibold text-xs group-hover:gap-3 transition-all">
+                        <div className="mt-4 flex items-center gap-2 text-[#23A8DD] font-semibold text-xs group-hover:gap-3 transition-all">
                           <span>Explore</span>
                           <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         </div>
 
                         {/* Decorative corner */}
-                        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-indigo-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-[#E2F6F8] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
                       </div>
                     </div>
                   </Link>
@@ -535,8 +488,8 @@ export default function Home() {
 
             {/* CTA Banner */}
             <div className="mt-12 relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
-              <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl overflow-hidden shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#23A8DD] via-[#23A8DD] to-[#23A8DD] rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
+              <div className="relative bg-gradient-to-br from-[#23A8DD] via-[#23A8DD] to-[#23A8DD] rounded-2xl overflow-hidden shadow-xl">
                 <div className="absolute inset-0 bg-black/10" />
                 <div className="grid lg:grid-cols-2 items-center relative z-10">
                   <div className="p-8 lg:p-10 space-y-4">
@@ -551,7 +504,7 @@ export default function Home() {
                       Let our experts guide you through the perfect compliance roadmap for your business.
                     </p>
                     <Link href="/contact">
-                      <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 font-bold px-8 py-5 text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                      <Button size="lg" className="bg-white text-[#23A8DD] hover:bg-gray-100 font-bold px-8 py-5 text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all">
                         Get Free Consultation
                         <ArrowRight className="ml-2 w-5 h-5" />
                       </Button>
@@ -579,6 +532,51 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Our Best Services - Premium Highlights */}
+        <section className="py-12 lg:py-16 bg-gradient-to-br from-[#f8fafc] to-white overflow-hidden">
+          <div className="container-custom">
+            <div className="text-center max-w-3xl mx-auto mb-8">
+              <Badge className="mb-2 text-xs">Our Best Services</Badge>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-extrabold text-gray-900 mb-2">Premium Services We Excel In</h2>
+              <p className="text-sm text-gray-600">Premium LMPC, EPR and WPC services delivered with creative excellence and fast turnarounds.</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+              <div className="p-6 bg-white rounded-2xl shadow-lg border border-gray-100 text-center">
+                <div className="text-sm font-semibold text-[#083E6B]">Premium</div>
+                <h3 className="mt-2 font-heading text-lg font-bold">LMPC</h3>
+                <p className="mt-2 text-xs text-gray-600">End-to-end LMPC registration and management for large projects.</p>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow-lg border border-gray-100 text-center">
+                <div className="text-sm font-semibold text-[#083E6B]">Premium</div>
+                <h3 className="mt-2 font-heading text-lg font-bold">EPR</h3>
+                <p className="mt-2 text-xs text-gray-600">Expert EPR compliance, registrations and reporting for producers & recyclers.</p>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow-lg border border-gray-100 text-center">
+                <div className="text-sm font-semibold text-[#083E6B]">Premium</div>
+                <h3 className="mt-2 font-heading text-lg font-bold">WPC</h3>
+                <p className="mt-2 text-xs text-gray-600">WPC licensing, approvals and advisory for wireless product compliance.</p>
+              </div>
+            </div>
+
+            <div className="mt-6 max-w-5xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="grid grid-cols-3 gap-4 flex-1">
+                  <img src="/AMAN-ENTERPRISES/AMAN%20ENTERPRISES_pages-to-jpg-0001.jpg" alt="AMAN Enterprises" className="w-full h-28 object-cover rounded-lg shadow-md" />
+                  <img src="/MOULD-WELL-COMPOUND-INDUSTRIES/MOULD%20WELL%20COMPOUND%20INDUSTRIES_pages-to-jpg-0001.jpg" alt="Mould Well Compound" className="w-full h-28 object-cover rounded-lg shadow-md" />
+                  <img src="/SIX-FOUR-DIGITAL-INDIA/SIX%20FOUR%20DIGITAL%20INDIA_pages-to-jpg-0001.jpg" alt="Six Four Digital" className="w-full h-28 object-cover rounded-lg shadow-md" />
+                </div>
+
+                <div className="flex-1 bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                  <div className="text-sm text-gray-600">Trusted by partners —</div>
+                  <h3 className="mt-2 font-heading text-2xl font-bold">10+ Years Experience</h3>
+                  <p className="mt-2 text-sm text-gray-600">Creative, premium delivery across LMPC, EPR and WPC services with proven domain expertise.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why Choose Us Section */}
         <section className="relative py-12 lg:py-16 bg-gradient-to-br from-[#d4d4dc]/10 via-white to-[#d4d4dc]/10 overflow-hidden">
           {/* Decorative Elements */}
@@ -590,25 +588,25 @@ export default function Home() {
           <div className="container-custom relative z-10">
             <div className="grid gap-10 lg:grid-cols-2 items-center">
               {/* Content Side */}
-              <div className="space-y-8">
+              <div className="space-y-6 lg:space-y-8">
                 <div className="space-y-4">
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#feda6a]/10 backdrop-blur-sm border border-[#feda6a]/30 rounded-full">
                     <Award className="w-4 h-4 text-[#feda6a]" />
                     <span className="text-xs font-semibold text-[#1d1e22]">Why Choose QuickLicense</span>
                   </div>
-                  <h2 className="text-xl md:text-2xl lg:text-3xl font-heading font-extrabold text-[#1d1e22] leading-tight">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-extrabold text-[#1d1e22] leading-tight">
                     Built for Modern
                     <span className="block mt-2 bg-gradient-to-r from-[#feda6a] to-[#393f4d] bg-clip-text text-transparent">
                       Entrepreneurs
                     </span>
                   </h2>
-                  <p className="text-sm text-[#393f4d] leading-relaxed">
+                  <p className="text-sm md:text-base text-[#393f4d] leading-relaxed">
                     We combine cutting-edge technology with legal expertise to deliver a seamless compliance experience that scales with your ambition.
                   </p>
                 </div>
 
                 {/* Desktop View - Grid */}
-                <div className="hidden md:grid gap-4">
+                <div className="hidden md:grid gap-3 lg:gap-4">
                   {[
                     {
                       icon: Zap,
@@ -694,7 +692,7 @@ export default function Home() {
                   {/* Column 1 */}
                   <div className="space-y-4">
                     {/* Stats Card */}
-                    <div className="group relative bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-5 shadow-lg hover:scale-105 transition-all duration-500">
+                    <div className="group relative bg-gradient-to-br from-blue-600 to-[#23A8DD] rounded-2xl p-5 shadow-lg hover:scale-105 transition-all duration-500">
                       <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl" />
                       <div className="relative">
                         <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3">
@@ -712,7 +710,7 @@ export default function Home() {
                     
                     {/* Image Card */}
                     <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-all duration-500">
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-[#23A8DD]/20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
                       <img
                         src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=90&auto=format&fit=crop"
                         alt="Team collaboration"
@@ -725,7 +723,7 @@ export default function Home() {
                   <div className="space-y-4 pt-8">
                     {/* Image Card */}
                     <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-all duration-500">
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#23A8DD]/20 to-[#23A8DD]/20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
                       <img
                         src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=90&auto=format&fit=crop"
                         alt="Professional team"
@@ -734,7 +732,7 @@ export default function Home() {
                     </div>
                     
                     {/* Success Rate Card */}
-                    <div className="group relative bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-5 shadow-lg hover:scale-105 transition-all duration-500">
+                    <div className="group relative bg-gradient-to-br from-[#23A8DD] to-[#23A8DD] rounded-2xl p-5 shadow-lg hover:scale-105 transition-all duration-500">
                       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl" />
                       <div className="relative">
                         <div className="flex items-center gap-2 mb-3">
@@ -752,9 +750,9 @@ export default function Home() {
                 </div>
                 
                 {/* Floating Badge */}
-                <div className="absolute -top-4 -right-4 bg-white rounded-xl px-4 py-2.5 shadow-xl border-2 border-indigo-100 animate-float">
+                <div className="absolute -top-4 -right-4 bg-white rounded-xl px-4 py-2.5 shadow-xl border-2 border-[#E2F6F8] animate-float">
                   <div className="flex items-center gap-2">
-                    <Award className="w-5 h-5 text-indigo-600" />
+                    <Award className="w-5 h-5 text-[#23A8DD]" />
                     <span className="font-bold text-gray-900 text-sm">Industry Leader</span>
                   </div>
                 </div>
@@ -930,3 +928,4 @@ export default function Home() {
     </>
   );
 }
+

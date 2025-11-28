@@ -25,7 +25,7 @@ export default function StickyContactForm() {
   return (
     <div className="lg:sticky lg:top-24">
       <Card className="border-2 border-primary/20 hover:border-primary smooth-transition shadow-xl">
-        <CardHeader className="bg-gradient-to-br from-primary to-purple-600 text-white rounded-t-xl">
+        <CardHeader className="bg-gradient-to-br from-[#083E6B] to-[#23A8DD] text-white rounded-t-xl">
           <CardTitle className="text-2xl font-heading">Get Free Consultation</CardTitle>
           <p className="text-sm opacity-90">Our experts will call you back within 24 hours</p>
         </CardHeader>
@@ -117,8 +117,8 @@ export default function StickyContactForm() {
       {/* Trust Badges */}
       <div className="mt-6 space-y-3">
         <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-          <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-            <span className="text-green-600 font-bold">✓</span>
+          <div className="w-10 h-10 rounded-full bg-[#E2F6F8] flex items-center justify-center flex-shrink-0">
+            <span className="text-[#23A8DD] font-bold">✓</span>
           </div>
           <div className="text-sm">
             <div className="font-semibold">99% Success Rate</div>
@@ -138,3 +138,4 @@ export default function StickyContactForm() {
     </div>
   );
 }
+

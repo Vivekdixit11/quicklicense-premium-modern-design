@@ -31,23 +31,23 @@ const stats = [
 const values = [
   {
     icon: Target,
-    title: "Client-Centric Approach",
-    desc: "Your success is our priority. We tailor our services to meet your unique business needs.",
+    title: "Speed & Efficiency",
+    desc: "48-hour average incorporation with expedited filings and automated workflows that eliminate delays.",
   },
   {
     icon: Shield,
-    title: "100% Compliance",
-    desc: "We ensure full compliance with all government regulations and legal requirements.",
+    title: "Bank-Grade Security",
+    desc: "Your documents and data are protected with enterprise-level encryption and secure cloud infrastructure.",
   },
   {
     icon: ThumbsUp,
-    title: "Transparency",
-    desc: "No hidden charges, clear communication, and honest advice at every step.",
+    title: "Technology-Driven",
+    desc: "Smart dashboards, AI-powered risk detection, and automated compliance tracking for proactive governance.",
   },
   {
     icon: Clock,
-    title: "Timely Delivery",
-    desc: "We understand the value of time and deliver your licenses on schedule.",
+    title: "Expert Support 24/7",
+    desc: "450+ specialists including startup lawyers, CAs, and compliance architects available on-demand.",
   },
 ];
 
@@ -110,12 +110,12 @@ export default function AboutPage() {
           >
             <Badge className="mb-6 px-4 py-2">About Us</Badge>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6">
-              Empowering <span className="gradient-text">Entrepreneurs</span> Since 2014
+              Your One-Stop <span className="gradient-text">Digital Partner</span> for Business Success
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              We're on a mission to make business registration simple, fast, and accessible for everyone. 
-              With 10 years of experience and 10,000+ satisfied clients, we're India's most trusted partner 
-              for business compliance.
+              Quick License is a comprehensive business registration and compliance platform designed specifically 
+              for Indian entrepreneurs. We handle all your legal, regulatory, and compliance needs so you can focus 
+              on building your business—from startup to IPO-ready stage.
             </p>
           </motion.div>
 
@@ -147,23 +147,24 @@ export default function AboutPage() {
             >
               <Badge className="mb-6">Our Story</Badge>
               <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-                Building Trust, <span className="gradient-text">One Business at a Time</span>
+                Technology Meets <span className="gradient-text">Expertise</span>
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Founded in 2014, LegalEase was born out of a simple observation: entrepreneurs 
-                  were spending too much time and money navigating complex registration processes, 
-                  when they should be focusing on building their businesses.
+                  Quick License transforms how Indian businesses handle registration and compliance. 
+                  We combine cutting-edge technology with expert legal support to deliver services 
+                  that were traditionally complex, time-consuming, and expensive.
                 </p>
                 <p>
-                  Our founder, Rajesh Sharma, experienced these challenges firsthand while starting 
-                  his first venture. He realized there was a need for a reliable, efficient, and 
-                  transparent service that could handle all aspects of business registration and licensing.
+                  Our platform offers automated compliance tracking, smart dashboards, real-time alerts, 
+                  and direct access to startup lawyers, CAs, and compliance architects. With 48-hour 
+                  average incorporation time and bank-grade security, we're redefining speed and trust 
+                  in business services.
                 </p>
                 <p>
-                  Today, we've helped over 10,000 businesses get started, ranging from small startups 
-                  to large enterprises. Our team of experts ensures that every client receives 
-                  personalized attention and hassle-free service.
+                  From first-time entrepreneurs to companies preparing for funding or international expansion, 
+                  Quick License provides scalable solutions that grow with your business—whether you need 
+                  a Private Limited registration or IPO-ready compliance systems.
                 </p>
               </div>
             </motion.div>
@@ -209,14 +210,15 @@ export default function AboutPage() {
             >
               <Card className="h-full hover-lift border-2 hover:border-primary smooth-transition">
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center mb-6">
                     <Target className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-2xl font-heading font-bold mb-4">Our Mission</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    To simplify the business registration process and make entrepreneurship accessible 
-                    to everyone. We strive to provide fast, reliable, and affordable services that 
-                    help businesses focus on growth rather than compliance.
+                    To be India's most comprehensive business registration and compliance platform, 
+                    empowering entrepreneurs with technology-driven solutions that eliminate legal and 
+                    regulatory barriers. We enable businesses to launch faster, scale fearlessly, and 
+                    maintain continuous compliance with automated workflows and expert support.
                   </p>
                 </CardContent>
               </Card>
@@ -230,14 +232,15 @@ export default function AboutPage() {
             >
               <Card className="h-full hover-lift border-2 hover:border-primary smooth-transition">
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-[#23A8DD] flex items-center justify-center mb-6">
                     <Eye className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-2xl font-heading font-bold mb-4">Our Vision</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    To become India's most trusted and comprehensive platform for business services, 
-                    empowering millions of entrepreneurs to turn their dreams into successful businesses 
-                    with complete peace of mind regarding compliance and legal matters.
+                    To become the default operating system for Indian business compliance—where every 
+                    entrepreneur, from solo founders to enterprise teams, relies on Quick License for 
+                    seamless registration, automated governance, and strategic legal support throughout 
+                    their entire business lifecycle.
                   </p>
                 </CardContent>
               </Card>
@@ -272,7 +275,7 @@ export default function AboutPage() {
               >
                 <Card className="h-full text-center hover-lift border-2 hover:border-primary smooth-transition">
                   <CardContent className="p-8">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center mx-auto mb-6">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-[#E2F6F8]0/10 flex items-center justify-center mx-auto mb-6">
                       <value.icon className="w-7 h-7 text-primary" />
                     </div>
                     <h3 className="font-heading font-semibold text-xl mb-3">{value.title}</h3>
@@ -286,7 +289,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="section-padding bg-muted/30">
+      {/* <section className="section-padding bg-muted/30">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -329,7 +332,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Certifications & Recognition */}
       <section className="section-padding">
@@ -357,7 +360,7 @@ export default function AboutPage() {
               >
                 <Card className="text-center h-full hover-lift">
                   <CardContent className="p-8">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mx-auto mb-6">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center mx-auto mb-6">
                       <cert.icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="font-heading font-semibold text-lg mb-2">{cert.title}</h3>
@@ -397,7 +400,7 @@ export default function AboutPage() {
                 <Card className="hover-lift border-l-4 border-l-primary">
                   <CardContent className="p-6 flex gap-6 items-start">
                     <div className="flex-shrink-0">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center text-white font-bold text-lg">
                         {milestone.year}
                       </div>
                     </div>
@@ -418,3 +421,4 @@ export default function AboutPage() {
     </>
   );
 }
+

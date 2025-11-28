@@ -214,7 +214,7 @@ export default function ContactPage() {
                   <Card key={index} className="hover-lift border-2 hover:border-primary smooth-transition">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center flex-shrink-0">
                           <info.icon className="w-6 h-6 text-white" />
                         </div>
                         <div>
@@ -318,3 +318,4 @@ export default function ContactPage() {
     </>
   );
 }
+

@@ -83,3 +83,4 @@ export default function SearchBar({ className = "" }: { className?: string }) {
     </div>
   );
 }
+

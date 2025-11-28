@@ -1,6 +1,7 @@
 "use client";
 
 import dynamicLoad from "next/dynamic";
+import ServiceHeroWithForm from "@/components/ServiceHeroWithForm";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -73,69 +74,28 @@ const whoNeeds = [
   "Consultancy firms",
 ];
 
-const pricing = {
-  price: "₹5,999",
-  originalPrice: "₹8,499",
-  includes: [
-    "DSC for 2 Designated Partners",
-    "DPIN for 2 Partners",
-    "Name Approval & Reservation",
-    "LLP Agreement Drafting",
-    "Incorporation Certificate",
-    "LLP PAN",
-    "LLP TAN",
-    "Partnership Deed",
-    "Free Consultation",
-    "Lifetime Support",
-  ],
-};
-
 export default function LLPPage() {
   return (
     <>
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <div className="container-custom relative z-10 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div
-
-
-
-            >
-              <Badge className="mb-6 px-4 py-2">Limited Liability Partnership</Badge>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold leading-tight mb-6">
-                <span className="gradient-text">LLP Registration</span> in 7 Days
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-                Get your Limited Liability Partnership registered with minimal compliance requirements. 
-                Perfect for professionals and small businesses.
-              </p>
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-5xl font-bold gradient-text">{pricing.price}</span>
-                <span className="text-2xl text-muted-foreground line-through">{pricing.originalPrice}</span>
-                <Badge className="bg-green-100 text-green-700">Save 30%</Badge>
-              </div>
-              <Button size="lg" className="animated-gradient text-white font-semibold text-lg px-8 h-14">
-                Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </div>
-
-            <div
-
-
-
-              className="relative hidden lg:block"
-            >
-              <div className="relative glass-effect rounded-3xl p-8 hover-lift">
-                <FileText className="w-full h-64 text-primary opacity-10" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceHeroWithForm
+        badge="Partnership Structure"
+        title="LLP Registration"
+        subtitle="Starting at ₹6,999"
+        description="Register your Limited Liability Partnership in 7-10 days. Perfect for professionals and small businesses with minimal compliance."
+        highlights={[
+          "Limited liability protection",
+          "Flexible management structure",
+          "Lower compliance than Pvt Ltd",
+          "Perpetual succession"
+        ]}
+        stats={[
+          { value: "7-10", label: "Days" },
+          { value: "3,000+", label: "Registered" },
+          { value: "100%", label: "Support" }
+        ]}
+      />
 
       {/* Main Content */}
       <section className="section-padding">
@@ -174,11 +134,11 @@ export default function LLPPage() {
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Key <span className="gradient-text">Benefits</span>
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                   {benefits.map((benefit, index) => (
                     <Card key={index} className="hover-lift border-2 hover:border-primary smooth-transition">
                       <CardContent className="p-6">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center mb-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-[#E2F6F8]0/10 flex items-center justify-center mb-4">
                           <benefit.icon className="w-6 h-6 text-primary" />
                         </div>
                         <h3 className="font-heading font-semibold text-lg mb-2">{benefit.title}</h3>
@@ -227,7 +187,7 @@ export default function LLPPage() {
                       <CardContent className="p-6">
                         <div className="flex gap-6 items-start">
                           <div className="flex-shrink-0">
-                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center text-white font-bold text-lg">
                               {item.step}
                             </div>
                           </div>
@@ -277,32 +237,35 @@ export default function LLPPage() {
                 </Card>
               </div>
 
-              {/* Pricing */}
-              <div
-
-
-
-              >
+              {/* Get Started CTA */}
+              <div>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
-                  Pricing <span className="gradient-text">Breakdown</span>
+                  Get Started with <span className="gradient-text">LLP Registration</span>
                 </h2>
-                <Card className="border-2 border-primary">
+                <Card className="border-2 border-primary bg-gradient-to-br from-primary/5 to-[#E2F6F8]">
                   <CardContent className="p-8">
-                    <div className="flex items-baseline gap-3 mb-6">
-                      <span className="text-5xl font-bold gradient-text">{pricing.price}</span>
-                      <span className="text-2xl text-muted-foreground line-through">{pricing.originalPrice}</span>
+                    <h3 className="font-heading font-semibold text-2xl mb-4 text-center">Ready to Register Your LLP?</h3>
+                    <p className="text-center text-muted-foreground mb-6">
+                      Get expert assistance with complete LLP registration in just 7 days. Our professionals will handle all paperwork and compliance.
+                    </p>
+                    <div className="space-y-3 mb-8">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-muted-foreground">Complete documentation support</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-muted-foreground">Expert legal consultation</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-muted-foreground">Fast & hassle-free process</span>
+                      </div>
                     </div>
-                    <h3 className="font-heading font-semibold text-xl mb-4">Package Includes:</h3>
-                    <div className="space-y-3">
-                      {pricing.includes.map((item, index) => (
-                        <div key={index} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Button size="lg" className="w-full mt-8 animated-gradient text-white font-semibold h-14">
-                      Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
+                    <Button size="lg" asChild className="w-full animated-gradient text-white font-semibold h-14">
+                      <a href="/contact">
+                        Contact Us for Pricing <ArrowRight className="ml-2 w-5 h-5" />
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>
@@ -321,3 +284,5 @@ export default function LLPPage() {
     </>
   );
 }
+
+

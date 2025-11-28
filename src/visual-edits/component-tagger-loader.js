@@ -458,3 +458,4 @@ function componentTagger(src, map) {
         done(err);
     }
 }
+

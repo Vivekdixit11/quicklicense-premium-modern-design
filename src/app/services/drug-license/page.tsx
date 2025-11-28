@@ -1,11 +1,12 @@
 "use client";
 
 import dynamicLoad from "next/dynamic";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
+import ServiceHeroWithForm from "@/components/ServiceHeroWithForm";
 import {
   PillBottle,
   CheckCircle2,
@@ -16,6 +17,7 @@ import {
   Download,
   Award,
   Building,
+  Phone,
 } from "lucide-react";
 
 // Lazy load heavy components
@@ -27,12 +29,12 @@ const benefits = [
   {
     icon: Shield,
     title: "Legal Compliance",
-    desc: "Mandatory for pharmaceutical businesses",
+    desc: "Mandatory for Healthcare Products businesses",
   },
   {
     icon: Award,
     title: "Quality Assurance",
-    desc: "Ensures drug safety and quality standards",
+    desc: "Ensures Consumables / Wellness Items safety and quality standards",
   },
   {
     icon: Building,
@@ -60,7 +62,7 @@ const documents = [
   "Layout plan of premises",
   "Qualification certificate of pharmacist",
   "Pharmacist registration certificate",
-  "List of drugs to be stocked/manufactured",
+  "List of Consumables / Wellness Items to be stocked/manufactured",
   "Manufacturing license (if applicable)",
   "Proprietor/company documents",
   "NOC from owner/society",
@@ -69,75 +71,58 @@ const documents = [
 ];
 
 const whoNeeds = [
-  "Pharmaceutical manufacturers",
-  "Medical stores and chemists",
-  "Drug wholesalers and distributors",
-  "Online pharmacy platforms",
-  "Ayurvedic medicine manufacturers",
-  "Cosmetic drug manufacturers",
+  "Healthcare Products manufacturers",
+  "Medical stores and Retailers",
+  "Consumables / Wellness Items wholesalers and distributors",
+  "Online retail platforms",
+  "Ayurvedic Consumables / Wellness Items manufacturers",
+  "Cosmetic Consumables / Wellness Items manufacturers",
   "Medical device companies",
-  "Hospital pharmacies",
+  "Hospital Retailers",
 ];
 
 const licenseTypes = [
   {
     form: "Form 20B",
     type: "Retail Drug License",
-    desc: "For medical stores selling medicines to end consumers",
+      desc: "For medical stores selling Consumables / Wellness Items to end consumers",
     price: "₹8,999",
   },
   {
     form: "Form 21B",
     type: "Wholesale Drug License",
-    desc: "For wholesalers and distributors of drugs",
+      desc: "For wholesalers and distributors of Consumables / Wellness Items",
     price: "₹9,999",
   },
   {
     form: "Form 25 & 28",
     type: "Manufacturing License",
-    desc: "For pharmaceutical drug manufacturing units",
+      desc: "For Healthcare Products manufacturing units",
     price: "₹19,999",
   },
 ];
-
-const pricing = {
-  price: "₹8,999",
-  originalPrice: "₹14,999",
-  includes: [
-    "Drug license consultation",
-    "Document preparation",
-    "Form filling (20B/21B)",
-    "Application submission",
-    "Inspection coordination",
-    "Follow-up with authorities",
-    "Compliance guidance",
-    "License certificate",
-    "5-year validity",
-    "Renewal support",
-    "Amendment assistance",
-    "Expert support",
-  ],
-};
 
 export default function DrugLicensePage() {
   return (
     <>
       <Header />
 
-      <HeroSection
-        badge="Pharmaceutical License Registration"
-        title="Drug License (Form 20B/21B) Registration"
-        subtitle="Get your Drug License in 30-45 days"
-        description="Mandatory for pharmacies, medical stores, and pharmaceutical businesses. Expert guided process with 100% compliance."
+      <ServiceHeroWithForm
+        badge="Healthcare Products License"
+        title="Drug License (Form 20B/21B)"
+        subtitle="Starting at ₹9,999"
+        description="Get your Drug License in 30-45 days. Mandatory for retailers, medical stores, and Healthcare Products businesses with expert guided process."
         highlights={[
-          "Legal Authorization - Required to sell or distribute pharmaceutical products",
-          "Regulatory Compliance - Ensures adherence to drug safety standards",
-          "Business Credibility - Builds trust with suppliers and customers"
+          "Legal authorization to sell Consumables / Wellness Items",
+          "100% regulatory compliance",
+          "Builds customer and supplier trust",
+          "Expert guided documentation"
         ]}
-        stats={{
-          icon: <PillBottle className="w-6 h-6 text-indigo-300" />,
-          text: "5,000+ Pharmacies and medical stores licensed through our platform"
-        }}
+        stats={[
+          { value: "30-45", label: "Days" },
+          { value: "5,000+", label: "Licensed" },
+          { value: "100%", label: "Compliant" }
+        ]}
       />
 
       <section className="section-padding">
@@ -207,11 +192,11 @@ export default function DrugLicensePage() {
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
                   Key <span className="gradient-text">Benefits</span>
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                   {benefits.map((benefit, index) => (
                     <Card key={index} className="hover-lift border-2 hover:border-primary smooth-transition">
                       <CardContent className="p-6">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center mb-4">
+                        <div className="w-12 h-12 rounded-xl bg-linear-to-br from-primary/10 to-[#E2F6F8]0/10 flex items-center justify-center mb-4">
                           <benefit.icon className="w-6 h-6 text-primary" />
                         </div>
                         <h3 className="font-heading font-semibold text-lg mb-2">{benefit.title}</h3>
@@ -235,7 +220,7 @@ export default function DrugLicensePage() {
                     <div className="grid md:grid-cols-2 gap-4">
                       {whoNeeds.map((item, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                           <span className="text-muted-foreground">{item}</span>
                         </div>
                       ))}
@@ -257,8 +242,8 @@ export default function DrugLicensePage() {
                     <Card key={index} className="hover-lift border-l-4 border-l-primary">
                       <CardContent className="p-6">
                         <div className="flex gap-6 items-start">
-                          <div className="flex-shrink-0">
-                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                          <div className="shrink-0">
+                            <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-[#23A8DD] flex items-center justify-center text-white font-bold text-lg">
                               {item.step}
                             </div>
                           </div>
@@ -292,7 +277,7 @@ export default function DrugLicensePage() {
                     <div className="grid md:grid-cols-2 gap-4">
                       {documents.map((doc, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <FileText className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <FileText className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                           <span className="text-muted-foreground">{doc}</span>
                         </div>
                       ))}
@@ -307,32 +292,31 @@ export default function DrugLicensePage() {
                 </Card>
               </div>
 
-              <div
-
-
-
-              >
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
-                  Pricing <span className="gradient-text">Breakdown</span>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 text-center">
+                  Ready to Get Your <span className="gradient-text">Drug License?</span>
                 </h2>
-                <Card className="border-2 border-primary">
-                  <CardContent className="p-8">
-                    <div className="flex items-baseline gap-3 mb-6">
-                      <span className="text-5xl font-bold gradient-text">{pricing.price}</span>
-                      <span className="text-2xl text-muted-foreground line-through">{pricing.originalPrice}</span>
+                <Card className="border-2 border-primary bg-linear-to-br from-primary/5 to-[#23A8DD]/5">
+                  <CardContent className="p-8 text-center">
+                    <h3 className="font-heading font-semibold text-2xl mb-4">
+                      Start Your Drug License Application
+                    </h3>
+                    <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                      Get expert assistance with your Healthcare Products license registration. 
+                      We handle all documentation and compliance requirements.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Button size="lg" className="bg-linear-to-r from-[#23A8DD] to-[#23A8DD] text-white font-semibold hover:shadow-lg smooth-transition" asChild>
+                        <Link href="/contact">
+                          Contact Us <ArrowRight className="ml-2 w-5 h-5" />
+                        </Link>
+                      </Button>
+                      <Button size="lg" variant="outline" className="font-semibold" asChild>
+                        <Link href="tel:+919876543210">
+                          <Phone className="mr-2 w-5 h-5" /> Call Now
+                        </Link>
+                      </Button>
                     </div>
-                    <h3 className="font-heading font-semibold text-xl mb-4">Package Includes:</h3>
-                    <div className="space-y-3">
-                      {pricing.includes.map((item, index) => (
-                        <div key={index} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Button size="lg" className="w-full mt-8 animated-gradient text-white font-semibold h-14">
-                      Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
                   </CardContent>
                 </Card>
               </div>
@@ -350,3 +334,5 @@ export default function DrugLicensePage() {
     </>
   );
 }
+
+
