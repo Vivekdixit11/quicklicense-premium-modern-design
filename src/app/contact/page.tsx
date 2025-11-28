@@ -17,8 +17,12 @@ import {
   Clock,
   MessageCircle,
   Send,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
 import { useState } from "react";
+import { submitContactForm, type ContactFormData } from "@/lib/api";
 
 const contactInfo = [
   {
@@ -52,10 +56,35 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const contactData: ContactFormData = {
+        fullName: formData.name,
+        email: formData.email,
+        phone: formData.mobile,
+        message: `Service: ${formData.service || 'Not specified'}\n\n${formData.message}`,
+      };
+
+      await submitContactForm(contactData);
+      setSubmitted(true);
+      setFormData({ name: "", email: "", mobile: "", service: "", message: "" });
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setError(err instanceof Error ? err.message : "Failed to submit form");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -105,90 +134,132 @@ export default function ContactPage() {
 
               <Card className="border-2">
                 <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                  {submitted ? (
+                    <div className="text-center py-12 space-y-4">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                        <CheckCircle2 className="w-8 h-8 text-green-600" />
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Message Sent!</h4>
+                      <p className="text-gray-600">We have received your message and will contact you shortly.</p>
+                      <Button
+                        onClick={() => setSubmitted(false)}
+                        variant="outline"
+                        className="mt-4"
+                      >
+                        Send Another Message
+                      </Button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      {error && (
+                        <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+                          <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                          <div className="flex-1">
+                            <p className="text-sm text-red-800 font-medium">Submission Failed</p>
+                            <p className="text-sm text-red-700 mt-1">{error}</p>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <Label htmlFor="name">Full Name *</Label>
+                          <Input
+                            id="name"
+                            placeholder="John Doe"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            required
+                            disabled={isLoading}
+                            className="mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="email">Email Address *</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="john@example.com"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            required
+                            disabled={isLoading}
+                            className="mt-1"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <Label htmlFor="mobile">Mobile Number *</Label>
+                          <Input
+                            id="mobile"
+                            type="tel"
+                            placeholder="+91 98916 14601"
+                            value={formData.mobile}
+                            onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                            required
+                            disabled={isLoading}
+                            className="mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="service">Service Interested In</Label>
+                          <select
+                            id="service"
+                            value={formData.service}
+                            onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                            disabled={isLoading}
+                            className="w-full mt-1 px-3 py-2 border border-input rounded-lg bg-background"
+                          >
+                            <option value="">Select a service</option>
+                            <option value="private-limited">Private Limited Company</option>
+                            <option value="llp">LLP Registration</option>
+                            <option value="fssai">FSSAI License</option>
+                            <option value="iso">ISO Certification</option>
+                            <option value="msme">MSME Registration</option>
+                            <option value="startup">Startup India</option>
+                            <option value="iec">IEC Code</option>
+                            <option value="drug">Drug License</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                      </div>
+
                       <div>
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          placeholder="John Doe"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        <Label htmlFor="message">Your Message *</Label>
+                        <Textarea
+                          id="message"
+                          placeholder="Tell us about your requirements..."
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           required
+                          rows={6}
+                          disabled={isLoading}
                           className="mt-1"
                         />
                       </div>
-                      <div>
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@example.com"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          required
-                          className="mt-1"
-                        />
-                      </div>
-                    </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <Label htmlFor="mobile">Mobile Number *</Label>
-                        <Input
-                          id="mobile"
-                          type="tel"
-                          placeholder="+91 98916 14601"
-                          value={formData.mobile}
-                          onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                          required
-                          className="mt-1"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="service">Service Interested In</Label>
-                        <select
-                          id="service"
-                          value={formData.service}
-                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                          className="w-full mt-1 px-3 py-2 border border-input rounded-lg bg-background"
-                        >
-                          <option value="">Select a service</option>
-                          <option value="private-limited">Private Limited Company</option>
-                          <option value="llp">LLP Registration</option>
-                          <option value="fssai">FSSAI License</option>
-                          <option value="iso">ISO Certification</option>
-                          <option value="msme">MSME Registration</option>
-                          <option value="startup">Startup India</option>
-                          <option value="iec">IEC Code</option>
-                          <option value="drug">Drug License</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="message">Your Message *</Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell us about your requirements..."
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        required
-                        rows={6}
-                        className="mt-1"
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full animated-gradient text-white font-semibold h-14"
-                    >
-                      <Send className="mr-2 w-5 h-5" />
-                      Send Message
-                    </Button>
-                  </form>
+                      <Button
+                        type="submit"
+                        size="lg"
+                        disabled={isLoading}
+                        className="w-full animated-gradient text-white font-semibold h-14"
+                      >
+                        {isLoading ? (
+                          <>
+                            <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="mr-2 w-5 h-5" />
+                            Send Message
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>

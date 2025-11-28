@@ -33,11 +33,36 @@ export default function ServiceHeroWithForm({
     phone: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await import("@/lib/api").then(async ({ submitContactForm }) => {
+        await submitContactForm({
+          fullName: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message || `Inquiry from ${title} page`,
+        });
+      });
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", message: "" });
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setError(err instanceof Error ? err.message : "Failed to submit form");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -117,62 +142,90 @@ export default function ServiceHeroWithForm({
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Input
-                  type="text"
-                  placeholder="Your Name *"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="h-12 border-2 focus:border-[#23A8DD]"
-                />
+            {submitted ? (
+              <div className="text-center py-12 space-y-4">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-8 h-8 text-green-600" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-900">Thank You!</h4>
+                <p className="text-gray-600">We have received your request and will contact you shortly.</p>
+                <Button
+                  onClick={() => setSubmitted(false)}
+                  variant="outline"
+                  className="mt-4"
+                >
+                  Send Another Request
+                </Button>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <div className="p-3 text-sm text-red-600 bg-red-50 rounded-lg border border-red-100">
+                    {error}
+                  </div>
+                )}
 
-              <div>
-                <Input
-                  type="email"
-                  placeholder="Email Address *"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="h-12 border-2 focus:border-[#23A8DD]"
-                />
-              </div>
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="Your Name *"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                    disabled={isLoading}
+                    className="h-12 border-2 focus:border-[#23A8DD]"
+                  />
+                </div>
 
-              <div>
-                <Input
-                  type="tel"
-                  placeholder="Phone Number *"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  required
-                  className="h-12 border-2 focus:border-[#23A8DD]"
-                />
-              </div>
+                <div>
+                  <Input
+                    type="email"
+                    placeholder="Email Address *"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    disabled={isLoading}
+                    className="h-12 border-2 focus:border-[#23A8DD]"
+                  />
+                </div>
 
-              <div>
-                <Textarea
-                  placeholder="Tell us about your requirements (optional)"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="min-h-[100px] border-2 focus:border-[#23A8DD] resize-none"
-                />
-              </div>
+                <div>
+                  <Input
+                    type="tel"
+                    placeholder="Phone Number *"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    required
+                    disabled={isLoading}
+                    className="h-12 border-2 focus:border-[#23A8DD]"
+                  />
+                </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full gap-2 bg-gradient-to-r from-[#083E6B] to-[#23A8DD] hover:from-[#23A8DD] hover:to-[#083E6B] text-white font-semibold h-12 text-base"
-              >
-                Get Free Consultation
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+                <div>
+                  <Textarea
+                    placeholder="Tell us about your requirements (optional)"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    disabled={isLoading}
+                    className="min-h-[100px] border-2 focus:border-[#23A8DD] resize-none"
+                  />
+                </div>
 
-              <p className="text-xs text-center text-muted-foreground">
-                🔒 Your information is secure and will never be shared
-              </p>
-            </form>
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={isLoading}
+                  className="w-full gap-2 bg-gradient-to-r from-[#083E6B] to-[#23A8DD] hover:from-[#23A8DD] hover:to-[#083E6B] text-white font-semibold h-12 text-base"
+                >
+                  {isLoading ? "Submitting..." : "Get Free Consultation"}
+                  {!isLoading && <ArrowRight className="w-4 h-4" />}
+                </Button>
+
+                <p className="text-xs text-center text-muted-foreground">
+                  🔒 Your information is secure and will never be shared
+                </p>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>

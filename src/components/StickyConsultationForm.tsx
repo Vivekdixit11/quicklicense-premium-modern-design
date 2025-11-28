@@ -5,23 +5,59 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, User, FileText, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, User, FileText, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { submitContactForm, type ContactFormData } from "@/lib/api";
 
 export default function StickyConsultationForm() {
     const [formData, setFormData] = useState({
-        name: "",
+        fullName: "",
         phone: "",
         email: "",
         message: "",
     });
+    const [isLoading, setIsLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission
-        console.log("Form submitted:", formData);
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 3000);
+        setError(null);
+        setIsLoading(true);
+
+        try {
+            // Prepare data for API
+            const contactData: ContactFormData = {
+                fullName: formData.fullName,
+                email: formData.email,
+                phone: formData.phone,
+                message: formData.message || "LMPC Certificate inquiry",
+            };
+
+            // Submit to backend API
+            const response = await submitContactForm(contactData);
+
+            console.log("Form submitted successfully:", response);
+
+            // Show success message
+            setSubmitted(true);
+
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                setSubmitted(false);
+                setFormData({
+                    fullName: "",
+                    phone: "",
+                    email: "",
+                    message: "",
+                });
+            }, 3000);
+
+        } catch (error) {
+            console.error("Form submission error:", error);
+            setError(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleChange = (
@@ -31,6 +67,8 @@ export default function StickyConsultationForm() {
             ...formData,
             [e.target.name]: e.target.value,
         });
+        // Clear error when user starts typing
+        if (error) setError(null);
     };
 
     return (
@@ -77,16 +115,30 @@ export default function StickyConsultationForm() {
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
+                            {/* Error Alert */}
+                            {error && (
+                                <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start gap-2">
+                                    <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                                    <div className="flex-1">
+                                        <p className="text-sm text-red-800 font-medium">Submission Failed</p>
+                                        <p className="text-xs text-red-700 mt-1">{error}</p>
+                                    </div>
+                                </div>
+                            )}
+
                             <div>
                                 <div className="relative">
                                     <User className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
                                     <Input
                                         type="text"
-                                        name="name"
+                                        name="fullName"
                                         placeholder="Full Name *"
-                                        value={formData.name}
+                                        value={formData.fullName}
                                         onChange={handleChange}
                                         required
+                                        minLength={2}
+                                        maxLength={100}
+                                        disabled={isLoading}
                                         className="pl-10"
                                     />
                                 </div>
@@ -102,6 +154,10 @@ export default function StickyConsultationForm() {
                                         value={formData.phone}
                                         onChange={handleChange}
                                         required
+                                        minLength={10}
+                                        maxLength={20}
+                                        pattern="[0-9\s\-\+\(\)]+"
+                                        disabled={isLoading}
                                         className="pl-10"
                                     />
                                 </div>
@@ -113,9 +169,11 @@ export default function StickyConsultationForm() {
                                     <Input
                                         type="email"
                                         name="email"
-                                        placeholder="Email Address"
+                                        placeholder="Email Address *"
                                         value={formData.email}
                                         onChange={handleChange}
+                                        required
+                                        disabled={isLoading}
                                         className="pl-10"
                                     />
                                 </div>
@@ -128,6 +186,8 @@ export default function StickyConsultationForm() {
                                     value={formData.message}
                                     onChange={handleChange}
                                     rows={3}
+                                    maxLength={1000}
+                                    disabled={isLoading}
                                     className="resize-none"
                                 />
                             </div>
@@ -136,8 +196,16 @@ export default function StickyConsultationForm() {
                                 type="submit"
                                 className="w-full bg-gradient-to-r from-blue-600 to-[#23A8DD] hover:shadow-lg smooth-transition"
                                 size="lg"
+                                disabled={isLoading}
                             >
-                                Get Free Quote
+                                {isLoading ? (
+                                    <>
+                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                        Submitting...
+                                    </>
+                                ) : (
+                                    "Get Free Quote"
+                                )}
                             </Button>
 
                             {/* Call CTA */}
@@ -157,9 +225,9 @@ export default function StickyConsultationForm() {
                                 size="lg"
                                 asChild
                             >
-                                <a href="tel:+919876543210" className="flex items-center justify-center gap-2">
+                                <a href="tel:+919891614601" className="flex items-center justify-center gap-2">
                                     <Phone className="w-4 h-4" />
-                                    Call Now: +91-XXXXXXXXXX
+                                    Call Now: +91 98916 14601
                                 </a>
                             </Button>
                         </form>

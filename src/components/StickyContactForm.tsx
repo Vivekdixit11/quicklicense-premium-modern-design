@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MessageCircle } from "lucide-react";
+import { Phone, Mail, MessageCircle, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
+import { submitContactForm, type ContactFormData } from "@/lib/api";
 
 export default function StickyContactForm() {
   const [formData, setFormData] = useState({
@@ -16,10 +17,34 @@ export default function StickyContactForm() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const contactData: ContactFormData = {
+        fullName: formData.name,
+        phone: formData.mobile,
+        email: formData.email,
+        message: formData.message || "Contact form inquiry",
+      };
+
+      await submitContactForm(contactData);
+      setSubmitted(true);
+      setFormData({ name: "", mobile: "", email: "", message: "" });
+
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setError(err instanceof Error ? err.message : "Failed to submit form");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -30,57 +55,89 @@ export default function StickyContactForm() {
           <p className="text-sm opacity-90">Our experts will call you back within 24 hours</p>
         </CardHeader>
         <CardContent className="p-6 space-y-4">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="contact-name">Full Name *</Label>
-              <Input
-                id="contact-name"
-                placeholder="Enter your name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-                className="mt-1"
-              />
+          {submitted ? (
+            <div className="text-center py-8">
+              <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                <CheckCircle2 className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Thank You!</h3>
+              <p className="text-sm text-muted-foreground">
+                We'll contact you shortly
+              </p>
             </div>
-            <div>
-              <Label htmlFor="contact-mobile">Mobile Number *</Label>
-              <Input
-                id="contact-mobile"
-                type="tel"
-                placeholder="+91 98916 14601"
-                value={formData.mobile}
-                onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                required
-                className="mt-1"
-              />
-            </div>
-            <div>
-              <Label htmlFor="contact-email">Email Address *</Label>
-              <Input
-                id="contact-email"
-                type="email"
-                placeholder="you@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-                className="mt-1"
-              />
-            </div>
-            <div>
-              <Label htmlFor="contact-message">Message (Optional)</Label>
-              <Textarea
-                id="contact-message"
-                placeholder="Tell us about your requirements..."
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                rows={3}
-                className="mt-1"
-              />
-            </div>
-            <Button type="submit" className="w-full animated-gradient text-white font-semibold h-12">
-              Request Callback
-            </Button>
-          </form>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start gap-2">
+                  <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm text-red-800 font-medium">Submission Failed</p>
+                    <p className="text-xs text-red-700 mt-1">{error}</p>
+                  </div>
+                </div>
+              )}
+              <div>
+                <Label htmlFor="contact-name">Full Name *</Label>
+                <Input
+                  id="contact-name"
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                  disabled={isLoading}
+                  className="mt-1"
+                />
+              </div>
+              <div>
+                <Label htmlFor="contact-mobile">Mobile Number *</Label>
+                <Input
+                  id="contact-mobile"
+                  type="tel"
+                  placeholder="+91 98916 14601"
+                  value={formData.mobile}
+                  onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                  required
+                  disabled={isLoading}
+                  className="mt-1"
+                />
+              </div>
+              <div>
+                <Label htmlFor="contact-email">Email Address *</Label>
+                <Input
+                  id="contact-email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  disabled={isLoading}
+                  className="mt-1"
+                />
+              </div>
+              <div>
+                <Label htmlFor="contact-message">Message (Optional)</Label>
+                <Textarea
+                  id="contact-message"
+                  placeholder="Tell us about your requirements..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  rows={3}
+                  disabled={isLoading}
+                  className="mt-1"
+                />
+              </div>
+              <Button type="submit" disabled={isLoading} className="w-full animated-gradient text-white font-semibold h-12">
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  "Request Callback"
+                )}
+              </Button>
+            </form>
+          )}
 
           <div className="pt-4 border-t border-border space-y-3">
             <div className="flex items-center gap-3 text-sm">
