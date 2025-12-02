@@ -55,7 +55,7 @@ export default function TermsPage() {
 
             <section className="mb-6">
               <h2 className="text-xl font-semibold mb-2">6. Contact</h2>
-              <p className="text-sm text-muted-foreground">If you have questions about these Terms, please contact us at <a href="mailto:enterpriserawal6@gmail.com" className="text-primary underline">enterpriserawal6@gmail.com</a>.</p>
+              <p className="text-sm text-muted-foreground">If you have questions about these Terms, please contact us at <a href="mailto:contact@quicklicense.in" className="text-primary underline">contact@quicklicense.in</a>.</p>
             </section>
 
             <div className="mt-8">

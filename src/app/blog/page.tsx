@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -16,7 +16,6 @@ import {
   Tag,
   TrendingUp,
   FileText,
-  Users,
   BookOpen,
 } from "lucide-react";
 
@@ -81,36 +80,6 @@ const blogPosts = [
     readTime: "6 min read",
     author: "Priya Sharma",
   },
-  {
-    title: "IEC Code: Your Gateway to Import-Export Business",
-    excerpt: "Complete guide to obtaining Import Export Code (IEC) from DGFT, including eligibility, documents required, and online application process.",
-    slug: "iec-code-import-export-guide",
-    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&q=80&auto=format&fit=crop",
-    category: "Import-Export",
-    date: "October 20, 2024",
-    readTime: "8 min read",
-    author: "Amit Verma",
-  },
-  {
-    title: "LLP vs Private Limited: Which is Right for Your Business?",
-    excerpt: "Detailed comparison of LLP and Private Limited Company structures, covering compliance, taxation, liability, and suitability for different business types.",
-    slug: "llp-vs-private-limited-comparison",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80&auto=format&fit=crop",
-    category: "Business Structure",
-    date: "October 15, 2024",
-    readTime: "12 min read",
-    author: "Sneha Patel",
-  },
-  {
-    title: "GST Registration: Complete Guide for New Businesses",
-    excerpt: "Everything you need to know about GST registration - eligibility criteria, required documents, online process, and compliance requirements.",
-    slug: "gst-registration-guide",
-    image: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1600&q=80&auto=format&fit=crop",
-    category: "Tax & Compliance",
-    date: "October 10, 2024",
-    readTime: "10 min read",
-    author: "Rajesh Kumar",
-  },
 ];
 
 const categories = [
@@ -121,22 +90,17 @@ const categories = [
   "Quality Standards",
   "Intellectual Property",
   "Business Growth",
-  "Import-Export",
-  "Business Structure",
-  "Tax & Compliance",
 ];
 
 const popularTags = [
+  "EPR Registration",
+  "LMPC",
+  "WPC Approval",
   "Private Limited",
   "FSSAI",
   "Startup India",
-  "ISO Certification",
   "Trademark",
   "MSME",
-  "IEC Code",
-  "LLP",
-  "GST",
-  "Business Registration",
 ];
 
 export default function BlogPage() {
@@ -145,55 +109,48 @@ export default function BlogPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-gradient-to-br from-[#1d1e22] via-[#393f4d] to-[#1d1e22]">
-        {/* Animated Background Orbs */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-[#feda6a]/30 to-[#feda6a]/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-gradient-to-br from-[#d4d4dc]/30 to-[#d4d4dc]/20 rounded-full blur-3xl animate-float-delayed" />
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <Badge className="mb-6 px-4 py-2 bg-[#feda6a]/20 text-[#feda6a] border-[#feda6a]/30">
+      <section className="bg-charcoal py-16 md:py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-4xl mx-auto">
+            <Badge className="mb-4 bg-terracotta/20 text-terracotta border-terracotta/30">
               <BookOpen className="w-4 h-4 mr-2 inline" />
               Knowledge Hub
             </Badge>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white">
-              Business <span className="bg-gradient-to-r from-[#feda6a] to-[#d4d4dc] bg-clip-text text-transparent">Insights</span> & Guides
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-cream leading-tight mb-6">
+              Business <span className="text-terracotta">Insights</span> & Guides
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
+            <p className="text-lg text-cream/70 leading-relaxed mb-8">
               Expert advice, practical tips, and comprehensive guides to help you navigate business registration, compliance, and growth.
             </p>
 
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-xl mx-auto">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-warm" />
                 <Input
                   type="text"
-                  placeholder="Search articles, guides, and resources..."
-                  className="pl-12 pr-4 py-6 text-lg bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-gray-400 rounded-xl"
+                  placeholder="Search articles..."
+                  className="pl-12 py-6 text-base bg-cream/10 border-cream/20 text-cream placeholder:text-cream/50 rounded-lg"
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Categories */}
-      <section className="py-8 bg-white/50 backdrop-blur-sm border-y border-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap gap-3 justify-center">
+      <section className="py-6 bg-cream border-b border-gold/20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category, index) => (
               <Button
                 key={index}
                 variant={index === 0 ? "default" : "outline"}
-                className={index === 0 ? "bg-gradient-to-r from-[#23A8DD] to-[#23A8DD] text-white" : ""}
+                size="sm"
+                className={index === 0 
+                  ? "bg-terracotta hover:bg-terracotta-dark text-white" 
+                  : "border-gold/30 text-charcoal hover:bg-terracotta hover:text-white hover:border-terracotta"
+                }
               >
                 {category}
               </Button>
@@ -203,82 +160,75 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12">
+      <section className="py-16 bg-cream-light">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid lg:grid-cols-3 gap-10">
             {/* Blog Posts */}
             <div className="lg:col-span-2">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6">
                 {blogPosts.map((post, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Card className="group overflow-hidden border-2 hover:border-[#23A8DD] transition-all duration-300 hover:shadow-xl h-full">
-                      <div className="relative overflow-hidden aspect-video">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute top-4 left-4">
-                          <Badge className="bg-white/90 backdrop-blur-sm text-[#23A8DD] border-0">
-                            {post.category}
-                          </Badge>
+                  <Card key={index} className="group overflow-hidden border-gold/20 bg-white hover:shadow-lg transition-shadow">
+                    <div className="relative overflow-hidden aspect-video">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <Badge className="bg-white/90 text-terracotta border-0 text-xs">
+                          {post.category}
+                        </Badge>
+                      </div>
+                    </div>
+                    <CardContent className="p-5">
+                      <div className="flex items-center gap-3 text-xs text-gray-warm mb-2">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-3.5 h-3.5" />
+                          {post.date}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-3.5 h-3.5" />
+                          {post.readTime}
                         </div>
                       </div>
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
-                            {post.date}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            {post.readTime}
-                          </div>
-                        </div>
-                        <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-[#23A8DD] transition-colors">
-                          {post.title}
-                        </h3>
-                        <p className="text-gray-600 mb-4 line-clamp-3">
-                          {post.excerpt}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">By {post.author}</span>
-                          <Link href={`/blog/${post.slug}`}>
-                            <Button variant="ghost" size="sm" className="group/btn">
-                              Read More
-                              <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                            </Button>
-                          </Link>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                      <h3 className="text-lg font-semibold text-charcoal mb-2 line-clamp-2 group-hover:text-terracotta transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-gray-warm mb-4 line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-warm">By {post.author}</span>
+                        <Link href={`/blog/${post.slug}`}>
+                          <Button variant="ghost" size="sm" className="text-terracotta hover:bg-terracotta/10">
+                            Read More
+                            <ArrowRight className="ml-1 w-3.5 h-3.5" />
+                          </Button>
+                        </Link>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
 
               {/* Pagination */}
-              <div className="mt-12 flex justify-center gap-2">
-                <Button variant="outline">Previous</Button>
-                <Button variant="default" className="bg-gradient-to-r from-[#23A8DD] to-[#23A8DD]">1</Button>
-                <Button variant="outline">2</Button>
-                <Button variant="outline">3</Button>
-                <Button variant="outline">Next</Button>
+              <div className="mt-10 flex justify-center gap-2">
+                <Button variant="outline" size="sm" className="border-gold/30">Previous</Button>
+                <Button size="sm" className="bg-terracotta hover:bg-terracotta-dark text-white">1</Button>
+                <Button variant="outline" size="sm" className="border-gold/30">2</Button>
+                <Button variant="outline" size="sm" className="border-gold/30">3</Button>
+                <Button variant="outline" size="sm" className="border-gold/30">Next</Button>
               </div>
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               {/* Popular Tags */}
-              <Card className="border-2">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                    <Tag className="w-5 h-5 text-[#23A8DD]" />
+              <Card className="border-gold/20 bg-white">
+                <CardContent className="p-5">
+                  <h3 className="font-semibold text-charcoal mb-4 flex items-center gap-2">
+                    <Tag className="w-4 h-4 text-terracotta" />
                     Popular Tags
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -286,7 +236,7 @@ export default function BlogPage() {
                       <Badge
                         key={index}
                         variant="outline"
-                        className="cursor-pointer hover:bg-[#E2F6F8] hover:text-[#23A8DD] hover:border-[#23A8DD] transition-colors"
+                        className="cursor-pointer border-gold/30 text-charcoal hover:bg-terracotta hover:text-white hover:border-terracotta transition-colors"
                       >
                         {tag}
                       </Badge>
@@ -296,23 +246,24 @@ export default function BlogPage() {
               </Card>
 
               {/* Featured Post */}
-              <Card className="border-2 bg-gradient-to-br from-[#E2F6F8] to-[#E2F6F8]">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-[#23A8DD]" />
+              <Card className="border-gold/20 bg-cream">
+                <CardContent className="p-5">
+                  <h3 className="font-semibold text-charcoal mb-4 flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-terracotta" />
                     Featured Article
                   </h3>
                   <div className="space-y-3">
                     <img
                       src={blogPosts[0].image}
                       alt={blogPosts[0].title}
-                      className="w-full h-40 object-cover rounded-lg"
+                      className="w-full h-36 object-cover rounded-lg"
+                      loading="lazy"
                     />
-                    <h4 className="font-bold text-lg line-clamp-2">{blogPosts[0].title}</h4>
-                    <p className="text-sm text-gray-600 line-clamp-3">{blogPosts[0].excerpt}</p>
+                    <h4 className="font-semibold text-charcoal line-clamp-2">{blogPosts[0].title}</h4>
+                    <p className="text-sm text-gray-warm line-clamp-2">{blogPosts[0].excerpt}</p>
                     <Link href={`/blog/${blogPosts[0].slug}`}>
-                      <Button className="w-full bg-gradient-to-r from-[#23A8DD] to-[#23A8DD]">
-                        Read Featured Article
+                      <Button className="w-full bg-terracotta hover:bg-terracotta-dark text-white">
+                        Read Article
                       </Button>
                     </Link>
                   </div>
@@ -320,60 +271,60 @@ export default function BlogPage() {
               </Card>
 
               {/* Newsletter */}
-              <Card className="border-2 bg-gradient-to-br from-[#23A8DD] to-[#23A8DD] text-white">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-3">
+              <Card className="border-terracotta bg-terracotta text-white">
+                <CardContent className="p-5">
+                  <h3 className="font-semibold mb-2">
                     📧 Subscribe to Newsletter
                   </h3>
-                  <p className="text-white/90 text-sm mb-4">
-                    Get the latest business insights, guides, and updates delivered to your inbox every week.
+                  <p className="text-white/80 text-sm mb-4">
+                    Get the latest business insights delivered to your inbox.
                   </p>
                   <Input
                     type="email"
                     placeholder="Enter your email"
-                    className="mb-3 bg-white/20 border-white/30 text-white placeholder:text-white/70"
+                    className="mb-3 bg-white/20 border-white/30 text-white placeholder:text-white/60"
                   />
-                  <Button className="w-full bg-white text-[#23A8DD] hover:bg-white/90">
+                  <Button className="w-full bg-white text-terracotta hover:bg-cream">
                     Subscribe Now
                   </Button>
                 </CardContent>
               </Card>
 
               {/* Quick Links */}
-              <Card className="border-2">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-[#23A8DD]" />
+              <Card className="border-gold/20 bg-white">
+                <CardContent className="p-5">
+                  <h3 className="font-semibold text-charcoal mb-4 flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-terracotta" />
                     Quick Links
                   </h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2">
                     <li>
-                      <Link href="/services/private-limited" className="text-gray-600 hover:text-[#23A8DD] transition-colors flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4" />
-                        Private Limited Registration
+                      <Link href="/services/epr" className="text-sm text-gray-warm hover:text-terracotta transition-colors flex items-center gap-2">
+                        <ArrowRight className="w-3.5 h-3.5" />
+                        EPR Registration
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/fssai" className="text-gray-600 hover:text-[#23A8DD] transition-colors flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4" />
-                        FSSAI License
+                      <Link href="/services/lmpc" className="text-sm text-gray-warm hover:text-terracotta transition-colors flex items-center gap-2">
+                        <ArrowRight className="w-3.5 h-3.5" />
+                        LMPC Registration
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/startup-india" className="text-gray-600 hover:text-[#23A8DD] transition-colors flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4" />
-                        Startup India Registration
+                      <Link href="/services/wpc" className="text-sm text-gray-warm hover:text-terracotta transition-colors flex items-center gap-2">
+                        <ArrowRight className="w-3.5 h-3.5" />
+                        WPC Approval
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/trademark" className="text-gray-600 hover:text-[#23A8DD] transition-colors flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4" />
-                        Trademark Registration
+                      <Link href="/services/private-limited" className="text-sm text-gray-warm hover:text-terracotta transition-colors flex items-center gap-2">
+                        <ArrowRight className="w-3.5 h-3.5" />
+                        Private Limited Company
                       </Link>
                     </li>
                     <li>
-                      <Link href="/contact" className="text-gray-600 hover:text-[#23A8DD] transition-colors flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4" />
+                      <Link href="/contact" className="text-sm text-gray-warm hover:text-terracotta transition-colors flex items-center gap-2">
+                        <ArrowRight className="w-3.5 h-3.5" />
                         Contact Expert Team
                       </Link>
                     </li>

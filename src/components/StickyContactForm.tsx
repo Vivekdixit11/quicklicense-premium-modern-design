@@ -153,8 +153,8 @@ export default function StickyContactForm() {
               <Mail className="w-5 h-5 text-primary flex-shrink-0" />
               <div>
                 <div className="font-medium">Email Us</div>
-                <a href="mailto:enterpriserawal6@gmail.com" className="text-muted-foreground hover:text-primary">
-                  enterpriserawal6@gmail.com
+                <a href="mailto:contact@quicklicense.in" className="text-muted-foreground hover:text-primary">
+                  contact@quicklicense.in
                 </a>
               </div>
             </div>

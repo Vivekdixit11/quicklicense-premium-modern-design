@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
@@ -10,15 +9,11 @@ import {
   Target,
   Eye,
   Award,
-  Users,
-  CheckCircle2,
-  TrendingUp,
   Shield,
   Clock,
   ThumbsUp,
   Globe,
-  Briefcase,
-  Heart,
+  CheckCircle2,
 } from "lucide-react";
 
 const stats = [
@@ -32,49 +27,22 @@ const values = [
   {
     icon: Target,
     title: "Speed & Efficiency",
-    desc: "48-hour average incorporation with expedited filings and automated workflows that eliminate delays.",
+    desc: "48-hour average incorporation with expedited filings and automated workflows.",
   },
   {
     icon: Shield,
     title: "Bank-Grade Security",
-    desc: "Your documents and data are protected with enterprise-level encryption and secure cloud infrastructure.",
+    desc: "Your documents and data are protected with enterprise-level encryption.",
   },
   {
     icon: ThumbsUp,
     title: "Technology-Driven",
-    desc: "Smart dashboards, AI-powered risk detection, and automated compliance tracking for proactive governance.",
+    desc: "Smart dashboards, AI-powered risk detection, and automated compliance tracking.",
   },
   {
     icon: Clock,
     title: "Expert Support 24/7",
-    desc: "450+ specialists including startup lawyers, CAs, and compliance architects available on-demand.",
-  },
-];
-
-const team = [
-  {
-    name: "Rajesh Sharma",
-    role: "Founder & CEO",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
-    desc: "15+ years in corporate law and business registrations",
-  },
-  {
-    name: "Priya Mehta",
-    role: "Head of Operations",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
-    desc: "Expert in streamlining registration processes",
-  },
-  {
-    name: "Amit Kumar",
-    role: "Chief Legal Advisor",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
-    desc: "Specializes in compliance and regulatory matters",
-  },
-  {
-    name: "Sneha Patel",
-    role: "Client Relations Manager",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
-    desc: "Dedicated to ensuring client satisfaction",
+    desc: "450+ specialists including startup lawyers, CAs, and compliance architects.",
   },
 ];
 
@@ -99,57 +67,42 @@ export default function AboutPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <div className="container-custom relative z-10 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <Badge className="mb-6 px-4 py-2">About Us</Badge>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6">
-              Your One-Stop <span className="gradient-text">Digital Partner</span> for Business Success
+      <section className="bg-cream py-16 md:py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-4xl mx-auto">
+            <Badge className="mb-4 bg-terracotta/10 text-terracotta border-terracotta/20">About Us</Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-charcoal leading-tight mb-6">
+              Your One-Stop <span className="text-terracotta">Digital Partner</span> for Business Success
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg text-gray-warm leading-relaxed">
               Quick License is a comprehensive business registration and compliance platform designed specifically 
               for Indian entrepreneurs. We handle all your legal, regulatory, and compliance needs so you can focus 
-              on building your business—from startup to IPO-ready stage.
+              on building your business.
             </p>
-          </motion.div>
+          </div>
 
           {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
-          >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">{stat.value}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
+              <div key={index} className="text-center bg-white rounded-xl p-6 shadow-sm">
+                <div className="text-3xl md:text-4xl font-bold text-terracotta mb-1">{stat.value}</div>
+                <div className="text-sm text-gray-warm">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Our Story */}
-      <section className="section-padding">
-        <div className="container-custom">
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <Badge className="mb-6">Our Story</Badge>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-                Technology Meets <span className="gradient-text">Expertise</span>
+            <div>
+              <Badge className="mb-4 bg-gold/10 text-gold border-gold/20">Our Story</Badge>
+              <h2 className="text-3xl md:text-4xl font-playfair font-bold text-charcoal mb-6">
+                Technology Meets <span className="text-terracotta">Expertise</span>
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-4 text-gray-warm leading-relaxed">
                 <p>
                   Quick License transforms how Indian businesses handle registration and compliance. 
                   We combine cutting-edge technology with expert legal support to deliver services 
@@ -163,254 +116,144 @@ export default function AboutPage() {
                 </p>
                 <p>
                   From first-time entrepreneurs to companies preparing for funding or international expansion, 
-                  Quick License provides scalable solutions that grow with your business—whether you need 
-                  a Private Limited registration or IPO-ready compliance systems.
+                  Quick License provides scalable solutions that grow with your business.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="relative glass-effect rounded-3xl p-4 hover-lift">
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-lg">
                 <img
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
                   alt="Our Team"
-                  className="rounded-2xl w-full h-auto"
+                  className="w-full h-auto"
+                  loading="lazy"
                 />
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4">Mission & Vision</Badge>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold">
-              What <span className="gradient-text">Drives Us</span>
+      <section className="py-16 bg-cream-light">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-terracotta/10 text-terracotta border-terracotta/20">Mission & Vision</Badge>
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-charcoal">
+              What <span className="text-terracotta">Drives Us</span>
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full hover-lift border-2 hover:border-primary smooth-transition">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center mb-6">
-                    <Target className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold mb-4">Our Mission</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    To be India's most comprehensive business registration and compliance platform, 
-                    empowering entrepreneurs with technology-driven solutions that eliminate legal and 
-                    regulatory barriers. We enable businesses to launch faster, scale fearlessly, and 
-                    maintain continuous compliance with automated workflows and expert support.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <Card className="bg-white border-gold/20 shadow-sm">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-xl bg-terracotta flex items-center justify-center mb-6">
+                  <Target className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-playfair font-bold text-charcoal mb-4">Our Mission</h3>
+                <p className="text-gray-warm leading-relaxed">
+                  To be India's most comprehensive business registration and compliance platform, 
+                  empowering entrepreneurs with technology-driven solutions that eliminate legal and 
+                  regulatory barriers.
+                </p>
+              </CardContent>
+            </Card>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <Card className="h-full hover-lift border-2 hover:border-primary smooth-transition">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-[#23A8DD] flex items-center justify-center mb-6">
-                    <Eye className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold mb-4">Our Vision</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    To become the default operating system for Indian business compliance—where every 
-                    entrepreneur, from solo founders to enterprise teams, relies on Quick License for 
-                    seamless registration, automated governance, and strategic legal support throughout 
-                    their entire business lifecycle.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <Card className="bg-white border-gold/20 shadow-sm">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-xl bg-gold flex items-center justify-center mb-6">
+                  <Eye className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-playfair font-bold text-charcoal mb-4">Our Vision</h3>
+                <p className="text-gray-warm leading-relaxed">
+                  To become the default operating system for Indian business compliance—where every 
+                  entrepreneur relies on Quick License for seamless registration and strategic legal 
+                  support throughout their business lifecycle.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Core Values */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4">Our Values</Badge>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold">
-              What We <span className="gradient-text">Stand For</span>
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-gold/10 text-gold border-gold/20">Our Values</Badge>
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-charcoal">
+              What We <span className="text-terracotta">Stand For</span>
             </h2>
-          </motion.div>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="h-full text-center hover-lift border-2 hover:border-primary smooth-transition">
-                  <CardContent className="p-8">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-[#E2F6F8]0/10 flex items-center justify-center mx-auto mb-6">
-                      <value.icon className="w-7 h-7 text-primary" />
-                    </div>
-                    <h3 className="font-heading font-semibold text-xl mb-3">{value.title}</h3>
-                    <p className="text-muted-foreground text-sm">{value.desc}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <Card key={index} className="bg-cream border-gold/10 shadow-sm hover:shadow-md transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 rounded-lg bg-terracotta/10 flex items-center justify-center mx-auto mb-4">
+                    <value.icon className="w-6 h-6 text-terracotta" />
+                  </div>
+                  <h3 className="font-semibold text-charcoal mb-2">{value.title}</h3>
+                  <p className="text-sm text-gray-warm">{value.desc}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      {/* <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4">Our Team</Badge>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-              Meet the <span className="gradient-text">Experts</span>
+      {/* Certifications */}
+      <section className="py-16 bg-cream">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-terracotta/10 text-terracotta border-terracotta/20">Trust Indicators</Badge>
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-charcoal">
+              Certified & <span className="text-terracotta">Recognized</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our dedicated team of professionals brings decades of combined experience in 
-              business registration, compliance, and legal services.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="hover-lift overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-64 object-cover"
-                  />
-                  <CardContent className="p-6">
-                    <h3 className="font-heading font-semibold text-xl mb-1">{member.name}</h3>
-                    <p className="text-primary font-medium mb-3">{member.role}</p>
-                    <p className="text-sm text-muted-foreground">{member.desc}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
           </div>
-        </div>
-      </section> */}
 
-      {/* Certifications & Recognition */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4">Trust Indicators</Badge>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold">
-              Certified & <span className="gradient-text">Recognized</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="text-center h-full hover-lift">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center mx-auto mb-6">
-                      <cert.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="font-heading font-semibold text-lg mb-2">{cert.title}</h3>
-                    <p className="text-sm text-muted-foreground">{cert.desc}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <Card key={index} className="bg-white border-gold/10 shadow-sm text-center">
+                <CardContent className="p-6">
+                  <div className="w-14 h-14 rounded-full bg-terracotta flex items-center justify-center mx-auto mb-4">
+                    <cert.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-charcoal mb-1">{cert.title}</h3>
+                  <p className="text-sm text-gray-warm">{cert.desc}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
       {/* Journey Timeline */}
-      <section className="section-padding bg-muted/30">
-        <div className="container-custom max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4">Our Journey</Badge>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold">
-              <span className="gradient-text">Milestones</span> That Matter
+      <section className="py-16 bg-cream-light">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-gold/10 text-gold border-gold/20">Our Journey</Badge>
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-charcoal">
+              <span className="text-terracotta">Milestones</span> That Matter
             </h2>
-          </motion.div>
+          </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {milestones.map((milestone, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="hover-lift border-l-4 border-l-primary">
-                  <CardContent className="p-6 flex gap-6 items-start">
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-[#23A8DD] flex items-center justify-center text-white font-bold text-lg">
-                        {milestone.year}
-                      </div>
+              <Card key={index} className="bg-white border-l-4 border-l-terracotta shadow-sm">
+                <CardContent className="p-6 flex gap-6 items-start">
+                  <div className="flex-shrink-0">
+                    <div className="w-14 h-14 rounded-full bg-terracotta flex items-center justify-center text-white font-bold">
+                      {milestone.year}
                     </div>
-                    <div>
-                      <h3 className="font-heading font-semibold text-xl mb-2">{milestone.title}</h3>
-                      <p className="text-muted-foreground">{milestone.desc}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-charcoal text-lg mb-1">{milestone.title}</h3>
+                    <p className="text-gray-warm">{milestone.desc}</p>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
