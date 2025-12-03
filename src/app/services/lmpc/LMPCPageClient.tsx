@@ -61,7 +61,7 @@ function HeroSection() {
               <div className="w-8 h-8 bg-terracotta rounded-full flex items-center justify-center">
                 <BadgeCheck className="w-5 h-5 text-white" />
               </div>
-              <span className="text-sm font-medium text-charcoal">Govt. Authorized LMPC Consultant</span>
+              <span className="text-sm font-medium text-charcoal"> Authorized LMPC Consultant</span>
             </div>
 
             {/* Title */}
@@ -150,13 +150,16 @@ function HeroRightForm() {
     setIsSubmitting(true);
     setError(null);
     try {
-      await submitContactForm({ fullName: formData.name || "Website Lead", phone: formData.phone, email: formData.email, message: formData.message || "LMPC enquiry" });
+      await submitContactForm({ fullName: formData.name || "LMPC Lead", phone: formData.phone, email: formData.email, message: formData.message || "LMPC enquiry" });
       setSubmitted(true);
       setFormData({ name: "", phone: "", email: "", message: "" });
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
-      console.error(err);
-      setError(err instanceof Error ? err.message : "Submission failed");
+      console.error('Form submission error:', err);
+      const errorMessage = err instanceof Error ? err.message : "Failed to submit form";
+      setError(errorMessage);
+      // Auto-clear error after 8 seconds
+      setTimeout(() => setError(null), 8000);
     } finally {
       setIsSubmitting(false);
     }
@@ -176,7 +179,21 @@ function HeroRightForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {error && <div className="p-3 text-sm text-red-700 bg-red-50 rounded">{error}</div>}
+      {error && (
+        <div className="p-4 text-sm text-red-700 bg-red-50 rounded-lg border border-red-200 flex items-start gap-2">
+          <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+          <div>
+            <div className="font-semibold">Submission Failed</div>
+            <div className="mt-1">{error}</div>
+            <button 
+              onClick={() => setError(null)} 
+              className="mt-2 text-xs underline hover:no-underline"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
       <div>
         <label className="block text-sm font-medium text-charcoal mb-1">Full Name</label>
         <input
@@ -1129,13 +1146,38 @@ function CallbackFormSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setSubmitted(true);
-    setIsSubmitting(false);
+    setError(null);
+    try {
+      await submitContactForm({
+        fullName: formData.name || "LMPC Callback Lead",
+        phone: formData.phone,
+        email: formData.email,
+        message: `Business: ${formData.businessType || 'N/A'}, Products: ${formData.productCategory || 'N/A'}, Preferred Time: ${formData.preferredTime || 'Anytime'}, Message: ${formData.message || 'LMPC Registration enquiry'}`
+      });
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        businessType: "",
+        productCategory: "",
+        message: "",
+        preferredTime: ""
+      });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error('Callback form error:', err);
+      const errorMessage = err instanceof Error ? err.message : "Failed to submit. Please try again.";
+      setError(errorMessage);
+      setTimeout(() => setError(null), 8000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -1209,6 +1251,22 @@ function CallbackFormSection() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {error && (
+                    <div className="p-4 text-sm text-red-700 bg-red-50 rounded-lg border border-red-200 flex items-start gap-2">
+                      <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <div className="font-semibold">Submission Failed</div>
+                        <div className="mt-1">{error}</div>
+                      </div>
+                      <button 
+                        onClick={() => setError(null)} 
+                        className="text-red-700 hover:text-red-900"
+                        type="button"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  )}
                   <div className="grid md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-charcoal mb-2">Full Name *</label>

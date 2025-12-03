@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import Link from "next/link";
+import SafeLink from "@/components/ui/safe-link";
 import { ArrowRight, FileCheck, Scale, Radio, Building2, Briefcase, Shield } from "lucide-react";
 
 const mainServices = [
@@ -87,7 +87,7 @@ export default function ServicesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Link href={service.href} className="block group">
+              <SafeLink href={service.href} className="block group">
                 <div className={`relative h-full p-8 rounded-3xl transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${
                   service.color === 'terracotta' 
                     ? 'bg-terracotta text-white' 
@@ -148,7 +148,7 @@ export default function ServicesSection() {
                     service.color === 'gold' ? 'bg-terracotta' : 'bg-white'
                   }`} />
                 </div>
-              </Link>
+                  </SafeLink>
             </motion.div>
           ))}
         </div>
@@ -170,13 +170,13 @@ export default function ServicesSection() {
                 Complete range of business registration and compliance services
               </p>
             </div>
-            <Link
+            <SafeLink
               href="/services"
               className="inline-flex items-center gap-2 bg-charcoal text-white font-semibold px-6 py-3 rounded-full hover:bg-terracotta transition-all duration-300 hover:scale-105"
             >
               <span>View All Services</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </SafeLink>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -188,7 +188,7 @@ export default function ServicesSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
               >
-                <Link
+                <SafeLink
                   href={service.href}
                   className="group flex flex-col items-center text-center p-4 rounded-2xl hover:bg-cream transition-all duration-300 hover:shadow-lg"
                 >
@@ -198,7 +198,7 @@ export default function ServicesSection() {
                   <span className="font-semibold text-sm text-charcoal group-hover:text-terracotta transition-colors">
                     {service.title}
                   </span>
-                </Link>
+                </SafeLink>
               </motion.div>
             ))}
           </div>

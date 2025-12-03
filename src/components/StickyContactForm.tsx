@@ -49,26 +49,26 @@ export default function StickyContactForm() {
 
   return (
     <div className="lg:sticky lg:top-24">
-      <Card className="border-2 border-primary/20 hover:border-primary smooth-transition shadow-xl">
-        <CardHeader className="bg-gradient-to-br from-[#083E6B] to-[#23A8DD] text-white rounded-t-xl">
-          <CardTitle className="text-2xl font-heading">Get Free Consultation</CardTitle>
-          <p className="text-sm opacity-90">Our experts will call you back within 24 hours</p>
+      <Card className="border-2 border-terracotta/30 hover:border-terracotta shadow-2xl smooth-transition overflow-hidden">
+        <CardHeader className="bg-gradient-to-br from-terracotta to-terracotta-dark text-white rounded-t-xl p-6">
+          <CardTitle className="text-2xl font-heading font-bold">Get Free Consultation</CardTitle>
+          <p className="text-sm opacity-95 mt-1">Our experts will call you back within 24 hours</p>
         </CardHeader>
-        <CardContent className="p-6 space-y-4">
+        <CardContent className="p-6 bg-cream-light space-y-4">
           {submitted ? (
-            <div className="text-center py-8">
+            <div className="text-center py-8 bg-white rounded-lg">
               <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
                 <CheckCircle2 className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">Thank You!</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-semibold text-lg mb-2 text-charcoal">Thank You!</h3>
+              <p className="text-sm text-charcoal/70">
                 We'll contact you shortly
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start gap-2">
+                <div className="bg-red-50 border border-red-300 rounded-lg p-3 flex items-start gap-2">
                   <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <p className="text-sm text-red-800 font-medium">Submission Failed</p>
@@ -77,7 +77,7 @@ export default function StickyContactForm() {
                 </div>
               )}
               <div>
-                <Label htmlFor="contact-name">Full Name *</Label>
+                <Label htmlFor="contact-name" className="text-charcoal font-medium">Full Name *</Label>
                 <Input
                   id="contact-name"
                   placeholder="Enter your name"
@@ -85,11 +85,11 @@ export default function StickyContactForm() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
                   disabled={isLoading}
-                  className="mt-1"
+                  className="mt-1.5 border-charcoal/20 focus:border-terracotta focus:ring-terracotta/20 bg-white"
                 />
               </div>
               <div>
-                <Label htmlFor="contact-mobile">Mobile Number *</Label>
+                <Label htmlFor="contact-mobile" className="text-charcoal font-medium">Mobile Number *</Label>
                 <Input
                   id="contact-mobile"
                   type="tel"
@@ -98,11 +98,11 @@ export default function StickyContactForm() {
                   onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                   required
                   disabled={isLoading}
-                  className="mt-1"
+                  className="mt-1.5 border-charcoal/20 focus:border-terracotta focus:ring-terracotta/20 bg-white"
                 />
               </div>
               <div>
-                <Label htmlFor="contact-email">Email Address *</Label>
+                <Label htmlFor="contact-email" className="text-charcoal font-medium">Email Address *</Label>
                 <Input
                   id="contact-email"
                   type="email"
@@ -111,11 +111,11 @@ export default function StickyContactForm() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   disabled={isLoading}
-                  className="mt-1"
+                  className="mt-1.5 border-charcoal/20 focus:border-terracotta focus:ring-terracotta/20 bg-white"
                 />
               </div>
               <div>
-                <Label htmlFor="contact-message">Message (Optional)</Label>
+                <Label htmlFor="contact-message" className="text-charcoal font-medium">Message (Optional)</Label>
                 <Textarea
                   id="contact-message"
                   placeholder="Tell us about your requirements..."
@@ -123,46 +123,59 @@ export default function StickyContactForm() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={3}
                   disabled={isLoading}
-                  className="mt-1"
+                  className="mt-1.5 border-charcoal/20 focus:border-terracotta focus:ring-terracotta/20 bg-white resize-none"
                 />
               </div>
-              <Button type="submit" disabled={isLoading} className="w-full animated-gradient text-white font-semibold h-12">
+              <Button 
+                type="submit" 
+                disabled={isLoading} 
+                className="w-full bg-terracotta hover:bg-terracotta-dark text-white font-bold h-12 text-base shadow-lg hover:shadow-xl transition-all rounded-lg"
+              >
                 {isLoading ? (
                   <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                     Submitting...
                   </>
                 ) : (
-                  "Request Callback"
+                  <>
+                    <Phone className="w-5 h-5 mr-2" />
+                    Request Callback
+                  </>
                 )}
               </Button>
             </form>
           )}
 
-          <div className="pt-4 border-t border-border space-y-3">
-            <div className="flex items-center gap-3 text-sm">
-              <Phone className="w-5 h-5 text-primary flex-shrink-0" />
+          <div className="pt-4 border-t border-charcoal/10 space-y-3">
+            <div className="flex items-center gap-3 text-sm bg-white p-3 rounded-lg">
+              <div className="w-10 h-10 bg-terracotta/10 rounded-full flex items-center justify-center shrink-0">
+                <Phone className="w-5 h-5 text-terracotta" />
+              </div>
               <div>
-                <div className="font-medium">Call Us Now</div>
-                <a href="tel:+919891614601" className="text-muted-foreground hover:text-primary">
+                <div className="font-semibold text-charcoal">Call Us Now</div>
+                <a href="tel:+919891614601" className="text-charcoal/70 hover:text-terracotta transition-colors">
                   +91 98916 14601
                 </a>
               </div>
             </div>
-            <div className="flex items-center gap-3 text-sm">
-              <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+            <div className="flex items-center gap-3 text-sm bg-white p-3 rounded-lg">
+              <div className="w-10 h-10 bg-terracotta/10 rounded-full flex items-center justify-center shrink-0">
+                <Mail className="w-5 h-5 text-terracotta" />
+              </div>
               <div>
-                <div className="font-medium">Email Us</div>
-                <a href="mailto:contact@quicklicense.in" className="text-muted-foreground hover:text-primary">
+                <div className="font-semibold text-charcoal">Email Us</div>
+                <a href="mailto:contact@quicklicense.in" className="text-charcoal/70 hover:text-terracotta transition-colors text-xs">
                   contact@quicklicense.in
                 </a>
               </div>
             </div>
-            <div className="flex items-center gap-3 text-sm">
-              <MessageCircle className="w-5 h-5 text-primary flex-shrink-0" />
+            <div className="flex items-center gap-3 text-sm bg-white p-3 rounded-lg">
+              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center shrink-0">
+                <MessageCircle className="w-5 h-5 text-green-600" />
+              </div>
               <div>
-                <div className="font-medium">WhatsApp</div>
-                <a href="https://wa.me/919876543210" className="text-muted-foreground hover:text-primary">
+                <div className="font-semibold text-charcoal">WhatsApp</div>
+                <a href="https://wa.me/919891614601" className="text-charcoal/70 hover:text-green-600 transition-colors">
                   Chat with us
                 </a>
               </div>
@@ -173,22 +186,22 @@ export default function StickyContactForm() {
 
       {/* Trust Badges */}
       <div className="mt-6 space-y-3">
-        <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-          <div className="w-10 h-10 rounded-full bg-[#E2F6F8] flex items-center justify-center flex-shrink-0">
-            <span className="text-[#23A8DD] font-bold">✓</span>
+        <div className="flex items-center gap-3 p-4 bg-white border border-charcoal/10 rounded-lg shadow-sm">
+          <div className="w-10 h-10 rounded-full bg-terracotta/10 flex items-center justify-center shrink-0">
+            <CheckCircle2 className="w-6 h-6 text-terracotta" />
           </div>
           <div className="text-sm">
-            <div className="font-semibold">99% Success Rate</div>
-            <div className="text-muted-foreground">10,000+ Happy Clients</div>
+            <div className="font-semibold text-charcoal">99% Success Rate</div>
+            <div className="text-charcoal/60">10,000+ Happy Clients</div>
           </div>
         </div>
-        <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-          <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-            <span className="text-blue-600 font-bold">🔒</span>
+        <div className="flex items-center gap-3 p-4 bg-white border border-charcoal/10 rounded-lg shadow-sm">
+          <div className="w-10 h-10 rounded-full bg-terracotta/10 flex items-center justify-center shrink-0">
+            <span className="text-terracotta font-bold text-lg">🔒</span>
           </div>
           <div className="text-sm">
-            <div className="font-semibold">100% Secure</div>
-            <div className="text-muted-foreground">Your data is safe with us</div>
+            <div className="font-semibold text-charcoal">100% Secure</div>
+            <div className="text-charcoal/60">Your data is safe with us</div>
           </div>
         </div>
       </div>

@@ -54,13 +54,23 @@ export async function submitContactForm(
     console.log('  Submitting data:', data);
 
     try {
+        // Add timeout to prevent hanging requests
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
+            signal: controller.signal,
+            // Add cache and keep-alive settings for better performance
+            cache: 'no-store',
+            keepalive: true,
         });
+
+        clearTimeout(timeoutId);
 
         console.log('📡 Response status:', response.status);
         console.log('📡 Response ok:', response.ok);
@@ -84,6 +94,11 @@ export async function submitContactForm(
         return result as ContactFormResponse;
     } catch (error) {
         console.error('❌ API Client Error:', error);
+
+        // Handle abort/timeout errors
+        if (error instanceof Error && error.name === 'AbortError') {
+            throw new Error('Request timeout. Please check your connection and try again.');
+        }
 
         // Network errors or other exceptions
         if (error instanceof Error) {
