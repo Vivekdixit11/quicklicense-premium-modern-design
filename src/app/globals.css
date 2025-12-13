@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Custom Colors as Tailwind utilities */
-@theme {
+/* @theme {
   --color-cream: #F5F0E8;
   --color-cream-light: #FBF9F6;
   --color-terracotta: #C45C3E;
@@ -15,7 +15,7 @@
   --color-gray-warm: #6B6B6B;
   --color-accent-orange: #E8A87C;
   --color-gold: #D4A373;
-}
+} */
 
 :root {
   /* Brand Colors - Inspired by the design */
@@ -283,4 +283,23 @@ body {
 
 .count-up {
   animation: count-up 0.5s ease-out forwards;
+}
+
+/* Infinite scroll animations for partners/cities */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll-slow {
+  animation: scroll-slow 30s linear infinite;
 }

@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "Mandatory food license for all food businesses. Basic/State/Central licenses. Expert support, quick approval.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/fssai",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function FSSAILayout({

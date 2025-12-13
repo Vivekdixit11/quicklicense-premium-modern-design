@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "GeM registration for vendors. Sell to govt departments, access tenders, grow business. Expert filing from ₹4,999.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/gem",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function GeMLayout({

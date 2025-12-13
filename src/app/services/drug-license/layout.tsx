@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "Drug license for retail/wholesale Consumables / Wellness Items business. State authority approved. Expert support from ₹8,999.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/drug-license",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function DrugLicenseLayout({

@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "Free Udyam/MSME registration in 24 hours. Get subsidies, loans, tax benefits. 15,000+ MSMEs registered.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/msme",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function MSMELayout({

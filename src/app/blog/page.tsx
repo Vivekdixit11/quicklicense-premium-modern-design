@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { blogPosts } from "@/lib/blogData";
 import {
   Calendar,
   Clock,
@@ -19,69 +20,6 @@ import {
   BookOpen,
 } from "lucide-react";
 
-const blogPosts = [
-  {
-    title: "Complete Guide to Private Limited Company Registration in 2024",
-    excerpt: "Everything you need to know about registering a Private Limited Company in India - from documentation to post-incorporation steps.",
-    slug: "private-limited-company-guide-2024",
-    image: "https://images.unsplash.com/photo-1454165205744-3b78555e5572?w=1600&q=80&auto=format&fit=crop",
-    category: "Business Registration",
-    date: "November 15, 2024",
-    readTime: "8 min read",
-    author: "Rajesh Kumar",
-  },
-  {
-    title: "FSSAI License: Everything Food Business Owners Must Know",
-    excerpt: "A comprehensive guide to FSSAI registration, license types, documentation requirements, and compliance guidelines for food businesses.",
-    slug: "fssai-license-complete-guide",
-    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1600&q=80&auto=format&fit=crop",
-    category: "Licenses & Certifications",
-    date: "November 10, 2024",
-    readTime: "10 min read",
-    author: "Priya Sharma",
-  },
-  {
-    title: "Startup India Registration Benefits and Process",
-    excerpt: "Discover how to get recognized as a Startup India entity and unlock tax benefits, funding opportunities, and government support.",
-    slug: "startup-india-registration-benefits",
-    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1600&q=80&auto=format&fit=crop",
-    category: "Startup Resources",
-    date: "November 5, 2024",
-    readTime: "7 min read",
-    author: "Amit Verma",
-  },
-  {
-    title: "ISO Certification: Types, Benefits, and Application Process",
-    excerpt: "Learn about different ISO standards, certification process, benefits for your business, and how to maintain compliance.",
-    slug: "iso-certification-guide",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80&auto=format&fit=crop",
-    category: "Quality Standards",
-    date: "November 1, 2024",
-    readTime: "9 min read",
-    author: "Sneha Patel",
-  },
-  {
-    title: "Trademark Registration: Protect Your Brand Identity",
-    excerpt: "Step-by-step guide to trademark registration in India, including search process, application filing, and enforcement strategies.",
-    slug: "trademark-registration-guide",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1600&q=80&auto=format&fit=crop",
-    category: "Intellectual Property",
-    date: "October 28, 2024",
-    readTime: "11 min read",
-    author: "Rajesh Kumar",
-  },
-  {
-    title: "MSME Registration: Unlock Government Benefits",
-    excerpt: "Discover how MSME/Udyam registration can help your business access subsidies, credit facilities, and preferential treatment.",
-    slug: "msme-registration-benefits",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80&auto=format&fit=crop",
-    category: "Business Growth",
-    date: "October 25, 2024",
-    readTime: "6 min read",
-    author: "Priya Sharma",
-  },
-];
-
 const categories = [
   "All Categories",
   "Business Registration",
@@ -90,6 +28,7 @@ const categories = [
   "Quality Standards",
   "Intellectual Property",
   "Business Growth",
+  "Tax Compliance",
 ];
 
 const popularTags = [

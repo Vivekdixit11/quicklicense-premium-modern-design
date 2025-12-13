@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "Expert insights on business registration, licenses, compliance & growth strategies for Indian startups.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/blog",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function BlogLayout({

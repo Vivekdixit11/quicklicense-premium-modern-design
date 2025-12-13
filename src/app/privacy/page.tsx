@@ -12,6 +12,20 @@ export const metadata = {
     description: "Bank-grade security for your business data. Read our transparent privacy practices.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/privacy",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function PrivacyPage() {

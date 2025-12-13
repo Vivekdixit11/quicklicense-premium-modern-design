@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import siteIndex from "@/lib/siteIndex";
+import { ServerStatusBadge } from "./ServerStatus";
 
 export default function Footer() {
   const services = siteIndex.filter((i) => i.type === 'service').map((s) => ({ href: s.href, name: s.title }));
@@ -12,7 +13,7 @@ export default function Footer() {
           {/* About */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="w-14 h-14 rounded-lg bg-cream/10 flex items-center justify-center p-2">
+              <div className="w-20 h-16 rounded-lg bg-white flex items-center justify-center p-2">
                 <img 
                   src="/logo.png" 
                   alt="Quick License Logo" 
@@ -111,16 +112,19 @@ export default function Footer() {
         {/* Disclaimer */}
         <div className="mt-8 pt-6 border-t border-cream/10">
           <div className="bg-cream/5 rounded-lg p-4 text-sm text-cream/60 leading-relaxed">
-            <strong className="text-cream/80">Disclaimer:</strong> We are a private consultancy firm and not a government agency. We provide assistance and advisory services for LMPC registration. Official government registration, certificates, and final approval must be obtained directly from the Legal Metrology Department.
+            <strong className="text-cream/80">Disclaimer:</strong> Quick License is a private consultancy and is not affiliated with the Central Pollution Control Board (CPCB) or the Legal Metrology Department. We offer assistance in filing and documentation. Government forms and services are available directly through official government websites.
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-6 pt-6 border-t border-cream/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-cream/60 text-center md:text-left">
-              © {new Date().getFullYear()} <span className="text-gold">Quick License</span>. All rights reserved.
-            </p>
+            <div className="flex items-center gap-4">
+              <p className="text-sm text-cream/60 text-center md:text-left">
+                © {new Date().getFullYear()} <span className="text-gold">Quick License</span>. All rights reserved.
+              </p>
+              <ServerStatusBadge />
+            </div>
             <div className="flex items-center gap-4">
               <Link href="/privacy" className="text-sm text-cream/60 hover:text-terracotta transition-colors">
                 Privacy Policy

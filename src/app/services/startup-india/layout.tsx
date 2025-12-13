@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "DPIIT registration for startups. 3-year tax holiday, IPR benefits, no angel tax. Unlock govt schemes. From ₹4,999.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/startup-india",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function StartupIndiaLayout({

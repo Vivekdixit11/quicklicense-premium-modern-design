@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "ISO 9001/14001/27001 certification in 15 days. Boost credibility, win tenders, go global. Expert support from ₹12,999.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/iso",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function ISOLayout({

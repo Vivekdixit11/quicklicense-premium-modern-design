@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "Get instant help from 450+ business experts. Call now or visit our Delhi office for all registration needs.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/contact",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function ContactLayout({

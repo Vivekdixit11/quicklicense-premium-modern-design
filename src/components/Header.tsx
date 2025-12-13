@@ -183,7 +183,7 @@ export default function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[85vw] sm:w-[350px] bg-cream p-0 border-l border-gold/20">
+              <SheetContent side="right" className="w-[85vw] sm:w-[350px] bg-cream p-0 border-l border-gold/20 top-[84px] h-[calc(100vh-84px)] z-[99998]">
                 <div className="p-4 border-b border-gold/20">
                   <Link href="/" className="flex items-center">
                     <div className="relative w-32 h-8">
@@ -192,7 +192,7 @@ export default function Header() {
                   </Link>
                 </div>
 
-                <div className="p-4 space-y-4 overflow-y-auto max-h-[calc(100vh-80px)]">
+                <div className="p-4 space-y-4 overflow-y-auto max-h-[calc(100vh-164px)]">
                   {serviceCategories.map((category) => (
                     <div key={category.category} className="border-b border-gold/10 pb-4">
                       <h3 className="font-semibold text-charcoal text-sm mb-2">{category.category}</h3>

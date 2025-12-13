@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StickyContactForm from "@/components/StickyContactForm";
 import { submitContactForm } from "@/lib/api";
+import { trackLeadFormConversion } from "@/lib/googleAds";
 import { 
   FileText, 
   Shield, 
@@ -44,7 +45,7 @@ import {
 // Hero Section (cream theme, modern design)
 function HeroSection() {
   return (
-    <section className="relative min-h-[600px] bg-gradient-to-br from-cream via-cream to-terracotta/5 overflow-hidden pt-20 lg:pt-28">
+    <section className="relative bg-gradient-to-br from-cream via-cream to-terracotta/5 overflow-hidden pt-20 lg:pt-24">
       {/* Subtle Pattern Overlay */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{
@@ -52,7 +53,7 @@ function HeroSection() {
         }} />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 py-8 lg:py-12">
+      <div className="container mx-auto px-4 relative z-10 py-6 lg:py-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
@@ -61,19 +62,19 @@ function HeroSection() {
               <div className="w-8 h-8 bg-terracotta rounded-full flex items-center justify-center">
                 <BadgeCheck className="w-5 h-5 text-white" />
               </div>
-              <span className="text-sm font-medium text-charcoal"> Authorized LMPC Consultant</span>
+              <span className="text-sm font-medium text-charcoal"> Expert LMPC Consultant</span>
             </div>
 
             {/* Title */}
-            <h1 className="font-playfair text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-charcoal">
-              LMPC Registration
+            <h1 className="font-playfair text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-charcoal">
+              LMPC Licensing Consultancy
             </h1>
-            <p className="text-xl lg:text-2xl text-terracotta font-medium">Made Simple & Fast</p>
+            <p className="text-lg lg:text-xl text-terracotta font-medium">Made Simple & Fast</p>
 
             {/* Description */}
-            <p className="text-lg text-charcoal/80 leading-relaxed max-w-2xl">
-              Get your Legal Metrology Packaged Commodities (LMPC) Certificate in
-              <span className="text-terracotta font-semibold"> 7-15 working days</span>. Mandatory for importers,
+            <p className="text-base text-charcoal/80 leading-relaxed max-w-2xl">
+              LMPC Compliance & Document Preparation for Legal Metrology Packaged Commodities.
+              <span className="text-terracotta font-semibold"> Expert Assistance for Application Filing</span>. Mandatory for importers,
               manufacturers & packers of pre-packaged goods in India.
             </p>
 
@@ -82,7 +83,7 @@ function HeroSection() {
               {[
                 "Central & State LMPC handled end-to-end",
                 "Label compliance guidance (Rule 6)",
-                "100% success rate with authorities",
+                "Proven Track Record with authorities",
               ].map((highlight, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle2 className="w-6 h-6 text-terracotta flex-shrink-0 mt-0.5" />
@@ -94,7 +95,7 @@ function HeroSection() {
             {/* Stats */}
             <div className="flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-4 rounded-xl border border-charcoal/10 shadow-sm w-fit">
               <Award className="w-5 h-5 text-terracotta" />
-              <p className="text-lg font-semibold text-charcoal">5000+ Registrations • 100% Success</p>
+              <p className="text-lg font-semibold text-charcoal">5000+ Registrations • High Success Rate</p>
             </div>
 
             {/* CTA Buttons */}
@@ -104,7 +105,7 @@ function HeroSection() {
                 className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta/90 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
               >
                 <IndianRupee className="w-5 h-5" />
-                View Pricing
+                Get Consultation
               </a>
               <a
                 href="https://wa.me/919891614601?text=Hi,%20I%20need%20help%20with%20LMPC%20Registration"
@@ -150,10 +151,21 @@ function HeroRightForm() {
     setIsSubmitting(true);
     setError(null);
     try {
-      await submitContactForm({ fullName: formData.name || "LMPC Lead", phone: formData.phone, email: formData.email, message: formData.message || "LMPC enquiry" });
-      setSubmitted(true);
-      setFormData({ name: "", phone: "", email: "", message: "" });
-      setTimeout(() => setSubmitted(false), 5000);
+      const result = await submitContactForm({ fullName: formData.name || "LMPC Lead", phone: formData.phone, email: formData.email, message: formData.message || "LMPC enquiry" });
+      // Track conversion for Google Ads
+      const transactionId = result.data?.id || '';
+      trackLeadFormConversion(transactionId);
+      // Redirect to thank you page with transaction ID and preserve URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectParams = new URLSearchParams();
+      redirectParams.set('tid', transactionId);
+      redirectParams.set('service', 'lmpc');
+      // Preserve Google Ads parameters
+      if (urlParams.has('gclid')) redirectParams.set('gclid', urlParams.get('gclid')!);
+      if (urlParams.has('utm_source')) redirectParams.set('utm_source', urlParams.get('utm_source')!);
+      if (urlParams.has('utm_medium')) redirectParams.set('utm_medium', urlParams.get('utm_medium')!);
+      if (urlParams.has('utm_campaign')) redirectParams.set('utm_campaign', urlParams.get('utm_campaign')!);
+      window.location.href = `/thank-you?${redirectParams.toString()}`;
     } catch (err) {
       console.error('Form submission error:', err);
       const errorMessage = err instanceof Error ? err.message : "Failed to submit form";
@@ -165,18 +177,6 @@ function HeroRightForm() {
     }
   };
 
-  if (submitted) {
-    return (
-      <div className="text-center py-8">
-        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle2 className="w-10 h-10 text-green-600" />
-        </div>
-        <h3 className="text-2xl font-bold text-charcoal mb-2">Thanks — we'll call you!</h3>
-        <p className="text-charcoal/70">Our LMPC expert will contact you shortly.</p>
-      </div>
-    );
-  }
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
@@ -185,9 +185,10 @@ function HeroRightForm() {
           <div>
             <div className="font-semibold">Submission Failed</div>
             <div className="mt-1">{error}</div>
-            <button 
-              onClick={() => setError(null)} 
+            <button
+              onClick={() => setError(null)}
               className="mt-2 text-xs underline hover:no-underline"
+              type="button"
             >
               Dismiss
             </button>
@@ -276,8 +277,8 @@ function WhatIsLMPCSection() {
           of quantity, weight, price, and manufacturer details.
         </p>
         <p>
-          The registration is issued by the <strong>Department of Consumer Affairs</strong> under the 
-          Ministry of Consumer Affairs, Food and Public Distribution, Government of India.
+          The registration is required under the Legal Metrology (Packaged Commodities) Rules, 2011 
+          for compliance with packaging and labeling standards in India.
         </p>
       </div>
 
@@ -431,7 +432,7 @@ function PersonalImportSection() {
                     <div className="text-xs text-cream/70">Penalty</div>
                   </div>
                   <div className="bg-white/10 rounded-xl p-3 text-center">
-                    <div className="text-2xl font-bold text-gold mb-1">100%</div>
+                    <div className="text-2xl font-bold text-gold mb-1">High</div>
                     <div className="text-xs text-cream/70">Compliance</div>
                   </div>
                 </div>
@@ -570,17 +571,17 @@ function PricingSection() {
 
         <div className="max-w-2xl mx-auto">
           <div className="bg-cream rounded-2xl p-8 lg:p-10 shadow-lg border border-charcoal/5">
-            {/* Government Fee */}
+            {/* Registration Fee */}
             <div className="mb-8 pb-8 border-b border-charcoal/10">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-charcoal">Government Registration Fee</h3>
+                <h3 className="text-xl font-bold text-charcoal">Official Registration Fee</h3>
                 <div className="text-right">
                   <div className="text-3xl font-bold text-terracotta">₹500</div>
-                  <p className="text-sm text-charcoal/60">Fixed by Govt.</p>
+                  <p className="text-sm text-charcoal/60">Statutory Fee</p>
                 </div>
               </div>
               <p className="text-charcoal/70 text-sm">
-                This is the official government fee for LMPC registration, applicable for both Central and State registrations.
+                This is the prescribed registration fee for LMPC certification, applicable for both Central and State registrations.
               </p>
             </div>
 
@@ -617,7 +618,7 @@ function PricingSection() {
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-charcoal/80">Follow-up with department</span>
+                    <span className="text-sm text-charcoal/80">Follow-up with authorities</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" />
@@ -663,7 +664,7 @@ function PricingSection() {
           {/* Additional Info */}
           <div className="mt-8 text-center">
             <p className="text-charcoal/60 text-sm">
-              <strong>Note:</strong> GST will be applicable as per government norms. Payment accepted via UPI, Card, or Bank Transfer.
+              <strong>Note:</strong> GST will be applicable as per regulatory requirements. Payment accepted via UPI, Card, or Bank Transfer.
             </p>
           </div>
         </div>
@@ -693,7 +694,7 @@ function DocumentsSection() {
     { name: "Product Specifications", mandatory: true },
     { name: "Sample Labels", mandatory: true },
     { name: "Address Proof of Factory", mandatory: true },
-    { name: "ID Proof of Authorized Signatory", mandatory: true }
+    { name: "ID Proof of Designated Signatory", mandatory: true }
   ];
 
   return (
@@ -824,7 +825,7 @@ function ProcessSection() {
     {
       step: "03",
       title: "Application Filing",
-      description: "We file your LMPC application with the Legal Metrology Department along with prescribed fees.",
+      description: "We file your LMPC application with the Legal Metrology authorities along with prescribed fees.",
       icon: ClipboardList,
       duration: "1 day"
     },
@@ -905,7 +906,7 @@ function ProcessSection() {
               <div className="w-px h-12 bg-white/20 hidden md:block" />
               <div>
                 <p className="text-cream/60 text-sm">Success Rate</p>
-                <p className="text-3xl font-bold text-terracotta">100%</p>
+                <p className="text-3xl font-bold text-terracotta">High</p>
               </div>
             </div>
           </div>
@@ -1026,10 +1027,10 @@ function RefundPolicySection() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-medium mb-6">
               <RefreshCcw className="w-4 h-4" />
-              Our Guarantee
+              Our Commitment
             </div>
             <h2 className="font-playfair text-3xl md:text-4xl font-bold text-charcoal mb-4">
-              100% Transparent Refund Policy
+              Transparent Refund Policy
             </h2>
             <p className="text-lg text-charcoal/70">
               Your trust matters to us. We offer a clear and fair refund policy.
@@ -1042,7 +1043,7 @@ function RefundPolicySection() {
               <div className="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
                 <CheckCircle2 className="w-7 h-7 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold text-charcoal mb-4">Full Refund (100%)</h3>
+              <h3 className="text-xl font-bold text-charcoal mb-4">Full Refund</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -1092,7 +1093,7 @@ function RefundPolicySection() {
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-charcoal/70">
                   <span className="text-charcoal">•</span>
-                  Government fees once paid to department
+                  Official registration fees once submitted
                 </li>
                 <li className="flex items-start gap-2 text-charcoal/70">
                   <span className="text-charcoal">•</span>
@@ -1153,23 +1154,26 @@ function CallbackFormSection() {
     setIsSubmitting(true);
     setError(null);
     try {
-      await submitContactForm({
+      const result = await submitContactForm({
         fullName: formData.name || "LMPC Callback Lead",
         phone: formData.phone,
         email: formData.email,
         message: `Business: ${formData.businessType || 'N/A'}, Products: ${formData.productCategory || 'N/A'}, Preferred Time: ${formData.preferredTime || 'Anytime'}, Message: ${formData.message || 'LMPC Registration enquiry'}`
       });
-      setSubmitted(true);
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        businessType: "",
-        productCategory: "",
-        message: "",
-        preferredTime: ""
-      });
-      setTimeout(() => setSubmitted(false), 5000);
+      // Track conversion for Google Ads
+      const transactionId = result.data?.id || '';
+      trackLeadFormConversion(transactionId);
+      // Redirect to thank you page with transaction ID and preserve URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectParams = new URLSearchParams();
+      redirectParams.set('tid', transactionId);
+      redirectParams.set('service', 'lmpc');
+      // Preserve Google Ads parameters
+      if (urlParams.has('gclid')) redirectParams.set('gclid', urlParams.get('gclid')!);
+      if (urlParams.has('utm_source')) redirectParams.set('utm_source', urlParams.get('utm_source')!);
+      if (urlParams.has('utm_medium')) redirectParams.set('utm_medium', urlParams.get('utm_medium')!);
+      if (urlParams.has('utm_campaign')) redirectParams.set('utm_campaign', urlParams.get('utm_campaign')!);
+      window.location.href = `/thank-you?${redirectParams.toString()}`;
     } catch (err) {
       console.error('Callback form error:', err);
       const errorMessage = err instanceof Error ? err.message : "Failed to submit. Please try again.";
@@ -1215,7 +1219,7 @@ function CallbackFormSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-charcoal">Expert Guidance</h4>
-                    <p className="text-charcoal/60 text-sm">Talk to certified Legal Metrology consultants</p>
+                    <p className="text-charcoal/60 text-sm">Talk to experienced Legal Metrology consultants</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -1379,6 +1383,15 @@ export default function LMPCPageClient() {
     <>
       <Header />
       <main className="min-h-screen bg-cream">
+        {/* Disclaimer Banner */}
+        <div className="bg-charcoal/5 border-b border-charcoal/10 py-2">
+          <div className="container mx-auto px-4">
+            <p className="text-xs text-charcoal/70 text-center">
+              <strong>Disclaimer:</strong> Quick License is a private consultancy service. We assist with documentation and filing. We are not a government agency and are not affiliated with any government department.
+            </p>
+          </div>
+        </div>
+        
         <HeroSection />
         
         {/* Two-column layout with sticky form */}
@@ -1407,7 +1420,6 @@ export default function LMPCPageClient() {
           </div>
         </div>
         
-        <OfficeLocationSection />
         <FinalCTASection />
       </main>
       <Footer />
@@ -1437,7 +1449,7 @@ function FAQSection() {
     },
     {
       question: "What documents are required for LMPC Registration?",
-      answer: "For Importers (Central LMPC): IEC (Import Export Code), GST Registration, Company PAN Card, Business Registration Certificate, Product Catalog/Brochure, Sample Labels, Authorization Letter (if applicable), and Proforma Invoice. For Manufacturers (State LMPC): Factory License/Registration, GST Registration, Company PAN Card, Udyam Registration (optional), Product Specifications, Sample Labels, Address Proof of Factory, and ID Proof of Authorized Signatory. All documents should be clear, current, and in PDF/JPG format."
+      answer: "For Importers (Central LMPC): IEC (Import Export Code), GST Registration, Company PAN Card, Business Registration Certificate, Product Catalog/Brochure, Sample Labels, Authorization Letter (if applicable), and Proforma Invoice. For Manufacturers (State LMPC): Factory License/Registration, GST Registration, Company PAN Card, Udyam Registration (optional), Product Specifications, Sample Labels, Address Proof of Factory, and ID Proof of Designated Signatory. All documents should be clear, current, and in PDF/JPG format."
     },
     {
       question: "What are the mandatory label declarations under Rule 6?",
@@ -1465,11 +1477,11 @@ function FAQSection() {
     },
     {
       question: "How much does LMPC Registration cost?",
-      answer: "The cost of LMPC Registration includes government fees and professional charges. For Central LMPC (Importers): Government fee is ₹500, and professional charges start from ₹4,999 (total ₹5,499+). For State LMPC (Manufacturers): Government fee varies by state, and professional charges start from ₹3,999 (total ₹4,499+). Express/Fast-track processing is available at ₹10,499+ with 2-7 days delivery. GST is applicable on professional charges. We offer transparent pricing with no hidden costs."
+      answer: "The cost of LMPC Registration includes official registration fees and professional charges. For Central LMPC (Importers): Registration fee is ₹500, and professional charges start from ₹4,999 (total ₹5,499+). For State LMPC (Manufacturers): Registration fee varies by state, and professional charges start from ₹3,999 (total ₹4,499+). Express/Fast-track processing is available at ₹10,499+ with 2-7 days delivery. GST is applicable on professional charges. We offer transparent pricing with no hidden costs."
     },
     {
       question: "What is the validity period of LMPC Certificate?",
-      answer: "Central LMPC (for importers) has lifetime validity as long as your business details remain unchanged. If there are changes to company name, address, or authorized signatory, you need to apply for amendments. State LMPC (for manufacturers) has varying validity periods depending on the state – typically 1-5 years. You'll need to renew before expiry to continue operations legally. We provide renewal reminders to ensure you never miss the deadline."
+      answer: "Central LMPC (for importers) has lifetime validity as long as your business details remain unchanged. If there are changes to company name, address, or designated signatory, you need to apply for amendments. State LMPC (for manufacturers) has varying validity periods depending on the state – typically 1-5 years. You'll need to renew before expiry to continue operations legally. We provide renewal reminders to ensure you never miss the deadline."
     },
     {
       question: "Can I apply for LMPC before starting my business?",
@@ -1481,7 +1493,7 @@ function FAQSection() {
     },
     {
       question: "What happens if my LMPC application is rejected?",
-      answer: "LMPC applications are rarely rejected if submitted with complete and accurate documentation. Common reasons for rejection include: incomplete documents, non-compliant label designs, incorrect business details, or mismatch in information. If rejected, the department typically provides reasons and opportunity to rectify issues. At Quick License, we have a 100% success rate because we pre-verify all documents and labels before submission. If any issues arise, we handle rectifications at no additional cost."
+      answer: "LMPC applications are rarely rejected if submitted with complete and accurate documentation. Common reasons for rejection include: incomplete documents, non-compliant label designs, incorrect business details, or mismatch in information. If rejected, the authorities typically provide reasons and opportunity to rectify issues. At Quick License, we pre-verify all documents and labels before submission to minimize rejections. If any issues arise, we handle rectifications at no additional cost."
     },
     {
       question: "Can Quick License help with label design and compliance?",
@@ -1568,147 +1580,6 @@ function FAQSection() {
   );
 }
 
-// Office Location Section (ID: office-location)
-function OfficeLocationSection() {
-  return (
-    <section id="office-location" className="py-16 lg:py-24 bg-white scroll-mt-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <MapPin className="w-4 h-4" />
-            Visit Us
-          </div>
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-charcoal mb-4">
-            Our Office Location
-          </h2>
-          <p className="text-lg text-charcoal/70">
-            Visit our office for in-person consultation or document submission
-          </p>
-        </div>
-
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Map */}
-            <div className="rounded-2xl overflow-hidden shadow-xl h-[400px] lg:h-auto">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.8776891982247!2d77.1175!3d28.7375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDQ0JzE1LjAiTiA3N8KwMDcnMDMuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: '400px' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Quick License Office Location"
-              />
-            </div>
-
-            {/* Contact Details */}
-            <div className="bg-cream rounded-2xl p-8 lg:p-10">
-              <h3 className="font-playfair text-2xl font-bold text-charcoal mb-6">
-                Quick License Consultancy
-              </h3>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-terracotta" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-1">Office Address</h4>
-                    <p className="text-charcoal/70">
-                      F-10/125, Sector-15, Rohini<br />
-                      New Delhi - 110085<br />
-                      India
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-terracotta" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-1">Phone Numbers</h4>
-                    <p className="text-charcoal/70">
-                      <a href="tel:+919891614601" className="hover:text-terracotta transition-colors">+91 98916 14601</a><br />
-                      <a href="tel:+919891614601" className="hover:text-terracotta transition-colors">+91 98916 14601</a>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-terracotta" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-1">Email Address</h4>
-                    <p className="text-charcoal/70">
-                      <a href="mailto:contact@quicklicense.in" className="hover:text-terracotta transition-colors">
-                        contact@quicklicense.in
-                      </a>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-terracotta" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-1">Working Hours</h4>
-                    <p className="text-charcoal/70">
-                      Monday - Saturday: 10:00 AM - 7:00 PM<br />
-                      Sunday: By Appointment Only
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="https://maps.google.com/?q=F-10/125,+Sector-15,+Rohini,+Delhi+110085"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta/90 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-                >
-                  <MapPin className="w-5 h-5" />
-                  Get Directions
-                </a>
-                <a
-                  href="tel:+919891614601"
-                  className="inline-flex items-center gap-2 bg-charcoal hover:bg-charcoal/90 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-                >
-                  <Phone className="w-5 h-5" />
-                  Call Now
-                </a>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="mt-8 pt-6 border-t border-charcoal/10">
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-green-600" />
-                    <span className="text-sm text-charcoal/60">Verified Business</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Star className="w-5 h-5 text-yellow-500" />
-                    <span className="text-sm text-charcoal/60">4.9/5 Google Rating</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Award className="w-5 h-5 text-terracotta" />
-                    <span className="text-sm text-charcoal/60">8+ Years Experience</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // Final CTA Section
 function FinalCTASection() {
   return (
@@ -1731,7 +1602,7 @@ function FinalCTASection() {
           </h2>
           <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Don't let compliance issues hold back your business. Get your LMPC registration 
-            done by experts with 100% success rate.
+            done by experienced professionals.
           </p>
 
           {/* Stats Row */}
@@ -1741,7 +1612,7 @@ function FinalCTASection() {
               <div className="text-sm text-white/70">Registrations</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4">
-              <div className="text-3xl font-bold text-white mb-1">100%</div>
+              <div className="text-3xl font-bold text-white mb-1">High</div>
               <div className="text-sm text-white/70">Success Rate</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4">
@@ -1777,13 +1648,16 @@ function FinalCTASection() {
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all"
             >
               <IndianRupee className="w-5 h-5" />
-              View Pricing
+              Get Consultation
             </a>
           </div>
 
           {/* Trust Message */}
           <p className="mt-8 text-white/70 text-sm">
-            Trusted by 5000+ businesses across India | Government Authorized Consultant
+            Trusted by 5000+ businesses across India | Professional Consultancy Service
+          </p>
+          <p className="mt-2 text-white/60 text-xs">
+            Disclaimer: We are a private consultancy firm providing documentation assistance. We are not affiliated with any government agency.
           </p>
         </div>
       </div>

@@ -73,12 +73,12 @@ function HeroSection() {
             </div>
             
             <h1 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-charcoal mb-3 leading-tight">
-              EPR Registration Consultancy for <span className="text-terracotta">Importers</span> & Manufacturers
+              EPR Registration for <span className="text-terracotta">Importers</span> & Manufacturers
             </h1>
             
             <p className="text-sm md:text-base text-charcoal/70 mb-4 leading-relaxed">
               Avoid <strong className="text-red-600">Customs Hold</strong> & <strong className="text-red-600">₹1 Lakh+ Penalties</strong>. 
-              Consultancy for Extended Producer Responsibility compliance. We guide you through the CPCB filing process for Plastic, E-Waste, Battery & Tyres.
+              Get EPR Registration for Plastic, E-Waste, Battery & Tires with our fast-track service.
             </p>
 
             {/* Trust Indicators */}
@@ -122,7 +122,7 @@ function HeroSection() {
                 className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
               >
                 <Phone className="w-4 h-4" />
-                Get Consultation
+                Get Expert Assistance
               </a>
               <a 
                 href="https://wa.me/919891614601?text=Hi,%20I%20need%20EPR%20registration"
@@ -1042,10 +1042,10 @@ function ProcessSection() {
     },
     {
       step: "04",
-      title: "Application Acknowledgement",
-      description: "CPCB reviews your application. We handle any queries or modifications required and track the approval process.",
+      title: "Authorization Issuance",
+      description: "CPCB reviews and issues EPR Authorization. We handle any queries or modifications required.",
       icon: CheckCircle2,
-      duration: "Upon Govt approval"
+      duration: "7-15 days"
     },
     {
       step: "05",
@@ -1430,6 +1430,148 @@ function CallbackFormSection() {
   );
 }
 
+// Office Location Section
+function OfficeLocationSection() {
+  return (
+    <section id="office-location" className="py-16 lg:py-24 bg-cream scroll-mt-20">
+      <div className="container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta-dark px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <MapPin className="w-4 h-4" />
+            Visit Our Office
+          </div>
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-charcoal mb-4">
+            Quick License Consultancy
+          </h2>
+          <p className="text-lg text-charcoal/70">
+            Visit us for in-person EPR consultation
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div className="rounded-2xl overflow-hidden shadow-xl h-[400px]">
+              <iframe
+                  src="https://www.google.com/maps?q=F-10/125,+Sector-15,+Rohini,+New+Delhi+110085,+India&output=embed"
+                  width="100%"
+                  height={400}
+                  style={{ border: 0, minHeight: '400px' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Quick License Office Location — F-10/125, Sector-15, Rohini, New Delhi 110085"
+                />
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 lg:p-10">
+              <h3 className="font-playfair text-2xl font-bold text-charcoal mb-6">
+                Contact Information
+              </h3>
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-terracotta" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-charcoal mb-1">Office Address</h4>
+                    <p className="text-charcoal/70">
+                      F-10/125, Sector-15, Rohini<br />
+                      New Delhi - 110085, India
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-terracotta" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-charcoal mb-1">Phone</h4>
+                    <p className="text-charcoal/70">
+                      <a href="tel:+919891614601" className="hover:text-terracotta transition-colors">+91 98916 14601</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-terracotta" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-charcoal mb-1">Email</h4>
+                    <p className="text-charcoal/70">
+                      <a href="mailto:contact@quicklicense.in" className="hover:text-terracotta transition-colors">
+                        contact@quicklicense.in
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-terracotta" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-charcoal mb-1">Working Hours</h4>
+                    <p className="text-charcoal/70">
+                      Monday - Saturday: 10:00 AM - 7:00 PM<br />
+                      Sunday: By Appointment Only
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="https://maps.google.com/?q=F-10/125,+Sector-15,+Rohini,+Delhi+110085"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-6 py-3 rounded-lg font-semibold transition-all"
+                >
+                  <MapPin className="w-5 h-5" />
+                  Get Directions
+                </a>
+                <a
+                  href="tel:+919891614601"
+                  className="inline-flex items-center gap-2 bg-charcoal hover:bg-charcoal/90 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+                >
+                  <Phone className="w-5 h-5" />
+                  Call Now
+                </a>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-charcoal/10">
+                <div className="flex items-center justify-between flex-wrap gap-4">
+                  <div className="flex items-center gap-2">
+                    <Shield className="w-5 h-5 text-accent-orange" />
+                    <span className="text-sm text-charcoal/60">Verified Business</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Star className="w-5 h-5 text-yellow-500" />
+                    <span className="text-sm text-charcoal/60">4.9/5 Rating</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Award className="w-5 h-5 text-terracotta" />
+                    <span className="text-sm text-charcoal/60">8+ Years</span>
+                  </div>
+                </div>
+                {/* Important Disclaimer moved here as requested by user */}
+                <div className="mt-6 bg-yellow-50 border-2 border-yellow-400 rounded-xl p-4 md:p-6 shadow-sm">
+                  <h3 className="font-bold text-yellow-900 text-lg mb-2">Important Disclaimer</h3>
+                  <p className="text-yellow-900 text-sm md:text-base leading-relaxed">
+                    Quick License is a private consultancy firm offering professional assistance for EPR compliance and registration. We are not affiliated with any regulatory body. We provide documentation and filing support services. Professional fees apply for our consultancy services.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Final CTA Section
 function FinalCTASection() {
   return (
@@ -1478,7 +1620,7 @@ function FinalCTASection() {
               className="inline-flex items-center gap-2 bg-white hover:bg-cream text-terracotta px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all"
             >
               <Phone className="w-5 h-5" />
-              Get Consultation
+              Get Expert Assistance
             </a>
             <a 
               href="https://wa.me/919891614601?text=Hi,%20I%20need%20EPR%20registration%20urgently"
@@ -1559,6 +1701,7 @@ export default function EPRPageClient() {
           </div>
         </div>
         
+        <OfficeLocationSection />
         <FinalCTASection />
       </main>
       <Footer />

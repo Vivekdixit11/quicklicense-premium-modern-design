@@ -3,6 +3,14 @@
  * Communicates with the quickServer backend
  */
 
+// Extend Window interface for gtag
+declare global {
+    interface Window {
+        dataLayer: any[];
+        gtag: (...args: any[]) => void;
+    }
+}
+
 // Type definitions matching backend schema
 export interface ContactFormData {
     fullName: string;
@@ -35,6 +43,37 @@ export interface ContactFormError {
 }
 
 /**
+ * Check if user came from Google Ads
+ * Checks URL parameters (gclid, utm_source) and session storage
+ */
+function isFromGoogleAds(): boolean {
+    if (typeof window === 'undefined') return false;
+
+    // Check if already marked in session
+    const isMarked = sessionStorage.getItem('from_google_ads') === 'true';
+    if (isMarked) return true;
+
+    // Check URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasGclid = urlParams.has('gclid'); // Google Click ID
+    const isGoogleAds = urlParams.get('utm_source') === 'google' || 
+                        urlParams.get('utm_source') === 'google_ads' ||
+                        urlParams.get('utm_medium')?.includes('cpc');
+
+    // Check referrer
+    const referrer = document.referrer.toLowerCase();
+    const fromGoogle = referrer.includes('google.com') || referrer.includes('googleadservices.com');
+
+    // If any indicator is true, mark the session
+    if (hasGclid || isGoogleAds || fromGoogle) {
+        sessionStorage.setItem('from_google_ads', 'true');
+        return true;
+    }
+
+    return false;
+}
+
+/**
  * Submit contact form data to the backend API
  * @param data Contact form data
  * @returns Promise with response data
@@ -47,16 +86,16 @@ export async function submitContactForm(
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://quick-server-brown.vercel.app';
     const endpoint = `${apiBaseUrl}/api/contact`;
 
-    // Debug logging
-    console.log('🔍 API Client Debug Info:');
-    console.log('  Environment variable:', process.env.NEXT_PUBLIC_API_BASE_URL);
-    console.log('  Using API URL:', endpoint);
-    console.log('  Submitting data:', data);
+    // Debug logging (only in development)
+    if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 API Client Debug Info:');
+        console.log('  Using API URL:', endpoint);
+    }
 
     try {
-        // Add timeout to prevent hanging requests
+        // Reduced timeout - server is now optimized for fast response
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout (was 30s)
 
         const response = await fetch(endpoint, {
             method: 'POST',
@@ -72,11 +111,12 @@ export async function submitContactForm(
 
         clearTimeout(timeoutId);
 
-        console.log('📡 Response status:', response.status);
-        console.log('📡 Response ok:', response.ok);
+        // Minimal logging in production
+        if (process.env.NODE_ENV === 'development') {
+            console.log('📡 Response status:', response.status);
+        }
 
         const result = await response.json();
-        console.log('📡 Response data:', result);
 
         if (!response.ok) {
             // Handle validation errors or server errors
@@ -89,6 +129,17 @@ export async function submitContactForm(
             }
 
             throw new Error(error.message || 'Failed to submit form');
+        }
+
+        // Track conversion with Google Ads only if user came from Google Ads
+        if (typeof window !== 'undefined' && window.gtag && isFromGoogleAds()) {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-17758729737/aR-lCJvXxcsbEInsgpRC',
+                'value': 1.0,
+                'currency': 'INR',
+                'transaction_id': result.data?.id || ''
+            });
+            console.log('✅ Google Ads conversion tracked');
         }
 
         return result as ContactFormResponse;

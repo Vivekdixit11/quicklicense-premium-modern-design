@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "Protect your brand legally. Free TM search, expert IPO filing, 10-year protection. 5,000+ trademarks registered.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/trademark",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function TrademarkLayout({

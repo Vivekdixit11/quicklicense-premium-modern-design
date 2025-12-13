@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "10,000+ businesses registered. 99% success rate. Meet India's leading business compliance platform with 450+ expert professionals.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/about",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function AboutLayout({

@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "India's #1 platform for Pvt Ltd registration. 7-day incorporation, expert CA support, 99% success rate. Starting ₹6,999.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/private-limited",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function PrivateLimitedLayout({

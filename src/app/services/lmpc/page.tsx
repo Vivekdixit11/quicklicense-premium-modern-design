@@ -1,46 +1,4 @@
-import { Metadata } from "next";
 import LMPCPageClient from "./LMPCPageClient";
-
-export const metadata: Metadata = {
-  title: "LMPC Registration India 2025 | Legal Metrology Certificate | Quick License",
-  description: "Get LMPC Certificate (Legal Metrology Packaged Commodities) registration in 7-15 days. Mandatory for importers & manufacturers. Govt fees ₹500 + Professional charges. Avoid ₹25,000 penalty. Apply online now!",
-  keywords: "LMPC registration, Legal Metrology Certificate, LMPC certificate online, packaged commodities registration, import LMPC, Rule 27 registration, LMPC Delhi, LMPC India, Legal Metrology Act",
-  openGraph: {
-    title: "LMPC Registration India 2025 | Legal Metrology Certificate",
-    description: "Get LMPC Certificate in 7-15 days. Mandatory for importers & manufacturers. Avoid ₹25,000 penalty. Expert assistance available.",
-    url: "https://quicklicense.in/services/lmpc",
-    siteName: "Quick License",
-    images: [
-      {
-        url: "/og-lmpc.jpg",
-        width: 1200,
-        height: 630,
-        alt: "LMPC Registration Services",
-      },
-    ],
-    locale: "en_IN",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "LMPC Registration India 2025 | Quick License",
-    description: "Get LMPC Certificate in 7-15 days. Mandatory for importers & manufacturers.",
-  },
-  alternates: {
-    canonical: "https://quicklicense.in/services/lmpc",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
 
 // JSON-LD Schema for SEO
 const jsonLd = {
@@ -48,13 +6,14 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://quicklicense.in/services/lmpc#service",
-      name: "LMPC Registration Services",
-      description: "Complete LMPC (Legal Metrology Packaged Commodities) registration services for importers, manufacturers, and packers in India.",
-      provider: {
+      "@id": "https://www.quicklicense.in/services/lmpc#service",
+      name: "LMPC Registration Consultancy Services",
+      description: "Professional consultancy services for LMPC (Legal Metrology Packaged Commodities) registration documentation and filing assistance for importers, manufacturers, and packers in India. We are a private consultancy firm providing documentation support.",
+        provider: {
         "@type": "Organization",
         name: "Quick License",
-        url: "https://quicklicense.in",
+        url: "https://www.quicklicense.in",
+        description: "Private business consultancy firm specializing in documentation assistance",
       },
       areaServed: {
         "@type": "Country",
@@ -62,30 +21,31 @@ const jsonLd = {
       },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "LMPC Services",
+        name: "LMPC Consultancy Services",
         itemListElement: [
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Central LMPC Registration",
-              description: "For importers - Lifetime validity",
+              name: "Central LMPC Documentation Assistance",
+              description: "Documentation and filing support for importers",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "State LMPC Registration",
-              description: "For manufacturers and packers",
+              name: "State LMPC Documentation Assistance",
+              description: "Documentation and filing support for manufacturers and packers",
             },
           },
         ],
       },
+      disclaimer: "Quick License is a private consultancy service. We are not a government agency and are not affiliated with any government department.",
     },
     {
       "@type": "FAQPage",
-      "@id": "https://quicklicense.in/services/lmpc#faq",
+      "@id": "https://www.quicklicense.in/services/lmpc#faq",
       mainEntity: [
         {
           "@type": "Question",
@@ -132,14 +92,14 @@ const jsonLd = {
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://quicklicense.in" },
-        { "@type": "ListItem", position: 2, name: "Services", item: "https://quicklicense.in/services" },
-        { "@type": "ListItem", position: 3, name: "LMPC Registration", item: "https://quicklicense.in/services/lmpc" },
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.quicklicense.in" },
+        { "@type": "ListItem", position: 2, name: "Services", item: "https://www.quicklicense.in/services" },
+        { "@type": "ListItem", position: 3, name: "LMPC Registration", item: "https://www.quicklicense.in/services/lmpc" },
       ],
     },
     {
       "@type": "LocalBusiness",
-      "@id": "https://quicklicense.in#business",
+      "@id": "https://www.quicklicense.in#business",
       name: "Quick License",
       description: "Business registration and licensing consultancy",
       address: {

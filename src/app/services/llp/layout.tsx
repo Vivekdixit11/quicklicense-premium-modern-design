@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "Register your LLP in 7 days. Lower compliance than Pvt Ltd. Ideal for professionals & partners. Starting ₹7,999.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/llp",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function LLPLayout({

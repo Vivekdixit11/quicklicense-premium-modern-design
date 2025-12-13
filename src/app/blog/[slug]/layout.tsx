@@ -1,15 +1,51 @@
 import type { Metadata } from "next";
+import { getBlogPostBySlug, blogPosts } from "@/lib/blogData";
 
-export async function generateMetadata(): Promise<Metadata> {
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
+  
+  if (!post) {
+    return {
+      title: "Blog Post Not Found - Quick License",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
   return {
-    title: "Complete Guide to Private Limited Company Registration in 2024 - Quick License Blog",
-    description: "Everything you need to know about registering a Private Limited Company in India - from documentation to post-incorporation steps. Expert guide with step-by-step process.",
-    keywords: "private limited company registration, company registration india, pvt ltd registration, incorporation process, business registration 2024, MCA registration, ROC filing, company formation india",
+    title: `${post.title} - Quick License Blog`,
+    description: post.metaDescription,
+    keywords: post.keywords,
     openGraph: {
-      title: "Complete Guide to Private Limited Company Registration in 2024",
-      description: "Step-by-step guide to Private Limited Company registration in India with expert tips and documentation requirements.",
+      title: post.title,
+      description: post.excerpt,
       type: "article",
-      images: ['https://images.unsplash.com/photo-1454165205744-3b78555e5572?w=1600&q=80&auto=format&fit=crop'],
+      images: [post.image],
+      publishedTime: post.date,
+      authors: [post.author],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+    },
+    alternates: {
+      canonical: `https://www.quicklicense.in/blog/${slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }

@@ -38,19 +38,21 @@ export default function StickyConsultationForm() {
 
             console.log("Form submitted successfully:", response);
 
+            const userName = formData.fullName;
             // Show success message
             setSubmitted(true);
+            setFormData({
+                fullName: "",
+                phone: "",
+                email: "",
+                message: "",
+            });
 
-            // Reset form after 3 seconds
+            // Redirect immediately for lightning-fast UX
             setTimeout(() => {
-                setSubmitted(false);
-                setFormData({
-                    fullName: "",
-                    phone: "",
-                    email: "",
-                    message: "",
-                });
-            }, 3000);
+                const transactionId = response.data?.id || '';
+                window.location.href = `/thank-you?tid=${transactionId}&service=Consultation&name=${encodeURIComponent(userName)}`;
+            }, 500);
 
         } catch (error) {
             console.error("Form submission error:", error);

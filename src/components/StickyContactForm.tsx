@@ -34,11 +34,21 @@ export default function StickyContactForm() {
         message: formData.message || "Contact form inquiry",
       };
 
-      await submitContactForm(contactData);
+      const result = await submitContactForm(contactData);
+      const userName = formData.name;
       setSubmitted(true);
-      setFormData({ name: "", mobile: "", email: "", message: "" });
-
-      setTimeout(() => setSubmitted(false), 5000);
+      setFormData({
+        name: "",
+        mobile: "",
+        email: "",
+        message: "",
+      });
+      
+      // Redirect immediately for lightning-fast UX
+      setTimeout(() => {
+        const transactionId = result.data?.id || '';
+        window.location.href = `/thank-you?tid=${transactionId}&service=Contact&name=${encodeURIComponent(userName)}`;
+      }, 500);
     } catch (err) {
       console.error("Form submission error:", err);
       setError(err instanceof Error ? err.message : "Failed to submit form");

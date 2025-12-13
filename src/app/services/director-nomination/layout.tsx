@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "Professional nominee directors for compliance. Board meetings, ROC filings, governance. Trusted experts from ₹12,999/year.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/director-nomination",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function DirectorNominationLayout({

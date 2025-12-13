@@ -43,20 +43,23 @@ export default function ServiceHeroWithForm({
     setError(null);
 
     try {
-      await import("@/lib/api").then(async ({ submitContactForm }) => {
-        await submitContactForm({
-          fullName: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message || `Inquiry from ${title} page`,
-        });
+      const { submitContactForm } = await import("@/lib/api");
+      const result = await submitContactForm({
+        fullName: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message || `Inquiry from ${title} page`,
       });
 
+      const userName = formData.name;
       setSubmitted(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
+      // Redirect immediately for lightning-fast UX
+      setTimeout(() => {
+        const transactionId = result.data?.id || '';
+        window.location.href = `/thank-you?tid=${transactionId}&service=${encodeURIComponent(title)}&name=${encodeURIComponent(userName)}`;
+      }, 500);
     } catch (err) {
       console.error("Form submission error:", err);
       setError(err instanceof Error ? err.message : "Failed to submit form");

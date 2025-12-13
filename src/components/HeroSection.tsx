@@ -44,20 +44,22 @@ export default function HeroSection({
     setError(null);
 
     try {
-      await import("@/lib/api").then(async ({ submitContactForm }) => {
-        await submitContactForm({
-          fullName: "New User (Hero Form)", // Placeholder as name isn't in this form
-          email: formData.email,
-          phone: formData.mobile,
-          message: `Service: ${formData.service || 'Not specified'}, City: ${formData.city}`,
-        });
+      const { submitContactForm } = await import("@/lib/api");
+      const result = await submitContactForm({
+        fullName: "New User (Hero Form)", // Placeholder as name isn't in this form
+        email: formData.email,
+        phone: formData.mobile,
+        message: `Service: ${formData.service || 'Not specified'}, City: ${formData.city}`,
       });
 
       setSubmitted(true);
       setFormData({ email: "", mobile: "", city: "", service: "" });
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
+      // Redirect to thank you page
+      setTimeout(() => {
+        const transactionId = result.data?.id || '';
+        window.location.href = `/thank-you?tid=${transactionId}&service=hero`;
+      }, 1500);
     } catch (err) {
       console.error("Form submission error:", err);
       setError(err instanceof Error ? err.message : "Failed to submit form");

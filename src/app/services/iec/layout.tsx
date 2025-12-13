@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     description: "IEC registration in 3 days. Lifetime validity. Mandatory for global trade. Expert DGFT filing from ₹3,499.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.quicklicense.in/services/iec",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function IECLayout({

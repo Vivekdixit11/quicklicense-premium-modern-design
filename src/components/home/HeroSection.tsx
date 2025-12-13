@@ -251,6 +251,28 @@ export default function HeroSection() {
             </div>
           ))}
         </motion.div>
+
+        {/* Required Disclaimer - Prominent */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="mt-8 lg:mt-10"
+        >
+          <div className="bg-white border-2 border-terracotta/20 rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-terracotta/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Shield className="w-4 h-4 lg:w-5 lg:h-5 text-terracotta" />
+              </div>
+              <div>
+                <h3 className="font-bold text-charcoal text-sm lg:text-base mb-2">Important Disclaimer</h3>
+                <p className="text-xs lg:text-sm text-charcoal/70 leading-relaxed">
+                  Quick License is a private consultancy and is not affiliated with the Central Pollution Control Board (CPCB) or the Legal Metrology Department. We offer assistance in filing and documentation. Government forms and services are available directly through official government websites.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Quote Section */}
