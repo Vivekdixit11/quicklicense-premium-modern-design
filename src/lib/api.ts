@@ -3,13 +3,6 @@
  * Communicates with the quickServer backend
  */
 
-// Extend Window interface for gtag
-declare global {
-    interface Window {
-        dataLayer: any[];
-        gtag: (...args: any[]) => void;
-    }
-}
 
 // Type definitions matching backend schema
 export interface ContactFormData {
@@ -131,15 +124,12 @@ export async function submitContactForm(
             throw new Error(error.message || 'Failed to submit form');
         }
 
-        // Track conversion with Google Ads only if user came from Google Ads
-        if (typeof window !== 'undefined' && window.gtag && isFromGoogleAds()) {
-            window.gtag('event', 'conversion', {
-                'send_to': 'AW-17758729737/aR-lCJvXxcsbEInsgpRC',
-                'value': 1.0,
-                'currency': 'INR',
-                'transaction_id': result.data?.id || ''
-            });
-            console.log('✅ Google Ads conversion tracked');
+        // Track conversion using centralized googleAds helper
+        try {
+            const { trackLeadFormConversion } = await import('./googleAds');
+            trackLeadFormConversion(result.data?.id || '', 1.0);
+        } catch (e) {
+            console.warn('Google Ads helper not available to track conversion', e);
         }
 
         return result as ContactFormResponse;

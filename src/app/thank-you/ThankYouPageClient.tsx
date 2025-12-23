@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from 'react';
 import { CheckCircle2, Phone, Mail, ArrowRight, Home } from 'lucide-react';
@@ -6,14 +6,6 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-// Extend Window interface for gtag
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-  }
-}
 
 export default function ThankYouPageClient() {
   const searchParams = useSearchParams();
@@ -27,37 +19,27 @@ export default function ThankYouPageClient() {
     setUserName(name);
     setServiceName(service);
 
-    // Track conversion only if user came from Google Ads
+    // Track conversion via gtag on thank-you page
     const trackConversion = () => {
-      if (typeof window === 'undefined' || !window.gtag) return;
-
-      // Check if user came from Google Ads
-      const urlParams = new URLSearchParams(window.location.search);
-      const fromGoogleAds = sessionStorage.getItem('from_google_ads') === 'true' ||
-                           urlParams.has('gclid') ||
-                           urlParams.get('utm_source') === 'google' ||
-                           urlParams.get('utm_source') === 'google_ads';
-
-      if (fromGoogleAds) {
-        // Get transaction ID from URL if available
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        const urlParams = new URLSearchParams(window.location.search);
         const transactionId = urlParams.get('tid') || '';
-        
-        window.gtag('event', 'conversion', {
-          'send_to': 'AW-17758729737/MT1fCKueycYbEInsgpRC',
-          'value': 1.0,
-          'currency': 'INR',
-          'transaction_id': transactionId
-        });
-        console.log('✅ Google Ads conversion tracked on thank you page');
-      }
 
-      // Always track Submit lead form conversion on page load
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-17758729737/MT1fCKueycYbEInsgpRC',
-        'value': 1.0,
-        'currency': 'INR'
-      });
-      console.log('✅ Submit lead form conversion tracked');
+        try {
+          // Updated conversion label per request
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-17758729737/BhQ1COeg19QbEInsgpRC',
+            'value': 1.0,
+            'currency': 'INR',
+            'transaction_id': transactionId
+          });
+          console.log('✅ Google Ads conversion tracked on thank you page');
+        } catch (e) {
+          console.error('Failed to send thank-you conversion', e);
+        }
+      } else {
+        console.warn('gtag not available on thank-you page');
+      }
     };
 
     trackConversion();

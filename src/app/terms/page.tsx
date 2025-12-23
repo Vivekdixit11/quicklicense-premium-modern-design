@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://www.quicklicense.in/terms",
+    canonical: "https://quicklicense.in/terms",
   },
   robots: {
     index: true,

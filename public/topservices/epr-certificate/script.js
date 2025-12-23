@@ -129,7 +129,7 @@ if (heroForm) {
             heroForm.style.display = 'none';
             heroSuccessMessage.classList.add('show');
             
-            // Track conversion even on error
+            // Track conversion with Google Ads
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'conversion', {
                     'send_to': 'AW-17758729737/aR-lCJvXxcsbEInsgpRC',
@@ -198,14 +198,20 @@ if (form) {
                 successMessage.classList.add('show');
                 successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // Track conversion with Google Ads
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'conversion', {
-                        'send_to': 'AW-17758729737/aR-lCJvXxcsbEInsgpRC',
-                        'value': 1.0,
-                        'currency': 'INR',
-                        'transaction_id': result.data?.id || ''
-                    });
+                // Google Ads conversion tracking removed.
+                try {
+                    if (window.__conversionTracker && typeof window.__conversionTracker.track === 'function') {
+                        window.__conversionTracker.track({
+                            provider: 'google_ads_removed',
+                            value: 1.0,
+                            currency: 'INR',
+                            transaction_id: result.data?.id || ''
+                        });
+                    } else {
+                        console.info('Google Ads tracking removed (placeholder)');
+                    }
+                } catch (e) {
+                    console.error('Conversion placeholder error:', e);
                 }
                 
                 // Track with Facebook Pixel
@@ -230,13 +236,19 @@ if (form) {
             successMessage.classList.add('show');
             successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
             
-            // Track conversion even on error (user submitted form)
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'conversion', {
-                    'send_to': 'AW-17758729737/aR-lCJvXxcsbEInsgpRC',
-                    'value': 1.0,
-                    'currency': 'INR'
-                });
+            // Google Ads conversion tracking removed.
+            try {
+                if (window.__conversionTracker && typeof window.__conversionTracker.track === 'function') {
+                    window.__conversionTracker.track({
+                        provider: 'google_ads_removed',
+                        value: 1.0,
+                        currency: 'INR'
+                    });
+                } else {
+                    console.info('Google Ads tracking removed (placeholder)');
+                }
+            } catch (e) {
+                console.error('Conversion placeholder error:', e);
             }
             
             // Send notification via alternative method

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://www.quicklicense.in/services/msme",
+    canonical: "https://quicklicense.in/services/msme",
   },
   robots: {
     index: true,

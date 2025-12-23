@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://www.quicklicense.in/services/director-nomination",
+    canonical: "https://quicklicense.in/services/director-nomination",
   },
   robots: {
     index: true,

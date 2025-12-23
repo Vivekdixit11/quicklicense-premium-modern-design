@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     images: ['/logo.png'],
   },
   alternates: {
-    canonical: "https://www.quicklicense.in",
+    canonical: "https://quicklicense.in",
   },
   robots: {
     index: true,
