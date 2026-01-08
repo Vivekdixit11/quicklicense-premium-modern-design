@@ -8,13 +8,13 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StickyContactForm from "@/components/StickyContactForm";
 import { submitContactForm } from "@/lib/api";
-import { 
-  FileText, 
-  Shield, 
-  Clock, 
-  CheckCircle2, 
-  ArrowRight, 
-  Phone, 
+import {
+  FileText,
+  Shield,
+  Clock,
+  CheckCircle2,
+  ArrowRight,
+  Phone,
   MessageCircle,
   Building2,
   Globe,
@@ -69,15 +69,15 @@ function HeroSection() {
           <div>
             <div className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta-dark px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Recycle className="w-4 h-4" />
-               EPR Compliance Expert
+              EPR Compliance Expert
             </div>
-            
+
             <h1 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-charcoal mb-3 leading-tight">
               EPR Registration Consultancy for <span className="text-terracotta">Importers</span> & Manufacturers
             </h1>
-            
+
             <p className="text-sm md:text-base text-charcoal/70 mb-4 leading-relaxed">
-              Avoid <strong className="text-red-600">Customs Hold</strong> & <strong className="text-red-600">₹1 Lakh+ Penalties</strong>. 
+              Avoid <strong className="text-red-600">Customs Hold</strong> & <strong className="text-red-600">₹1 Lakh+ Penalties</strong>.
               Consultancy for Extended Producer Responsibility compliance. We guide you through the CPCB filing process for Plastic, E-Waste, Battery & Tyres.
             </p>
 
@@ -108,7 +108,7 @@ function HeroSection() {
                 <div>
                   <h3 className="font-bold text-red-900 mb-1 text-sm">Goods Stuck at Customs?</h3>
                   <p className="text-xs text-red-800">
-                    Without EPR Authorization, your shipment will be detained. Detention charges can exceed ₹2,00,000. 
+                    Without EPR Authorization, your shipment will be detained. Detention charges can exceed ₹2,00,000.
                     <strong> Apply NOW before importing!</strong>
                   </p>
                 </div>
@@ -117,14 +117,14 @@ function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-3">
-              <a 
+              <a
                 href="#callback-form"
                 className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
               >
                 <Phone className="w-4 h-4" />
                 Get Consultation
               </a>
-              <a 
+              <a
                 href="https://wa.me/919891614601?text=Hi,%20I%20need%20EPR%20registration"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -133,7 +133,7 @@ function HeroSection() {
                 <MessageCircle className="w-4 h-4" />
                 WhatsApp Expert
               </a>
-              <a 
+              <a
                 href="tel:+919891614601"
                 className="inline-flex items-center gap-2 bg-charcoal hover:bg-charcoal/90 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
               >
@@ -167,24 +167,24 @@ function HeroRightForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (formData.phone.length !== 10) {
+      setError('Enter valid 10-digit phone');
+      return;
+    }
     setIsSubmitting(true);
     setError(null);
     try {
-      const result = await submitContactForm({ 
-        fullName: formData.name || "EPR Lead", 
-        phone: formData.phone, 
-        email: formData.email, 
-        message: formData.message || "EPR Registration enquiry" 
+      const result = await submitContactForm({
+        fullName: formData.name || "EPR Lead",
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message || "EPR Registration enquiry"
       });
       // Redirect to thank you page with transaction ID
       const transactionId = result.data?.id || '';
       window.location.href = `/thank-you?tid=${transactionId}&service=epr`;
-    } catch (err) {
-      console.error('Form submission error:', err);
-      const errorMessage = err instanceof Error ? err.message : "Failed to submit form";
-      setError(errorMessage);
-      // Auto-clear error after 8 seconds
-      setTimeout(() => setError(null), 8000);
+    } catch {
+      setError('Enter valid 10-digit phone');
     } finally {
       setIsSubmitting(false);
     }
@@ -192,20 +192,20 @@ function HeroRightForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">    {error && (
-        <div className="p-4 text-sm text-red-700 bg-red-50 rounded-lg border border-red-200 flex items-start gap-2">
-          <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-          <div>
-            <div className="font-semibold">Submission Failed</div>
-            <div className="mt-1">{error}</div>
-            <button 
-              onClick={() => setError(null)} 
-              className="mt-2 text-xs underline hover:no-underline"
-            >
-              Dismiss
-            </button>
-          </div>
+      <div className="p-4 text-sm text-red-700 bg-red-50 rounded-lg border border-red-200 flex items-start gap-2">
+        <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+        <div>
+          <div className="font-semibold">Submission Failed</div>
+          <div className="mt-1">{error}</div>
+          <button
+            onClick={() => setError(null)}
+            className="mt-2 text-xs underline hover:no-underline"
+          >
+            Dismiss
+          </button>
         </div>
-      )}
+      </div>
+    )}
       <div>
         <label className="block text-sm font-medium text-charcoal mb-2">Full Name *</label>
         <input
@@ -219,10 +219,12 @@ function HeroRightForm() {
       <div>
         <label className="block text-sm font-medium text-charcoal mb-2">Phone Number *</label>
         <input
+          type="tel"
           value={formData.phone}
-          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          onChange={(e) => { const val = e.target.value.replace(/\D/g, '').slice(0, 15); setFormData({ ...formData, phone: val }); }}
           className="w-full px-4 py-3 rounded-lg border border-charcoal/20 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none"
-          placeholder="10-digit mobile"
+          placeholder="Phone Number"
+          maxLength={15}
           required
         />
       </div>
@@ -287,55 +289,55 @@ function TrustCertificationSection() {
           </h2>
         </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-5xl mx-auto">
-        {/* EPR Expert */}
-        <div className="bg-cream rounded-xl p-4 border border-terracotta/20 text-center">
-          <Shield className="w-10 h-10 text-terracotta mx-auto mb-2" />
-          <div className="font-semibold text-sm text-charcoal">EPR Expert</div>
-          <div className="text-xs text-charcoal/60 mt-1">Compliance Consultant</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-5xl mx-auto">
+          {/* EPR Expert */}
+          <div className="bg-cream rounded-xl p-4 border border-terracotta/20 text-center">
+            <Shield className="w-10 h-10 text-terracotta mx-auto mb-2" />
+            <div className="font-semibold text-sm text-charcoal">EPR Expert</div>
+            <div className="text-xs text-charcoal/60 mt-1">Compliance Consultant</div>
+          </div>
+
+          {/* ISO */}
+          <div className="bg-cream rounded-xl p-4 border border-terracotta/20 text-center">
+            <BadgeCheck className="w-10 h-10 text-terracotta mx-auto mb-2" />
+            <div className="font-semibold text-sm text-charcoal">ISO 9001:2015</div>
+            <div className="text-xs text-charcoal/60 mt-1">Quality Assured</div>
+          </div>
+
+          {/* Verified */}
+          <div className="bg-cream rounded-xl p-4 border border-terracotta/20 text-center">
+            <Award className="w-10 h-10 text-terracotta mx-auto mb-2" />
+            <div className="font-semibold text-sm text-charcoal">Verified Business</div>
+            <div className="text-xs text-charcoal/60 mt-1">Trusted Partner</div>
+          </div>
+
+          {/* Experience */}
+          <div className="bg-cream rounded-xl p-4 border border-terracotta/20 text-center">
+            <Star className="w-10 h-10 text-terracotta mx-auto mb-2" />
+            <div className="font-semibold text-sm text-charcoal">10+ Years</div>
+            <div className="text-xs text-charcoal/60 mt-1">Experience</div>
+          </div>
         </div>
 
-        {/* ISO */}
-        <div className="bg-cream rounded-xl p-4 border border-terracotta/20 text-center">
-          <BadgeCheck className="w-10 h-10 text-terracotta mx-auto mb-2" />
-          <div className="font-semibold text-sm text-charcoal">ISO 9001:2015</div>
-          <div className="text-xs text-charcoal/60 mt-1">Quality Assured</div>
+        {/* Trust Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div className="text-center">
+            <div className="font-bold text-xl text-terracotta">5000+</div>
+            <div className="text-xs text-charcoal/60">Clients</div>
+          </div>
+          <div className="text-center">
+            <div className="font-bold text-xl text-terracotta">99.5%</div>
+            <div className="text-xs text-charcoal/60">Success</div>
+          </div>
+          <div className="text-center">
+            <div className="font-bold text-xl text-terracotta">24-48h</div>
+            <div className="text-xs text-charcoal/60">Processing</div>
+          </div>
+          <div className="text-center">
+            <div className="font-bold text-xl text-terracotta">24/7</div>
+            <div className="text-xs text-charcoal/60">Support</div>
+          </div>
         </div>
-
-        {/* Verified */}
-        <div className="bg-cream rounded-xl p-4 border border-terracotta/20 text-center">
-          <Award className="w-10 h-10 text-terracotta mx-auto mb-2" />
-          <div className="font-semibold text-sm text-charcoal">Verified Business</div>
-          <div className="text-xs text-charcoal/60 mt-1">Trusted Partner</div>
-        </div>
-
-        {/* Experience */}
-        <div className="bg-cream rounded-xl p-4 border border-terracotta/20 text-center">
-          <Star className="w-10 h-10 text-terracotta mx-auto mb-2" />
-          <div className="font-semibold text-sm text-charcoal">10+ Years</div>
-          <div className="text-xs text-charcoal/60 mt-1">Experience</div>
-        </div>
-      </div>
-
-      {/* Trust Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-        <div className="text-center">
-          <div className="font-bold text-xl text-terracotta">5000+</div>
-          <div className="text-xs text-charcoal/60">Clients</div>
-        </div>
-        <div className="text-center">
-          <div className="font-bold text-xl text-terracotta">99.5%</div>
-          <div className="text-xs text-charcoal/60">Success</div>
-        </div>
-        <div className="text-center">
-          <div className="font-bold text-xl text-terracotta">24-48h</div>
-          <div className="text-xs text-charcoal/60">Processing</div>
-        </div>
-        <div className="text-center">
-          <div className="font-bold text-xl text-terracotta">24/7</div>
-          <div className="text-xs text-charcoal/60">Support</div>
-        </div>
-      </div>
       </div>
     </section>
   );
@@ -353,18 +355,18 @@ function WhatIsEPRSection() {
         What is EPR Registration?
       </h2>
       <div className="space-y-3 text-charcoal/70 text-base">
-            <p>
-              <strong>EPR (Extended Producer Responsibility)</strong> is a mandatory environmental compliance under 
-              the Plastic Waste Management Rules, E-Waste Management Rules, Battery Waste Management Rules, 
-              and Waste Tyre Rules in India.
-            </p>
-            <p>
-              Any entity that produces, imports, or brands packaged products (PIBO - Producer, Importer, Brand Owner) 
-              must obtain EPR Authorization from the <strong>Central Pollution Control Board (CPCB)</strong>. 
-              This ensures you take responsibility for collecting and recycling the waste generated by your products.
-            </p>
+        <p>
+          <strong>EPR (Extended Producer Responsibility)</strong> is a mandatory environmental compliance under
+          the Plastic Waste Management Rules, E-Waste Management Rules, Battery Waste Management Rules,
+          and Waste Tyre Rules in India.
+        </p>
+        <p>
+          Any entity that produces, imports, or brands packaged products (PIBO - Producer, Importer, Brand Owner)
+          must obtain EPR Authorization from the <strong>Central Pollution Control Board (CPCB)</strong>.
+          This ensures you take responsibility for collecting and recycling the waste generated by your products.
+        </p>
         <p id="customs">
-          Without EPR, you cannot clear shipments at customs, sell on e-commerce platforms like Amazon/Flipkart, 
+          Without EPR, you cannot clear shipments at customs, sell on e-commerce platforms like Amazon/Flipkart,
           or legally operate as a manufacturer/importer in India.
         </p>
       </div>
@@ -464,7 +466,7 @@ function EPRCategoriesSection() {
             charcoal: "bg-charcoal/10 border-charcoal/30 text-charcoal",
             cream: "bg-cream border-charcoal/10 text-charcoal"
           };
-          
+
           // create simple slug id for deep-links
           const slug = cat.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
@@ -497,10 +499,10 @@ function EPRCategoriesSection() {
           <div>
             <h3 className="font-bold text-charcoal mb-2">Not Sure Which Category?</h3>
             <p className="text-charcoal/80 mb-3">
-              Many importers need multiple EPR registrations. For example, a mobile phone importer needs 
+              Many importers need multiple EPR registrations. For example, a mobile phone importer needs
               BOTH E-Waste EPR (for the device) AND Plastic EPR (for packaging).
             </p>
-            <a 
+            <a
               href="#callback-form"
               className="inline-flex items-center gap-2 text-terracotta hover:text-terracotta-dark font-semibold"
             >
@@ -602,7 +604,7 @@ function WhoNeedsEPRSection() {
           What is PIBO?
         </h3>
         <p className="text-charcoal/70 mb-4">
-          <strong>PIBO</strong> stands for <strong>Producer, Importer, Brand Owner</strong>. 
+          <strong>PIBO</strong> stands for <strong>Producer, Importer, Brand Owner</strong>.
           This is the standard terminology for entities required to obtain EPR Registration.
         </p>
         <div className="grid md:grid-cols-3 gap-4">
@@ -995,7 +997,7 @@ function DocumentsSection() {
                 For Importers
               </h4>
               <p className="text-sm text-charcoal/70">
-                IEC (Import Export Code) is mandatory. You'll also need customs clearance records 
+                IEC (Import Export Code) is mandatory. You'll also need customs clearance records
                 and Bill of Entry for target calculation.
               </p>
             </div>
@@ -1005,7 +1007,7 @@ function DocumentsSection() {
                 For Manufacturers
               </h4>
               <p className="text-sm text-charcoal/70">
-                Factory License and Process Flow Diagram showing production process 
+                Factory License and Process Flow Diagram showing production process
                 are required for CPCB portal submission.
               </p>
             </div>
@@ -1078,7 +1080,7 @@ function ProcessSection() {
               {index !== steps.length - 1 && (
                 <div className="absolute left-8 top-16 w-0.5 h-full bg-gradient-to-b from-terracotta to-terracotta/20" />
               )}
-              
+
               <div className="relative z-10 flex-shrink-0">
                 <div className="w-16 h-16 bg-terracotta rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
                   {item.step}
@@ -1179,9 +1181,8 @@ function FAQSection() {
                   className="w-full flex items-center justify-between p-6 text-left hover:bg-cream/50 transition-colors"
                 >
                   <span className="font-semibold text-charcoal pr-4">{faq.question}</span>
-                  <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                    openIndex === index ? 'bg-terracotta text-white' : 'bg-charcoal/10 text-charcoal'
-                  }`}>
+                  <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${openIndex === index ? 'bg-terracotta text-white' : 'bg-charcoal/10 text-charcoal'
+                    }`}>
                     {openIndex === index ? (
                       <ChevronUp className="w-5 h-5" />
                     ) : (
@@ -1203,7 +1204,7 @@ function FAQSection() {
           <div className="mt-12 text-center">
             <p className="text-charcoal/60 mb-4">More questions about EPR compliance?</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a 
+              <a
                 href="https://wa.me/919891614601?text=Hi,%20I%20need%20EPR%20registration%20help"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1212,7 +1213,7 @@ function FAQSection() {
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Expert
               </a>
-              <a 
+              <a
                 href="#callback-form"
                 className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-6 py-3 rounded-lg font-semibold transition-all"
               >
@@ -1322,8 +1323,8 @@ function CallbackFormSection() {
                         <div className="font-semibold">Submission Failed</div>
                         <div className="mt-1">{error}</div>
                       </div>
-                      <button 
-                        onClick={() => setError(null)} 
+                      <button
+                        onClick={() => setError(null)}
                         className="text-red-700 hover:text-red-900"
                         type="button"
                       >
@@ -1336,7 +1337,7 @@ function CallbackFormSection() {
                       <label className="block text-sm font-medium text-charcoal mb-2">Name *</label>
                       <input
                         value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg border border-charcoal/20 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none"
                         required
                       />
@@ -1345,7 +1346,7 @@ function CallbackFormSection() {
                       <label className="block text-sm font-medium text-charcoal mb-2">Phone *</label>
                       <input
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg border border-charcoal/20 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none"
                         required
                       />
@@ -1357,7 +1358,7 @@ function CallbackFormSection() {
                     <input
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-charcoal/20 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none"
                     />
                   </div>
@@ -1367,7 +1368,7 @@ function CallbackFormSection() {
                       <label className="block text-sm font-medium text-charcoal mb-2">Business Type</label>
                       <select
                         value={formData.businessType}
-                        onChange={(e) => setFormData({...formData, businessType: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg border border-charcoal/20 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none"
                       >
                         <option value="">Select...</option>
@@ -1380,7 +1381,7 @@ function CallbackFormSection() {
                       <label className="block text-sm font-medium text-charcoal mb-2">EPR Category</label>
                       <select
                         value={formData.productCategory}
-                        onChange={(e) => setFormData({...formData, productCategory: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, productCategory: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg border border-charcoal/20 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none"
                       >
                         <option value="">Select...</option>
@@ -1397,7 +1398,7 @@ function CallbackFormSection() {
                     <textarea
                       rows={3}
                       value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-charcoal/20 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none resize-none"
                       placeholder="Brief description of your EPR requirement..."
                     />
@@ -1473,14 +1474,14 @@ function FinalCTASection() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a 
+            <a
               href="#callback-form"
               className="inline-flex items-center gap-2 bg-white hover:bg-cream text-terracotta px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all"
             >
               <Phone className="w-5 h-5" />
               Get Consultation
             </a>
-            <a 
+            <a
               href="https://wa.me/919891614601?text=Hi,%20I%20need%20EPR%20registration%20urgently"
               target="_blank"
               rel="noopener noreferrer"
@@ -1489,7 +1490,7 @@ function FinalCTASection() {
               <MessageCircle className="w-5 h-5" />
               WhatsApp Now
             </a>
-            <a 
+            <a
               href="tel:+919891614601"
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all"
             >
@@ -1523,12 +1524,12 @@ export default function EPRPageClient() {
             </p>
           </div>
         </div>
-        
+
         <HeroSection />
         <TrustCertificationSection />
         {/* quick about anchor (links to about page can also use this) */}
         <div id="about" />
-        
+
         {/* Two-column layout with sticky form */}
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
@@ -1549,7 +1550,7 @@ export default function EPRPageClient() {
               <div id="contact" />
               <CallbackFormSection />
             </div>
-            
+
             {/* Sticky Form - Right Side */}
             <div className="hidden lg:block w-[360px] flex-shrink-0">
               <div className="sticky top-24">
@@ -1558,7 +1559,7 @@ export default function EPRPageClient() {
             </div>
           </div>
         </div>
-        
+
         <FinalCTASection />
       </main>
       <Footer />

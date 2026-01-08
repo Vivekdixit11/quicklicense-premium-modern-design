@@ -121,6 +121,13 @@ export default function RootLayout({
         />
         {children}
         <VisualEditsMessenger />
+        
+        {/* AI Chat Widget */}
+        <Script
+          src="https://airag-bot.vercel.app/widget.js?company=quicklicense"
+          strategy="lazyOnload"
+          async
+        />
       </body>
     </html>
   );

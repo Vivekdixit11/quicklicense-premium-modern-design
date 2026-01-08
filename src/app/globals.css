@@ -303,3 +303,32 @@ body {
 .animate-scroll-slow {
   animation: scroll-slow 30s linear infinite;
 }
+/* Chat Widget Positioning - Ensure proper spacing between WhatsApp and AI Chat */
+/* AI Chat Widget (from airag-bot) */
+#airag-chat-widget,
+#airag-chat-button,
+.airag-widget-container {
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 50 !important;
+}
+
+/* On mobile, position AI chat above the fixed CTA */
+@media (max-width: 640px) {
+  #airag-chat-widget,
+  #airag-chat-button,
+  .airag-widget-container {
+    bottom: 88px !important;
+    right: 16px !important;
+  }
+}
+
+/* Ensure WhatsApp button doesn't overlap with AI chat */
+@media (min-width: 641px) {
+  /* On desktop, position them side by side */
+  #airag-chat-widget,
+  #airag-chat-button,
+  .airag-widget-container {
+    right: 120px !important;
+  }
+}

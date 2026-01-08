@@ -12,12 +12,13 @@ export default function WhatsAppButton() {
       animate={{ scale: 1 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#128C7E] rounded-full shadow-xl flex items-center justify-center transition-all duration-300 group"
+      className="fixed bottom-24 sm:bottom-24 right-4 sm:right-6 z-[60] w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] hover:bg-[#128C7E] rounded-full shadow-xl flex items-center justify-center transition-all duration-300 group"
       aria-label="Chat on WhatsApp"
+      style={{ marginBottom: '0px' }}
     >
       {/* Real WhatsApp Logo SVG */}
       <svg 
-        className="w-8 h-8 text-white" 
+        className="w-7 h-7 sm:w-9 sm:h-9 text-white" 
         fill="currentColor" 
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"

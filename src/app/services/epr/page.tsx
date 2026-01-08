@@ -1,4 +1,11 @@
 import EPRPageUltraFast from "./EPRPageUltraFast";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "EPR Registration in India | CPCB EPR Authorization – QuickLicense",
+  description: "Get EPR Registration & compliance support in India. CPCB-approved EPR for Plastic, E-Waste, Battery & Tyres. Fast & reliable service.",
+  keywords: "EPR Registration in India, EPR Authorization CPCB, Extended Producer Responsibility India, EPR compliance services, Plastic EPR registration, E-waste EPR registration, Battery EPR registration, CPCB EPR consultants, EPR certificate for importers",
+};
 
 export default function EPRPage() {
   const jsonLd = {
@@ -6,61 +13,17 @@ export default function EPRPage() {
     "@graph": [
       {
         "@type": "Service",
-          "@id": "https://www.quicklicense.in/services/epr#service",
-        "name": "EPR Registration Consultancy Services",
-        "description": "Professional Extended Producer Responsibility (EPR) Registration assistance for Plastic, E-Waste, Battery and Tyre compliance. Expert PIBO registration support and documentation services. Private consultancy firm.",
+        "serviceType": "EPR Registration and Compliance Services",
         "provider": {
           "@type": "Organization",
-          "@id": "https://www.quicklicense.in/#organization",
-          "name": "Quick License",
-          "url": "https://www.quicklicense.in",
-          "logo": "https://www.quicklicense.in/logo.png",
-          "description": "Private business consultancy specializing in EPR compliance documentation",
+          "name": "QuickLicense",
+          "url": "https://www.quicklicense.in"
         },
-        "serviceType": "EPR Registration Consultancy and Documentation Support",
         "areaServed": {
           "@type": "Country",
-          "name": "India",
+          "name": "India"
         },
-        "disclaimer": "Quick License is a private consultancy service. We are not affiliated with any regulatory body or government agency.",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "EPR Registration Services",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Plastic EPR Registration",
-                "description": "EPR Registration for Plastic Waste Management compliance",
-              },
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "E-Waste EPR Registration",
-                "description": "EPR Registration for E-Waste Management compliance",
-              },
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Battery EPR Registration",
-                "description": "EPR Registration for Battery Waste Management compliance",
-              },
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Tyre EPR Registration",
-                "description": "EPR Registration for Tyre Waste Management compliance",
-              },
-            },
-          ],
-        },
+        "description": "QuickLicense provides CPCB-approved EPR registration and compliance services for plastic, e-waste, battery, and tyre categories across India."
       },
       {
         "@type": "FAQPage",
@@ -68,53 +31,37 @@ export default function EPRPage() {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is EPR Registration and who needs it?",
+            "name": "What is EPR Registration in India?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "EPR (Extended Producer Responsibility) Registration is mandatory for Producers, Importers, and Brand Owners (PIBOs) dealing in products that generate plastic waste, e-waste, batteries, or tyres. It ensures proper end-of-life product management and environmental compliance.",
-            },
+              "text": "EPR Registration is a mandatory authorization issued by CPCB for producers, importers, and brand owners to manage waste generated from their products."
+            }
           },
           {
             "@type": "Question",
-            "name": "How long does EPR Registration take?",
+            "name": "Who needs EPR Authorization?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "EPR Registration typically takes 7-15 working days from the date of application submission with complete documents. We provide fast-track services with priority processing.",
-            },
+              "text": "Manufacturers, importers, and brand owners dealing in plastic packaging, electronics, batteries, or tyres must obtain EPR authorization."
+            }
           },
           {
             "@type": "Question",
-            "name": "What documents are required for EPR Registration?",
+            "name": "Is EPR registration mandatory for importers?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Key documents include: PAN Card, GST Certificate, Business Registration Proof, Designated Signatory ID & Address Proof, Product Details with HSN Codes, Manufacturing/Import License, and Previous Year Turnover details if applicable.",
-            },
+              "text": "Yes, importers introducing regulated products into India must obtain EPR authorization before customs clearance."
+            }
           },
           {
             "@type": "Question",
-            "name": "What are the different EPR categories?",
+            "name": "How long does EPR registration take?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "EPR is required for four main categories: 1) Plastic Waste Management, 2) E-Waste Management, 3) Battery Waste Management, and 4) Tyre Waste Management. Each category has specific rules and registration portals.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "Is EPR Registration mandatory for importers?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, EPR Registration is mandatory for all importers bringing products into India that fall under EPR categories. Without EPR authorization, customs clearance will be denied, leading to detention and demurrage charges.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "What is the cost of EPR Registration?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Official registration fees vary by category: Plastic EPR ₹5,000, E-Waste EPR ₹10,000, Battery EPR ₹7,500, and Tyre EPR ₹6,000. Professional consultancy fees are discussed based on your specific requirements and complexity. We are a private consultancy service.",
-            },
-          },
-        ],
+              "text": "The timeline varies based on category and documentation, but professional handling helps reduce delays."
+            }
+          }
+        ]
       },
       {
         "@type": "BreadcrumbList",
